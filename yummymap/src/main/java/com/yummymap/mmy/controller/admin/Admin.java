@@ -27,6 +27,7 @@ import com.yummymap.mmy.util.PageUtil;
 @Controller
 @RequestMapping("/admin")
 public class Admin {
+	
 	@Autowired
 	AdminDAO adminDao;
 	@Autowired
