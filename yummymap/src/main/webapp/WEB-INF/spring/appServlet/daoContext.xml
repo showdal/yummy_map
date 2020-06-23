@@ -14,5 +14,9 @@
 	<bean id="mDAO" class="com.yummymap.mmy.dao.MemberDAO" />
 	<!-- 게시판 관련 데이베이스 작업 dao 빈처리 -->
 	<bean id="tDAO" class="com.yummymap.mmy.dao.TxtDAO" />
+	<!-- 어드민 관련 데이터 베이스 -->
+	<bean id="aDAO" class="com.yummymap.mmy.dao.AdminDAO" />
+	<!-- 차트 관련 데이터 베이스 -->
+	<bean id="chartDAO" class="com.yummymap.mmy.dao.ChartDAO" />
 
 </beans>
