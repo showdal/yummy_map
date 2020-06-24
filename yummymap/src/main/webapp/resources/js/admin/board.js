@@ -24,7 +24,7 @@ function search(){
 			$('#opts').val(sel);
 		}
 		
-		$('#frm').attr('action','/YummyMap/admin/boardList.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardList.mmy');
 		$('#frm').submit();
 		
 }
@@ -37,7 +37,7 @@ $(function(){
 		let page = $(this).text();
 		$('#nowPage').val(page);
 		search();
-		$('#frm').attr('action','/YummyMap/admin/boardList.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardList.mmy');
 		$('#frm').submit();
 	});
 	
@@ -46,7 +46,7 @@ $(function(){
 
 		search();
 		$('#nowPage').val(aa);
-		$('#frm').attr('action','/YummyMap/admin/boardList.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardList.mmy');
 		$('#frm').submit();
 	});
 	
@@ -54,7 +54,7 @@ $(function(){
 		search();
 		let aa = $(this).attr('id');
 		$('#nowPage').val(aa);
-		$('#frm').attr('action','/YummyMap/admin/boardList.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardList.mmy');
 		$('#frm').submit();
 	});
 	
@@ -94,12 +94,12 @@ $(function(){
 		$('#searchs').val(inid);
 		$('#opts').val(opt);
 		$('#txtno').val(txtnos); 
-		$('#frm').attr('action','/YummyMap/admin/boardDel.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardDel.mmy');
 		$('#frm').submit();
 		
 		
 /*		$.ajax({
-			url: '/YummyMap/admin/checkDel.mmy',
+			url: '/yummymap/admin/checkDel.mmy',
 			type: 'post',
 			datatype: 'text',
 			data:{
@@ -119,7 +119,7 @@ $(function(){
 		$('#searchs').val(inid);
 		$('#opts').val(opt);
 		$('#txtno').val(tno); 
-		$('#frm').attr('action','/YummyMap/admin/boardDel.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardDel.mmy');
 		$('#frm').submit();
 	});
 	
@@ -131,7 +131,7 @@ $(function(){
 		$('#searchs').val(inid);
 		$('#opts').val(opt);
 		$('#txtno').val(tno); 
-		$('#frm').attr('action','/YummyMap/admin/boardDetail.mmy');
+		$('#frm').attr('action','/yummymap/admin/boardDetail.mmy');
 		$('#frm').submit();
 		
 	});

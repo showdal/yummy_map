@@ -3,7 +3,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-						https://maven.apache.org/maven-v4_0_0.xsd">
+						https://maven.apache.org/maven-v4_0_0.xsd" >
+						
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yummymap</groupId>
 	<artifactId>yummymap</artifactId>
@@ -36,16 +37,31 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
-		<!-- AspectJ -->
+		<!-- AspectJ RunTime -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
+		      <groupId>org.aspectj</groupId>
+		      <artifactId>aspectjrt</artifactId>
+		      <version>${org.aspectj-version}</version>
+		</dependency>    
+		<!-- AspectJ Weaver -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		</dependency>
+
+		<!-- AspectJ Tools -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjtools</artifactId>
+		    <version>${org.aspectj-version}</version>
 		</dependency>	
+		
+		<!-- mail -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>${org.aspectj-version}</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
 		</dependency>	
 		
 		<!-- Logging -->
@@ -240,4 +256,5 @@
             </plugin>
         </plugins>
     </build>
+    
 </project>
