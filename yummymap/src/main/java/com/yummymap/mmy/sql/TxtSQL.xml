@@ -9,8 +9,9 @@
 		rno, txtno, mid, title, rnum, category, mtxt, cdate, count
 	FROM
 		(SELECT
-			ROWNUM rno, txtno, mid, title, rnum, category, mtxt,
-			TO_CHAR(cdate,'yyyy-MM-dd  hh24:mi:ss') cdate, count
+			ROWNUM rno, txtno, mid, title, category, mtxt,
+			TO_CHAR(cdate,'yyyy-MM-dd  hh24:mi:ss') cdate, count,
+			(SELECT count(*) FROM recommend WHERE isrec='Y' AND txtno=#{txtno}) rnum
 		FROM
 			txt t, category c
 		WHERE

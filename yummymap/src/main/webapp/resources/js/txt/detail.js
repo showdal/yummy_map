@@ -15,6 +15,8 @@
 'use strict';
 $(document).ready(function(){
 		  //로그인 여부를 확인합니다.
+	
+	
 	  let userid = '${sid}';
 	  if(!userid) {
 		  $('#login').show();

@@ -19,7 +19,7 @@
 		<typeAlias  alias="resCntVo" type="com.yummymap.mmy.vo.admin.ResCntVO" />
 		<typeAlias alias="ratingUpsoVo" type="com.yummymap.mmy.vo.RatingUpsoVO" />
 	 </typeAliases>
-	  
+	  <!--  -->
 	  <mappers>
 	  	<mapper resource="com/yummymap/mmy/sql/MemberSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/TxtSQL.xml" />

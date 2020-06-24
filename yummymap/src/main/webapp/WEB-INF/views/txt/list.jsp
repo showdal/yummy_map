@@ -77,7 +77,7 @@
 	</div>
 	<!-- nav 마지막 입니다-->
 
-	<!-- body 시작 입니다-->
+	<!-- body 시작 입니다. -->
 	<div class="main-body">
 		<div class="writebox d-flex">
 			<div class="writeBtnBox">

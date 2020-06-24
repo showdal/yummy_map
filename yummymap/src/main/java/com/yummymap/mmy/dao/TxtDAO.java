@@ -12,7 +12,7 @@ public class TxtDAO {
 	public List getList() {
 		return sqlSession.selectList("tSQL.tList");
 	}
-
+//
 	public TxtVO write(TxtVO tVO) {
 		sqlSession.insert("tSQL.tWrite", tVO);
 		return tVO;
