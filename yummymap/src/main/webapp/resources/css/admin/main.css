@@ -1,8 +1,9 @@
 /**
-@author À¯ÅÂÈñ
+@author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @since 2020.05.23
- 	ÀÌ CSS´Â °ü¸®ÀÚ È¸¿øÁ¤º¸ °ü¸® ÆäÀÌÁö¿¡ »ç¿ëÇÒ CSS ÀÔ´Ï´Ù
+ 	ï¿½ï¿½ CSSï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSS ï¿½Ô´Ï´ï¿½
 */
+
 .bar{
 	border-bottom: 3px solid rgb(255, 165, 69);
 }
@@ -15,13 +16,7 @@
 	height: 540px;
 }
 
-.tcolor{color: rgb(255, 128, 89) !important;}
-.nav-body{width: 100%; height: 130px;}
-.nav-item{background-color: rgb(255, 128, 89); color: white;}
-.logo{ font-size: 25pt; font-weight: bold; margin-top: 20px;}
-.nav-item-1{margin-left: 820px;}
-.nav-item-size{font-size: 30pt;}
-.main-body{position: absolute; top: 240px;}
+
 .mt100{
 	margin-top: 100px;
 }
@@ -35,7 +30,7 @@
 }
 
 .sub{
-	margin: 0px !important; height: 600px;
+	margin: 0px !important; height: 100%;
 }
 
 .hi40 {

@@ -12,7 +12,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
 <link rel="stylesheet" href="/yummymap/css/admin/base.css">
 <link rel="stylesheet" href="/yummymap/css/admin/main.css">
 <script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
@@ -23,65 +25,71 @@
 </head>
 
 <body>
-	<form method="post" action="" id="frm">
+	<form class="d-none" method="post" action="" id="frm">
 		<input type="hidden" name="mno" id="no" value="0"> 
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage }"> <input
 			type="hidden" name="mname" id="mname"> <input
 			type="hidden" name="mid" id="mid"> <input
 			type="hidden" name="opts" id="opts">
 	</form>
-	<div class="container mt-1 mb5">
-			<div class="bg-white nav-body">
-			<div class=" mt-2 nav-btn">
-				<div class="member_nav text-right mt-3">
-					<div class="ctQZg">
-						<!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
-						<div class="badge badge-light nav-item">${ADMINSID}</div>
-						<a href="./adminEdit.mmy" class="badge badge-light nav-item">정보수정</a>
-						<a href="./logoutProc.mmy" class="badge badge-light nav-item" id="logout">LOGOUT</a>
+	<div class="topNav border-bottom mt-1">
+        <div class="d-flex">
+            <div class="topNavLogo pl-4 pt-2">
+                <a href="">YUMMY MAP</a>
+                <h5 class="ml-5 mt-3" style="color: black;">ADMIN PAGE</h5>
+            </div>
+            <div class="d-flex align-items-end flex-column w-100 col">
+            <ul class="topNavItem d-flex justify-content-end pr-4 pt-2">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/adminEdit.mmy"><i class="fas fa-user"></i></a></li>
+                <c:if test="${ADMINSID == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                </c:if>
+                <c:if test="${ADMINSID != null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+            </ul>
+                <div class="col-3 pr-4 d-flex justify-content-around">
+					<div class="mt-4">
+						<a href="./main.mmy">
+							<h6>메인 화면</h6>
+						</a>
+					</div>
+					<div class=" mt-4">
+						<a href="./member.mmy">
+							<h6>회원 관리</h6>
+						</a>
+					</div>
+					<div class="mt-4 ">
+						<a href="./boardList.mmy">
+							<h6>게시글 관리</h6>
+						</a>
 					</div>
 				</div>
-			</div>
-			<a class="navbar-brand tcolor logo ml-1" href="./main.mmy"> YUMMY MAP </a>
-		</div>
-		<div class="bar"></div>
-		<div class="row row-cols-2 mt-2 sub">
-			<div class="col-3 pt-5 pr-4 text-right bar-ri">
-				<div class="text-left mt-3">
-					<a href="./main.mmy">
-						<h5>메인 화면</h5>
-					</a>
-				</div>
-				<div class="text-left mt-4">
-					<a href="./member.mmy">
-						<h5>회원 관리</h5>
-					</a>
-				</div>
-				<div class="mt-4 text-left">
-					<a href="./boardList.mmy">
-						<h5>게시글 관리</h5>
-					</a>
-				</div>
-			</div>
-
-			<div class="col-9 d-flex flex-column mt-2" style="height: 575px;">
+            </div>
+        </div>
+      </div>
+		<div class="" style="padding-top: 200px;">
+			<div class="col-9 d-flex flex-column mt-2 m-auto" style="height: 500px;">
 				<div class="mb-auto p-2">
+				<h3 class="text-center ml-4 mb-5">회원 관리</h3>
 					<div class="d-flex justify-content-around text-center">
-						<div class="col-2">번호</div>
+						<div class="col-1">번호</div>
 						<div class="col-2">아이디</div>
 						<div class="col-2">이름</div>
-						<div class="col-2">악성회원</div>
-						<div class="col-3">비고</div>
+						<div class="col-2">가입일</div>
+						<div class="col-1">악성회원</div>
+						<div class="col-2">비고</div>
 					</div>
 					<div class="row bar py-1"></div>
 					<c:forEach var="data" items="${LIST}">
 						<div class="d-flex mt-3 justify-content-around text-center"
 							id="${data.mno}">
-							<div class="col-2">${data.mno}</div>
+							<div class="col-1">${data.mno}</div>
 							<div class="col-2 mid">${data.mid }</div>
 							<div class="col-2">${data.mname }</div>
-							<div class="col-2">${data.issue }</div>
-							<div class="col-3">
+							<div class="col-2">${data.joindate }</div>
+							<div class="col-1">${data.issue }</div>
+							<div class="col-2">
 								<button class="col-5 obtn">수정</button>
 								<button class="col-5 btn-danger rbtn" type="button"
 									data-toggle="modal" data-target="#staticBackdrop">삭제</button>
@@ -91,22 +99,22 @@
 				</div>
 				<div class=" p-2 d-flex">
 					<select style="display: inline-block;"
-						class="ml-auto col-2 form-control" id="opt" name="opt">
+						class="ml-auto col-1 form-control" id="opt" name="opt">
 						<option value="nos">검색조건</option>
 						<c:if test="${empty OPT}">
-							<option id="idsel" value="idch">아이디 검색</option>
+							<option id="idsel" value="idch">ID 검색</option>
 							<option id="namesel" value="namech">이름 검색</option>
 						</c:if>
 						<c:if test="${not empty OPT and OPT eq 'idch' }">
-							<option id="idsel" value="idch" selected>아이디 검색</option>
+							<option id="idsel" value="idch" selected>ID 검색</option>
 							<option id="namesel" value="namech">이름 검색</option>
 						</c:if>
 						<c:if test="${not empty OPT and OPT eq 'namech' }">
-							<option id="idsel" value="idch">아이디 검색</option>
+							<option id="idsel" value="idch">ID 검색</option>
 							<option id="namesel" value="namech" selected>이름 검색</option>
 						</c:if>
 					</select>
-					<div class="col-3 bd-highlight">
+					<div class="col-4 bd-highlight">
 						<input type="search" class="form-control ds-input"
 							id="search-input" placeholder="Search..."
 							aria-label="Search for..." autocomplete="off"
@@ -145,12 +153,11 @@
          </div>
       </div>
 
-			</div>
 		</div>
-		<div class="bar"></div>
+		</div>
 	</div>
 
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+	<div class="modal fade" style="margin-top: 180px;" id="staticBackdrop" data-backdrop="static"
 		data-keyboard="false" tabindex="-1" role="dialog"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">

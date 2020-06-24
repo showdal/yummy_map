@@ -151,6 +151,7 @@ public class Admin {
 		
 		avo = adminDao.getMemberInfo(avo);
 		avo.setIssue();
+		avo.setsDate();
 		mv.addObject("MVO", avo);
 		mv.setViewName(view);
 		return mv;

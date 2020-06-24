@@ -13,6 +13,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
 <link rel="stylesheet" href="/yummymap/css/admin/base.css">
 <link rel="stylesheet" href="/yummymap/css/admin/board.css">
 <script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
@@ -29,42 +31,46 @@
 		<input type="hidden" name="opts" id="opts">
 		<input type="hidden" name="txtno" id="txtno" value="0">
 	</form>
-	<div class="container mt-1 mb5">
-		<div class="bg-white nav-body">
-			<div class=" mt-2 nav-btn">
-				<div class="member_nav text-right mt-3">
-					<div class="ctQZg">
-						<!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
-						<div class="badge badge-light nav-item">${ADMINSID}</div>
-						<a href="./adminEdit.mmy" class="badge badge-light nav-item">정보수정</a>
-						<a href="./logoutProc.mmy" class="badge badge-light nav-item" id="logout">LOGOUT</a>
+	<div class="topNav border-bottom">
+        <div class="d-flex">
+            <div class="topNavLogo pl-4 pt-2">
+                <a href="">YUMMY MAP</a>
+                <h5 class="ml-5 mt-3" style="color: black;">ADMIN PAGE</h5>
+            </div>
+            <div class="d-flex align-items-end flex-column w-100 col">
+            <ul class="topNavItem d-flex justify-content-end pr-4 pt-2">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/adminEdit.mmy"><i class="fas fa-user"></i></a></li>
+                <c:if test="${ADMINSID == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                </c:if>
+                <c:if test="${ADMINSID != null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+            </ul>
+                <div class="col-3 pr-4 d-flex justify-content-around">
+					<div class="mt-4">
+						<a href="./main.mmy">
+							<h6>메인 화면</h6>
+						</a>
+					</div>
+					<div class=" mt-4">
+						<a href="./member.mmy">
+							<h6>회원 관리</h6>
+						</a>
+					</div>
+					<div class="mt-4 ">
+						<a href="./boardList.mmy">
+							<h6>게시글 관리</h6>
+						</a>
 					</div>
 				</div>
-			</div>
-			<a class="navbar-brand tcolor logo ml-1" href="./main.mmy" id=""> YUMMY MAP </a>
-		</div>
-		<div class="bar"></div>
-		<div class="row row-cols-2 sub ml-1">
-			<div class="col-3 pt-5 pr-4 text-right bar-ri">
-				<div class="text-left mt-3">
-					<a href="./main.mmy">
-						<h5>메인 화면</h5>
-					</a>
-				</div>
-				<div class="text-left mt-4">
-					<a href="./member.mmy">
-						<h5>회원 관리</h5>
-					</a>
-				</div>
-				<div class="mt-4 text-left">
-					<a href="./boardList.mmy">
-						<h5>게시글 관리</h5>
-					</a>
-				</div>
-			</div>
-
-			<div class="col-9 d-flex flex-column bd-highlight mt-2"
-				style="height: 575px;">
+            </div>
+        </div>
+      </div>
+	<div class="mt-1 mb5" style="padding-top: 200px;">
+			<div class="col-9 d-flex flex-column bd-highlight m-auto"
+				style="height: 500px;">
+				<h3 class="text-center ml-4 mb-5">게시글 관리</h3>
 				<div class="mb-auto p-2 ">
 					<div class="d-flex justify-content-around text-center">
 						<div class="col-2">번호</div>
@@ -91,24 +97,24 @@
 				<div class=" p-2 d-flex bd-highlight">
 					<button class="bd-highlight" id="allck">전체 선택</button>
 					<button class="bd-highlight ml-1" id="allremve">선택 삭제</button>
-					<select style="display: inline-block;" class="ml-auto col-2 form-control" id="opt" name="opt" >
+					<select style="display: inline-block;" class="ml-auto col-1 form-control" id="opt" name="opt" >
 						<c:if test="${empty OPT}">
 							<option value="nos" selected>검색조건</option>
-							<option id="idsel" value="idch">작성자 검색</option>
+							<option id="idsel" value="idch">작성자</option>
 							<option id="namesel" value="titlch">제목 검색</option>
 						</c:if>
 						<c:if test="${not empty OPT and OPT eq 'idch' }">
 							<option value="nos">검색조건</option>
-							<option id="idsel" value="idch" selected>작성자 검색</option>
+							<option id="idsel" value="idch" selected>작성자</option>
 							<option id="namesel" value="titlch">제목 검색</option>
 						</c:if>
 						<c:if test="${not empty OPT and OPT eq 'titlch' }">
 							<option value="nos">검색조건</option>
-							<option id="idsel" value="idch" >작성자 검색</option>
+							<option id="idsel" value="idch" >작성자</option>
 							<option id="namesel" value="titlch" selected>제목 검색</option>
 						</c:if>
 					</select>
-					<div class="col-3 bd-highlight">
+					<div class="col-4 bd-highlight">
 						<input type="search" class="form-control ds-input" id="search-input" placeholder="Search..."
 							aria-label="Search for..." autocomplete="off" data-docs-version="4.5" spellcheck="false" role="combobox"
 							aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
@@ -145,11 +151,9 @@
 	</div>
 
 		</div>
-		<div class="bar"></div>
-		</div>
 	</div>
 	
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal fade" id="staticBackdrop" style="margin-top: 180px;" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
