@@ -12,7 +12,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
 <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/yummymap/css/admin/base.css">
 <link rel="stylesheet" href="/yummymap/css/admin/adminboardDetail.css">
@@ -30,45 +31,46 @@
 		<input type="hidden" name="opts" id="opts" value="${param.opts }"> 
 		<input type="hidden" name="txtno" id="txtno" value="${param.txtno }">
 	</form>
-	<div class="container mt-1 mb5">
-		<div class="bg-white nav-body">
-			<div class=" mt-2 nav-btn">
-				<div class="member_nav text-right mt-3">
-					<div class="ctQZg">
-						<!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
-						<div class="badge badge-light nav-item">${ADMINSID}</div>
-						<a href="./adminEdit.mmy" class="badge badge-light nav-item">정보수정</a> 
-						<sapn class="badge badge-light nav-item" id="logout">LOGOUT</sapn>
+	<div class="topNav border-bottom">
+        <div class="d-flex">
+            <div class="topNavLogo pl-4 pt-2">
+                <a href="">YUMMY MAP</a>
+                <h5 class="ml-5 mt-3" style="color: black;">ADMIN PAGE</h5>
+            </div>
+            <div class="d-flex align-items-end flex-column w-100 col">
+            <ul class="topNavItem d-flex justify-content-end pr-4 pt-2">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/adminEdit.mmy"><i class="fas fa-user"></i></a></li>
+                <c:if test="${ADMINSID == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                </c:if>
+                <c:if test="${ADMINSID != null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+            </ul>
+                <div class="col-3 pr-4 d-flex justify-content-around">
+					<div class="mt-4">
+						<a href="./main.mmy">
+							<h6>메인 화면</h6>
+						</a>
+					</div>
+					<div class=" mt-4">
+						<a href="./member.mmy">
+							<h6>회원 관리</h6>
+						</a>
+					</div>
+					<div class="mt-4 ">
+						<a href="./boardList.mmy">
+							<h6>게시글 관리</h6>
+						</a>
 					</div>
 				</div>
-			</div>
-			<a class="navbar-brand tcolor logo ml-1"
-				href="./main.mmy" id=""> YUMMY MAP
-			</a>
-		</div>
-		<div class="bar"></div>
-		<div class="row row-cols-2 sub ml-1">
-			<div class="col-3 pt-5 pr-4 text-right bar-ri">
-				<div class="text-left mt-3">
-					<a href="./main.mmy">
-						<h5>메인 화면</h5>
-					</a>
-				</div>
-				<div class="text-left mt-4">
-					<a href="./member.mmy">
-						<h5>회원 관리</h5>
-					</a>
-				</div>
-				<div class="mt-4 text-left">
-					<a href="./boardList.mmy">
-						<h5>게시글 관리</h5>
-					</a>
-				</div>
-			</div>
-
-			<div class="col-9 d-flex flex-column bd-highlight mt-2"
-				style="height: 575px;">
-				<div class="txt-line  mb-4">
+            </div>
+        </div>
+      </div>
+	<div class="mt-1 mb5" style="padding-top: 150px;">
+			<div class="col-9 d-flex flex-column bd-highlight m-auto" style="height: 575px;">
+				<div class="txt-line Regular shadow m-auto" style="width: 800px;">
+				<h3 class="mt-4 text-center ml-4">게시글 상세보기</h3>
 					<div class="btns d-flex justify-content-end pr-4 mt-2">
 						<a class="badge badge-info text-white mr-2 p-2" id="lbtn">뒤로가기</a>
 						<a class="badge badge-danger text-white p-2" id="delete">삭제</a>
@@ -77,22 +79,16 @@
 					<div class="d-flex title">
 						<div class="txt-title pt-4" id="">제목 : ${BVO.title }</div>
 						<div class="pt-4 d-flex">
-							<div class="list-item-like like-size">
-								<span class="heart"><i class="far fa-heart "
-									aria-hidden="true"></i> </span>
-							</div>
 						</div>
 					</div>
 					<div class="b-w border-bottom ml-5 mt-4"></div>
 					<div class="txt-body pt-4 mtxt-box" id="txt" >${BVO.mtxt }</div>
 				</div>
 			</div>
-		</div>
-		<div class="bar"></div>
 	</div>
 	</div>
 
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+	<div class="modal fade" style="margin-top: 180px;" id="staticBackdrop" data-backdrop="static"
 		data-keyboard="false" tabindex="-1" role="dialog"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">

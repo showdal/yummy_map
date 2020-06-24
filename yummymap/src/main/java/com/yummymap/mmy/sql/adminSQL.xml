@@ -56,7 +56,7 @@
 		<select id="memberEdit" resultType="adminVo" parameterType="adminVo">
 			SELECT
   			  mid , mname , mtel , substr(memail,1,instr(memail,'@')-1) email , substr(memail , instr(memail,'@')+1) domain
-  			  <if test="mno != null and mno != ''">,mno ,  issue</if>
+  			  <if test="mno != null and mno != ''">,mno ,  issue, joindate , joindate jointime</if>
 			FROM
 			    member
 			WHERE

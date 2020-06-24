@@ -13,6 +13,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	<link rel="stylesheet" href="/yummymap/css/main/nav.css">
 	<link rel="stylesheet" href="/yummymap/css/admin/base.css">
 	<link rel="stylesheet" href="/yummymap/css/admin/adminre.css">
 	<script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
@@ -28,42 +30,45 @@
 </head>
 
 <body>
-	<div class="container mt-1 mb-5">
-	<div class="bg-white nav-body">
-			<div class=" mt-2 nav-btn">
-				<div class="member_nav text-right mt-3">
-					<div class="ctQZg">
-						<!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
-						<div class="badge badge-light nav-item">${ADMINSID}</div>
-						<a href="./adminedit.mmy" class="badge badge-light nav-item">정보수정</a>
-						<a href="./logoutProc.mmy" class="badge badge-light nav-item" id="logout">LOGOUT</a>
+<div class="topNav border-bottom">
+        <div class="d-flex">
+            <div class="topNavLogo pl-4 pt-2">
+                <a href="">YUMMY MAP</a>
+                <h5 class="ml-5 mt-3" style="color: black;">ADMIN PAGE</h5>
+            </div>
+            <div class="d-flex align-items-end flex-column w-100 col">
+            <ul class="topNavItem d-flex justify-content-end pr-4 pt-2">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/adminEdit.mmy"><i class="fas fa-user"></i></a></li>
+                <c:if test="${ADMINSID == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                </c:if>
+                <c:if test="${ADMINSID != null}">
+                <li><a class="topNavItem-icon" href="/yummymap/admin/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+            </ul>
+                <div class="col-3 pr-4 d-flex justify-content-around">
+					<div class="mt-4">
+						<a href="./main.mmy">
+							<h6>메인 화면</h6>
+						</a>
+					</div>
+					<div class=" mt-4">
+						<a href="./member.mmy">
+							<h6>회원 관리</h6>
+						</a>
+					</div>
+					<div class="mt-4 ">
+						<a href="./boardList.mmy">
+							<h6>게시글 관리</h6>
+						</a>
 					</div>
 				</div>
-			</div>
-			<a class="navbar-brand tcolor logo ml-1" href="./main.mmy" id=""> YUMMY MAP </a>
-		</div>
-		<div class="bar"></div>
-		<div class="row row-cols-2 sub ml-1">
-			<div class="col-3 pt-5 pr-4 text-right bar-ri">
-				<div class="text-left mt-3">
-					<a href="./main.mmy">
-						<h5>메인 화면</h5>
-					</a>
-				</div>
-				<div class="text-left mt-4">
-					<a href="./member.mmy">
-						<h5>회원 관리</h5>
-					</a>
-				</div>
-				<div class="mt-4 text-left">
-					<a href="./boardList.mmy">
-						<h5>게시글 관리</h5>
-					</a>
-				</div>
-			</div>
-
-			<div class="col-8  ml-5 text-center mb-5 ">
-				<h3 class="mt-4">관리자 정보 변경</h3>
+            </div>
+        </div>
+      </div>
+	<div class="container mt-1 mb-5" style="padding-top: 200px;">
+			<div class="col-8 text-center m-auto Regular shadow"">
+				<h3 class="mt-4 pt-3">관리자 정보 변경</h3>
 				<div class="container" style="max-width: 550px;">
 					<div class="mt-5 row ">
 						<h5 class="col-3 ml-1 mr-5 ">아이디 </h5>
@@ -111,17 +116,15 @@
 						</div>
 					</form>
 				</div>
-
-				<div class="mt-5">
+				<div class="mt-5 pb-3">
 					<button type="button" class="btn btn-outline-primary px-5" id="okbtn">수정</button>
 					<button type="button" class="btn btn-outline-danger px-5 ml-2" id="cbtn">취소</button>
 				</div>
 			</div>
 		</div>
-		<div class="bar"></div>
 	</div>
 
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop"  style="margin-top: 180px;" stdata-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

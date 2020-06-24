@@ -1,7 +1,7 @@
 /**
-@author À¯ÅÂÈñ
+@author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @since 2020.05.23
- 	ÀÌ CSS´Â °ü¸®ÀÚ °Ô½Ã±Û °ü¸® ÆäÀÌÁö¿¡ »ç¿ëÇÒ CSS ÀÔ´Ï´Ù
+ 	ï¿½ï¿½ CSSï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ CSS ï¿½Ô´Ï´ï¿½
 */
 
 .bar{
@@ -30,13 +30,7 @@
 	font-size: 15px;
 }
 
-.tcolor{color: rgb(255, 128, 89) !important;}
-.nav-body{width: 100%; height: 130px;}
-.nav-item{background-color: rgb(255, 128, 89); color: white;}
-.logo{ font-size: 25pt; font-weight: bold; margin-top: 20px;}
-.nav-item-1{margin-left: 820px;}
-.nav-item-size{font-size: 30pt;}
-.main-body{position: absolute; top: 240px;}
+
 .mt100{
 	margin-top: 100px;
 }
