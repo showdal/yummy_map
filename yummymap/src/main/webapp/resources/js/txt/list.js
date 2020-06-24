@@ -52,10 +52,77 @@ $(document).ready(function() {
 			// 글 번호 알아낸다.
 			var sno = $(this).attr('id');
 			$('#txtno').val(sno);
+			let mid = $('#mid').val();
+//			alert(mid);
 			$('#nowPage').val('${PAGE.nowPage}');
 			$('#frm').attr('action', '/yummymap/txt/detail.mmy');
+			/*$('#frm').attr('action', '/yummymap/txt/rList.mmy');*/
 			$('#frm').submit();
-		});
+		});	
+});
+		/*	var txtno = $(this).attr('id');
+			$.ajax({
+				url: "/yummymap/txt/rList.mmy",
+				type: 'post',
+				dataType: 'json',
+				data: {
+					'txtno' : txtno
+				},
+					success: function(result){
+						alert("통신성공 얄루");
+						var len = result.length;
+//						console.log(result);
+//						var output = "<table>";
+						
+						for(var i=0; i<len; i++){
+//							let upno = $('#upno').val();
+//							alert(upno);
+							let mid = $('#mid').val();
+							alert(mid);
+							let txtno = $('#txtno').val();
+							alert(txtno);
+							alert($('.wow').attr('class'));
+							$('#rlist').append(
+									"123"
+//									'<div class="reply-body mt-4 rply-box">'+
+//									'<div class="d-flex reply-txt-1 mt-3">'+
+//									'<p id="">'+result[i].mid+'</p>' +
+//									'<p id="" class="pl-2">'+ result[i].cdate +'</p>'+
+//								'</div>'+
+//								'<div class="reply-txt-2 ">'+
+//									'<p id="listReply" style="display:inline-block; width: 680px;">'+result[i].mtxt+'</p>'+
+//								'</div>'+
+//								'<div class="b-w border-bottom ml-5 mt-4" style="height: 0px;">'+'</div>'+
+//							'</div>'
+								
+							)
+						}
+					},
+					error: function(){
+							alert("통신에러 ㅜㅡㅜ");
+					}
+			});
+		});*/
+//	});
+/*
+$(function rList() {
+	
+	$('.txt-body').click(function(){
+		
 
-	});
+	
+});
+});
 
+					
+		*/			
+					
+//				output += "<tr>";
+//				output += "<td>"+result[i].mid;
+//				output += "<br>"+result[i].sdate+"<br>";
+//				output += result[i].mtxt+"</td>";
+//				output += "</tr>";
+//			}
+//			output += "</table>" ;
+//			$("#rList").html(result);
+//

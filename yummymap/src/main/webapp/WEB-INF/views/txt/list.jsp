@@ -17,14 +17,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
+
 </script>
 </head>
 <body>
 	<form method="post" id="frm">
 		<input type="hidden" name="nowPage" id="nowPage"> 
-		<input type="hidden" name="txtno" id="txtno">
+		<input type="hidden" name="txtno" id="txtno" value="${data.txtno}">
+		<input type="hidden" name="mtxt" id="mtxt" value="${data.mtxt}">
+		<input type="hidden" id="mid" name="mid" value="show">
 	</form>
-
 	<!-- nav 영역입니다-->
 	<div class="bg-white border-bottom fixed-top nav-body">
 		<div class=" mt-2 nav-btn">
@@ -68,7 +70,7 @@
 			<a class="navbar-brand nav-item-size" href="/YummyMap/game/game.mmy"
 				id="game"> <i class="fas fa-gamepad"></i>
 			</a> <a class="navbar-brand nav-item-size"
-				href="http://localhost/yummymap/txt/list.mmy"> <i
+				href="/yummymap/txt/list.mmy""> <i
 				class="far fa-clipboard"></i>
 			</a>
 		</div>

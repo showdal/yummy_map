@@ -12,7 +12,7 @@
 
 	 <typeAliases>
 	 	<typeAlias alias="mVO" type="com.yummymap.mmy.vo.MemberVO" />
-	 	<typeAlias alias="tVO" type="com.yummymap.mmy.vo.TxtVO" />
+	 	<typeAlias alias="tVO" type="com.yummymap.mmy.vo.txt.TxtVO" />
 	 	<typeAlias alias="adminVo" type="com.yummymap.mmy.vo.admin.AdminVO" />
 		<typeAlias alias="aBoardVo" type="com.yummymap.mmy.vo.admin.AdminBoardVO" />
 		<typeAlias alias="chartCntVo" type="com.yummymap.mmy.vo.admin.ChartCntVO" />

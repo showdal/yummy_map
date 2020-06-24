@@ -1,4 +1,4 @@
-	function setNum(cnt) {
+function setNum(cnt) {
 		cnt = cnt + 1;
 		return cnt;
 	}
@@ -22,8 +22,9 @@
 				return;
 			}
 			let mid = $('#mid').val();
-			alert(mid);
 			let select = $('#catno').val();
+//			alert(mid);
+//			alert(select);
 			if(!select){
 				alert('카테고리를 선택 하세요!');
 				return;

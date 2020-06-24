@@ -5,24 +5,8 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 public class TxtVO {
-	private int rno;
-	private int mno;
-	private int txtno;
-	private int count;
-	private int rnum;
-	private int catno;
-	private int upno;
-	private int step;
-	private int recomno;
-	private String title;
-	private String mid;
-	private String mname;
-	private String mtxt;
-	private String cdate;
-	private String category;
-	private String isrec;
-	private String edit;
-	private String editdate;
+	private int rno, mno, txtno, count, rnum, catno, upno, step, reno;
+	private String title, mid, mname, mtxt, cdate, category, isrec, edit, editdate;
 	private Date jDate;
 	private Time jTime;
 
@@ -189,11 +173,22 @@ public class TxtVO {
 		this.editdate = editdate;
 	}
 
-	public int getRecomno() {
-		return this.recomno;
+	public int getReno() {
+		return reno;
 	}
 
-	public void setRecomno(int recomno) {
-		this.recomno = recomno;
+	public void setReno(int reno) {
+		this.reno = reno;
 	}
+
+	@Override
+	public String toString() {
+		return "TxtVO [rno=" + rno + ", mno=" + mno + ", txtno=" + txtno + ", count=" + count + ", rnum=" + rnum
+				+ ", catno=" + catno + ", upno=" + upno + ", step=" + step + ", reno=" + reno + ", title=" + title
+				+ ", mid=" + mid + ", mname=" + mname + ", mtxt=" + mtxt + ", cdate=" + cdate + ", category=" + category
+				+ ", isrec=" + isrec + ", edit=" + edit + ", editdate=" + editdate + ", jDate=" + jDate + ", jTime="
+				+ jTime + "]";
+	}
+	
+
 }

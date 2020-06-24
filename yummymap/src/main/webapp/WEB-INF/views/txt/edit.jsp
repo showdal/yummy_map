@@ -64,7 +64,7 @@
             <a class="navbar-brand nav-item-size" href="/YummyMap/game/game.mmy" >
                 <i class="fas fa-gamepad" id="game"></i>
             </a>
-            <a class="navbar-brand nav-item-size" href="http://localhost/YummyMap/board/boardMain.mmy">
+            <a class="navbar-brand nav-item-size" href="/yummymap/txt/list.mmy"">
                 <i class="far fa-clipboard"></i>
             </a>
         </div>
@@ -83,11 +83,10 @@
 		<div class="txt-line mb-4">
 			<form action="/yummymap/txt/editProc.mmy" method="POST" id="frm">
 		<input type="hidden" name="txtno" id="txtno" value="${DATA.txtno}">
-		<input type="hidden" id="mid" name="mid" value="${DATA.mid}">
-		<input type="hidden" id="catno" name="catno" value="${DATA.catno}">
+		<input type="hidden" id="mid" name="mid" value="show">
 				<div class="form-group d-flex">
 				
-					<select name="catno" id="catno">
+					<select name="catno" id="catno" value="${DATA.catno}">
 						<option value="" selected=selected>카테고리</option>
 						<option value="1" id="w3-button cat-item" name="cat">한식</option>
 						<option value="2" id="w3-button cat-item" name="cat">중식</option>

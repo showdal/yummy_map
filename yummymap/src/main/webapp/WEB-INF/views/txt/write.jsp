@@ -62,7 +62,7 @@
 		<div class=" nav-item-1 d-flex justify-content-end">
 			<a class="navbar-brand nav-item-size" href="/yummymap/game/game.mmy" id=""> <i
 				class="fas fa-gamepad"></i>
-			</a> <a class="navbar-brand nav-item-size" href="/yummymap/board/boardMain.mmy"> <i
+			</a> <a class="navbar-brand nav-item-size" href="/yummymap/txt/list.mmy"> <i
 				class="far fa-clipboard"></i>
 			</a>
 		</div>
