@@ -20,7 +20,7 @@
 		ORDER BY
 			txtno DESC
 		)
-	<!-- 	WHERE
+	<!-- 	WHERE 
 			rno BETWEEN #{rno} AND #{rno} --> 
 	</select>
 <!-- txt write -->

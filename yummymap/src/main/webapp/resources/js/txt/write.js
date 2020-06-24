@@ -34,7 +34,7 @@ function setNum(cnt) {
 		$('#exitBtn').click(function() {
 			$(location).attr('href', '/yummymap/txt/list.mmy');
 		});
-		//마이리스트 이벤트 처리 입니다.
+		//마이리스트 이벤트 처리 입니다. 
 		$('#myListIcon').click(function(){
 			if(!userid) {
 				alert('로그인을 진행해주세요');

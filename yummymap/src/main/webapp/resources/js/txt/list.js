@@ -61,7 +61,7 @@ $(document).ready(function() {
 		});	
 });
 		/*	var txtno = $(this).attr('id');
-			$.ajax({
+			$.ajax({ 
 				url: "/yummymap/txt/rList.mmy",
 				type: 'post',
 				dataType: 'json',

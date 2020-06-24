@@ -22,7 +22,7 @@
 
 </head>
 <body>
-	<!-- nav 영역입니다. -->
+	<!-- nav 영역입니다 -->
 	<div class="bg-white border-bottom fixed-top nav-body">
 		<div class=" mt-2 nav-btn">
 			<div class="member_nav text-right mt-3">

@@ -72,7 +72,7 @@ public class Txt {
 		String view = "txt/list";
 		tVO.setTxtno(txtno);
 		int cnt = tDAO.delete(txtno);
-//		if (cnt == 1) { ㅇㄹㅇㄹ
+//		if (cnt == 1) {
 			RedirectView rv = new RedirectView("/yummymap/txt/list.mmy");
 			mv.setView(rv);
 //		}

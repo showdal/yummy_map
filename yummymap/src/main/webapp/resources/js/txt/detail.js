@@ -16,7 +16,6 @@
 $(document).ready(function(){
 		  //로그인 여부를 확인합니다.
 	
-	
 	  let userid = '${sid}';
 	  if(!userid) {
 		  $('#login').show();
@@ -65,7 +64,6 @@ $(document).ready(function(){
 			
 //	    $('#re-frm').attr('action','/yummymap/txt/rWrite.mmy');
 //	   	$('#re-frm').submit();
-	  
 
 /*	
 	location.reload();

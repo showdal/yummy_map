@@ -39,7 +39,7 @@
 			output += "</table>" ;
 			$("#listReply").html(result);
 			}
-	});'
+	});
 } */
 
 </script>
