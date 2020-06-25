@@ -30,7 +30,7 @@ public class TxtDAO {
 		sqlSession.update("tSQL.tEdit", tVO);
 		return tVO;
 	}
-
+//
 	public void count(int txtno) {
 		sqlSession.update("tSQL.tCount", txtno);
 	}

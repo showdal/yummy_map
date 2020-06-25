@@ -9,7 +9,7 @@ public class TxtVO {
 	private String title, mid, mname, mtxt, cdate, category, isrec, edit, editdate;
 	private Date jDate;
 	private Time jTime;
-
+//
 	public int getRno() {
 		return this.rno;
 	}

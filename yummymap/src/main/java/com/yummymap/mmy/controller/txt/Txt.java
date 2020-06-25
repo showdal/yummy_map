@@ -26,11 +26,11 @@ public class Txt {
 	TxtDAO tDAO;
 
 	@RequestMapping("/list.mmy")
-	public ModelAndView list(ModelAndView mv) {
+	public ModelAndView list(ModelAndView mv, TxtVO tVO) {
 		String view = "txt/list";
-		ArrayList<TxtVO> list = (ArrayList) this.tDAO.getList();
+		ArrayList<TxtVO> list = (ArrayList) tDAO.getList();
 		mv.addObject("LIST", list);
-//		System.out.println(list.getRnum());
+		System.out.println(tVO.getRnum());
 		mv.setViewName(view);
 		return mv;
 	}
