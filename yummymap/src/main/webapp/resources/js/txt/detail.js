@@ -43,9 +43,13 @@ $(document).ready(function(){
 	});
 	// txt delete
 	$('#delete').click(function() {
+		if(!confirm("삭제하시겠습니까?")){
+			return;
+		}
 		var txtno = $('#txtno').val();
 		$('#frm').attr('action', '/yummymap/txt/delete.mmy');
 		$('#frm').submit();
+		alert("삭제되었습니다.");
 	});
 	
 	// reply button
@@ -153,7 +157,7 @@ function replyList(){
 //			alert("통신성공 얄루");
 			var html = "";
 			var len = result.length;
-			console.log(result);
+//			console.log(result);
 //			var output = "<div>";
 			
 			if(len > 0){
@@ -195,7 +199,7 @@ function replyList(){
 // recommend ajax
 function like(){
 	var txtno = $('#upno').val();
-	var rnum = $('#rnum').html();
+	var rnum = $('#rnum').attr('value');
 	var mid = $('#mid').val();
 	rnum = parseInt(rnum);
 //	alert(txtno);
@@ -208,6 +212,9 @@ function like(){
 		dataType: 'json',
 		data: param,
 		success: function(data){
+//			let str = data.result;
+//			$('#rnum').text('');
+			$('#rnum').text(data.rnum);
 /*			alert(data.rnum);
 			alert(rnum);
 			if(rnum < data.rnum){
@@ -215,7 +222,6 @@ function like(){
 			} else {
 				alert("좋아요 취소!");
 			}*/
-			$('#rnum').text(data.rnum);
 		},
 		error: function(request, status, error){
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

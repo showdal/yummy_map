@@ -1,6 +1,8 @@
 	
 // txt list
 $(document).ready(function() {
+
+		
 		let userid = '${sid}';
 		if (!userid) {
 			$('#login').show();

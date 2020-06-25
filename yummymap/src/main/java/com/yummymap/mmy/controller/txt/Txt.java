@@ -30,6 +30,7 @@ public class Txt {
 		String view = "txt/list";
 		ArrayList<TxtVO> list = (ArrayList) this.tDAO.getList();
 		mv.addObject("LIST", list);
+//		System.out.println(list.getRnum());
 		mv.setViewName(view);
 		return mv;
 	}
@@ -57,9 +58,10 @@ public class Txt {
 		return mv;
 	}
 
-	@RequestMapping(value = "/detail.mmy", method = RequestMethod.POST, params = { "txtno" })
+	@RequestMapping(value = "/detail.mmy", method = RequestMethod.POST, params = {"txtno" })
 	public ModelAndView detail(String mid, int txtno, ModelAndView mv, TxtVO tVO, HttpSession session) {
-		String view = "txt/detail";
+		tVO.setTxtno(txtno);
+		String view = "/yummymap/txt/detail.mmy?txtno=" + tVO.getTxtno();
 		TxtVO vo = tDAO.detail(txtno);
 		tDAO.count(txtno);
 		vo.setTxtno(txtno);
@@ -67,10 +69,11 @@ public class Txt {
 		return mv;
 	}
 
-	@RequestMapping(value = "/delete.mmy", method = RequestMethod.POST, params = { "txtno"})
-	public ModelAndView delete(int txtno, TxtVO tVO, ModelAndView mv) {
+	@RequestMapping(value = "/delete.mmy", method = RequestMethod.POST, params = {"txtno"})
+	public ModelAndView delete(int txtno, int rnum, TxtVO tVO, ModelAndView mv) {
 		String view = "txt/list";
 		tVO.setTxtno(txtno);
+		tVO.setRnum(txtno);
 		int cnt = tDAO.delete(txtno);
 //		if (cnt == 1) {
 			RedirectView rv = new RedirectView("/yummymap/txt/list.mmy");
@@ -79,7 +82,7 @@ public class Txt {
 		return mv;
 	}
 
-	@RequestMapping(value = "/edit.mmy", method = RequestMethod.POST, params = { "txtno", "title", "mtxt" })
+	@RequestMapping(value = "/edit.mmy", method = RequestMethod.POST, params = {"txtno", "title", "mtxt"})
 	public ModelAndView edit(int txtno, String title, String mtxt, TxtVO tVO, ModelAndView mv, HttpSession session) {
 		String view = "txt/edit";
 		TxtVO vo = tDAO.edit(tVO);
@@ -90,11 +93,16 @@ public class Txt {
 	@RequestMapping(value = "/editProc.mmy", method = RequestMethod.POST, params = { "txtno", "title", "mtxt","catno" })
 	public ModelAndView editProc(int txtno, String title, String mtxt, int catno, TxtVO tVO, ModelAndView mv,HttpSession session) {
 		String view = "txt/edit";
+		tVO.setTxtno(txtno);
 		tDAO.edit(tVO);
-		RedirectView rv = new RedirectView("/yummymap/txt/detail.mmy?txtno=" + tVO.getTxtno());
-		mv.setView(rv);
+		System.out.println(tVO.getTxtno());
+		if(mtxt != null) {
+			RedirectView rv = new RedirectView("/yummymap/txt/detail.mmy?txtno=" + tVO.getTxtno());
+			mv.setView(rv);
+		}
 		return mv; 
 	}
+	
 	@RequestMapping(value="/rList.mmy")
 	@ResponseBody
 	public List<TxtVO> rList(int txtno, String mtxt, TxtVO tVO, HttpServletRequest req) { 
@@ -103,6 +111,7 @@ public class Txt {
 		req.setAttribute("LIST", rList);
 		return rList;
 	 }
+	
 	@RequestMapping(value="/rWrite.mmy", method = RequestMethod.POST, params = {"mtxt","txtno","mid"})
 	@ResponseBody
 	public TxtVO rWrite(TxtVO tVO, ModelAndView mv, int upno, HttpSession session, String mid, String mtxt, int txtno) {
@@ -115,6 +124,7 @@ public class Txt {
 		TxtVO vo= tDAO.rWrite(tVO);
 		return vo;
 	}
+	
 	@RequestMapping(value="/rDelete.mmy", method=RequestMethod.POST, params= {"txtno","upno"})
 	@ResponseBody
 	public TxtVO rDelete(int txtno, int upno, TxtVO tVO, HttpSession session) {
@@ -125,12 +135,12 @@ public class Txt {
 		return tVO;
 	}
 	
-	
 	@RequestMapping(value = "/like.mmy", method=RequestMethod.POST, params= {"txtno","rnum"})
 	@ResponseBody
 	public TxtVO like(int txtno, TxtVO tVO, int rnum, String mid, HttpSession session, ModelAndView mv) {
 		int cnt = tDAO.checkLike(tVO);
 		rnum = tDAO.likeCnt(txtno);
+		tVO.setTxtno(txtno);
 		tVO.setRnum(rnum);
 		mv.addObject("DATA",tVO);
 		
@@ -141,6 +151,7 @@ public class Txt {
 			tDAO.editLike(tVO);
 			rnum = rnum-1;
 		}
+		System.out.println(tVO.getTxtno());
 		System.out.println(tVO.getRnum());
 		return tVO;
 	}

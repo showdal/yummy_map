@@ -128,7 +128,7 @@
 					<form id="like" method="post" action="">
 						<div class="list-item-like">
 							<span class="heart"><i  class="far fa-heart like-size mt-1" aria-hidden="true" onclick="return like()"></i></span>
-							<span class="pl-3 pt-1 like-rnum" id="rnum">${DATA.rnum}</span>
+							<span class="pl-3 pt-1 like-rnum" id="rnum" value="${DATA.rnum}"></span>
 						</div>
 							<input type="hidden" id="txtno" name="txtno" value="${DATA.txtno}">	
 							<input type="hidden" id="mid" name="mid" value="${DATA.mid}">	

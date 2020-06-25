@@ -6,7 +6,8 @@
 <mapper namespace="tSQL">
 	<select id="tList" resultType="tVO">
 	SELECT
-		rno, txtno, mid, title, rnum, category, mtxt, cdate, count
+		rno, txtno, mid, title, category, mtxt, cdate, count,
+		rnum
 	FROM
 		(SELECT
 			ROWNUM rno, txtno, mid, title, category, mtxt,
