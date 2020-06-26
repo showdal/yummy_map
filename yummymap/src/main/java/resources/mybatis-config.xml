@@ -20,6 +20,11 @@
 		<typeAlias  alias="resCntVo" type="com.yummymap.mmy.vo.admin.ResCntVO" />
 		<typeAlias alias="ratingUpsoVo" type="com.yummymap.mmy.vo.RatingUpsoVO" />
 	 </typeAliases>
+	 
+	 <!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
+	<typeHandlers>
+        <typeHandler handler="com.yummymap.mmy.handler.CLOBHandler" javaType="String" jdbcType="LONGVARCHAR"/>
+    </typeHandlers>	
 	  <!--  -->
 	  <mappers>
 	  	<mapper resource="com/yummymap/mmy/sql/MemberSQL.xml" />
