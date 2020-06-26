@@ -4,7 +4,7 @@
 					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					
 <mapper namespace="textSQL">
-		<select id="txtCnt" resultType="int" parameterType="TextVO">
+		<select id="txtCnt" resultType="int" parameterType="textVo">
 			SELECT 
 				count(*) cnt
 			FROM
