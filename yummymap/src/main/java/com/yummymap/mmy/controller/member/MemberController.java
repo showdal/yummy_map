@@ -14,12 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.yummymap.mmy.Service.Member.MemberService;
-import com.yummymap.mmy.dao.MemberDAO;
-import com.yummymap.mmy.dao.TextDAO;
-import com.yummymap.mmy.util.MailUtil;
-import com.yummymap.mmy.util.PageUtil;
-import com.yummymap.mmy.vo.MemberVO;
-import com.yummymap.mmy.vo.TextVO;
+import com.yummymap.mmy.dao.*;
+import com.yummymap.mmy.util.*;
+import com.yummymap.mmy.vo.*;
 
 @RequestMapping("/member")
 @Controller

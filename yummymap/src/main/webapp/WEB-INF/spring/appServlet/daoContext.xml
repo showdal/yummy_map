@@ -18,4 +18,7 @@
 	<bean id="aDAO" class="com.yummymap.mmy.dao.AdminDAO" />
 	<!-- 차트 관련 데이터 베이스 -->
 	<bean id="chartDAO" class="com.yummymap.mmy.dao.ChartDAO" />
+	<!-- 내가쓴글 관련 데이터 베이스 -->
+	<bean id="tDao" class="com.yummymap.mmy.dao.TextDAO" /> 
+	
 </beans>
