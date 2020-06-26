@@ -63,6 +63,11 @@
 							<h6>게시글 관리</h6>
 						</a>
 					</div>
+					<div class="mt-4 ">
+						<a href="./logView.mmy">
+							<h6>로그 보기</h6>
+						</a>
+					</div>
 				</div>
             </div>
         </div>
