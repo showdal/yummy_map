@@ -14,11 +14,13 @@ public class AdminService {
 	
 	public AdminService() {
     	String path = this.getClass().getResource("/").getPath();
-        System.setProperty("SavePath", path);
+    	path = path.substring(0 , path.lastIndexOf("/"));
+    	System.out.println(path + " path ###########################");
+    	System.setProperty("savepath", path);
 	}
 	
 	
-	private  Logger logger = LoggerFactory.getLogger(AdminService.class);
+	private static Logger logger = LoggerFactory.getLogger(AdminService.class);
 	public void PublicKeySrvc(HttpServletRequest req) {
 		
 

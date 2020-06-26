@@ -1,5 +1,10 @@
 package com.yummymap.mmy.controller.admin;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,16 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.yummymap.mmy.Service.admin.AdminService;
+import com.yummymap.mmy.Service.chart.ChartServiceImpl;
+import com.yummymap.mmy.Service.rsa.RsaServiceImpl;
 import com.yummymap.mmy.dao.AdminDAO;
+import com.yummymap.mmy.util.PageUtil;
 import com.yummymap.mmy.vo.admin.AdminBoardVO;
 import com.yummymap.mmy.vo.admin.AdminVO;
 import com.yummymap.mmy.vo.admin.ChartCntVO;
 import com.yummymap.mmy.vo.admin.ResCntVO;
-
-import com.yummymap.mmy.Service.admin.AdminService;
-import com.yummymap.mmy.Service.chart.ChartServiceImpl;
-import com.yummymap.mmy.Service.rsa.RsaServiceImpl;
-import com.yummymap.mmy.util.PageUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -326,6 +330,47 @@ public class Admin {
 		return mv;
 	}
 	
+	//관리자 로그보기 페이지 요청
+	@RequestMapping("/logView.mmy")
+	public ModelAndView logView(ModelAndView mv, String logName) {
+		System.out.println(logName + " logName ###########################################");
+		String path = this.getClass().getResource("/").getPath() + "/log/";
+		
+		File file = new File(path);
+		
+		String[] file_name = file.list();
+		
+		for(String name : file_name) {
+			System.out.println(name + " name");
+		}
+		
+		StringBuffer buffer = new StringBuffer();
+		FileInputStream input = null;
+		int i = 0;
+		try {
+			if(logName == null || logName.length() == 0) {
+				 input= new FileInputStream(path + "join.log");
+			}else {
+				input= new FileInputStream(path + logName);
+			}
+			InputStreamReader inputStreamReader = new InputStreamReader(input,"UTF-8");  
+			
+			while((i = inputStreamReader.read()) != -1) {
+				buffer.append((char) i);
+			};
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String log = buffer.toString();
+		
+		log = log.replaceAll("\r\n", "<br>");
+		mv.addObject("OPT" , file_name);
+		mv.addObject("LOG" , log);
+		mv.addObject("LOGNAME", logName);
+		mv.setViewName("admin/logView");
+		return mv;
+	}
 	
 	//관리자 로그아웃 처리 함수
 	@RequestMapping("/logoutProc.mmy")
