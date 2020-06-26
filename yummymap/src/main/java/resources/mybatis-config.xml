@@ -13,7 +13,7 @@
 	 <typeAliases>
 	 	<typeAlias alias="MemberVO" type="com.yummymap.mmy.vo.MemberVO" />
 	 	<typeAlias alias="tVO" type="com.yummymap.mmy.vo.txt.TxtVO" />
-	 	<typeAlias alias="textVo" type="www.mmy.YummyMap.vo.TextVO" />
+	 	<typeAlias alias="textVo" type="com.yummymap.mmy.vo.TextVO" />
 	 	<typeAlias alias="adminVo" type="com.yummymap.mmy.vo.admin.AdminVO" />
 		<typeAlias alias="aBoardVo" type="com.yummymap.mmy.vo.admin.AdminBoardVO" />
 		<typeAlias alias="chartCntVo" type="com.yummymap.mmy.vo.admin.ChartCntVO" />
@@ -26,7 +26,7 @@
 	  	<mapper resource="com/yummymap/mmy/sql/TxtSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/chartSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/adminSQL.xml" />
-	  	<mapper resource="www/mmy/YummyMap/sql/textSQL.xml" />
+	  	<mapper resource="com/yummymap/mmy/sql/textSQL.xml" />
 	  </mappers>
 	 
 </configuration>
