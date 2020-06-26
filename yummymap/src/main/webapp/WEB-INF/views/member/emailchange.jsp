@@ -27,6 +27,8 @@ body{overflow-x:hidden}
 .p12{
 position: relative;
     left: 91px;}
+.por{position: relative;
+    right: 4px;}
 </style>
 <script type="text/javascript">
 
@@ -91,10 +93,10 @@ $(document).ready(function() {
                 <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
                 <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
@@ -115,7 +117,7 @@ $(document).ready(function() {
 					</div>
 					<div style="display: none;" id="set_injeung">
 					<div class=" d-flex justify-content-center mt-2">
-						<input style="width: 240px;" type="text" id="mailOk" name="mailOk" placeholder="인증번호">
+						<input class="por" style="width: 240px;" type="text" id="mailOk" name="mailOk" placeholder="인증번호">
 						<span class="pl-2" ><button type="button" class="btn btn-secondary" id="injeung_CK" name="injeung_CK">인증번호확인</button></span>
 					</div>
 						<small id="msg" class="text-danger d-flex justify-content-center" >이메일 인증을 진행해주세요</small>

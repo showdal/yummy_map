@@ -46,8 +46,10 @@
 			<exclude-mapping  path="/admin/**Proc.mmy"/>
 			<exclude-mapping  path="/member/login.mmy"/>
 			<exclude-mapping  path="/member/join.mmy"/>
-			<exclude-mapping  path="/member/loginProc.mmy.mmy"/>
+			<exclude-mapping  path="/member/**Proc.mmy"/>
 			<exclude-mapping  path="/member/mail*.mmy"/>
+			<exclude-mapping  path="/member/idfind.mmy"/>
+			<exclude-mapping  path="/member/pwfind.mmy"/>
 			<exclude-mapping  path="/member/idCheck.mmy"/>
 			<exclude-mapping  path="/member/rmMail.mmy"/>
 			<exclude-mapping  path="/member/**Process.mmy"/>

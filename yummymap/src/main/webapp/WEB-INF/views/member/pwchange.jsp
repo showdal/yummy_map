@@ -77,10 +77,10 @@ $(document).ready(function() {
                 <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/login.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
                 <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>

@@ -22,11 +22,11 @@ $(document).ready(function() {
 		  if(!userid) {
 			  $('#login').show();
 			  $('#logout').hide();
-			  $('#mypage').attr('href', '/YummyMap/join/join.mmy');
+			  $('#mypage').attr('href', '/yummymap/join/join.mmy');
 		  } else {
 			  $('#login').hide();
 			  $('#logout').show();
-			  $('#mypage').attr('href', '/YummyMap/member/member.mmy');
+			  $('#mypage').attr('href', '/yummymap/member/member.mmy');
 		  }
 		
 		$('#ebtn').click(function() {
@@ -42,16 +42,16 @@ $(document).ready(function() {
 		
 		$('#dbtn').click(function(){
 				$('#mid').val(mid);
-				$('#frm').attr('action' , '/YummyMap/member/memberDel.mmy');
+				$('#frm').attr('action' , '/yummymap/member/memberDel.mmy');
 				$('#frm').submit();
 		});
 	$('#pwchange').click(function(){
-		var url = "/YummyMap/member/pwchange.mmy";
-		window.open(url,"/YummyMap/member/pwchange.mmy","width=500,height=400");
+		var url = "/yummymap/member/pwchange.mmy";
+		window.open(url,"/yummymap/member/pwchange.mmy","width=500,height=400");
 	});
 	$('#emailChangeView').click(function(){
-		let url = "/YummyMap/member/emailChangeView.mmy";
-		window.open(url,"/YummyMap/member/emailChangeView.mmy","width=550,height=400");
+		let url = "/yummymap/member/emailChangeView.mmy";
+		window.open(url,"/yummymap/member/emailChangeView.mmy","width=550,height=400");
 	});
 });
 </script>
@@ -67,22 +67,22 @@ $(document).ready(function() {
                 <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/login.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
                 <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
         	<div class="row nav-text ">
 	    <div class="col-sm mt-4">
-			<a href="/YummyMap/member/text.mmy">
+			<a href="/yummymap/member/text.mmy">
 				<h6 style="color: black" class="">내가 쓴글</h6>
 			</a>
 	    </div>
 	<div class="col-sm">
 		<div class="mt-4">
-			<a href="/YummyMap/member/member.mmy">
+			<a href="/yummymap/member/member.mmy">
 				<h6 style="color: black" class="">정보 변경</h6>
 			</a>
 		</div>
