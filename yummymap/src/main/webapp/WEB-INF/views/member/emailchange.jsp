@@ -105,7 +105,7 @@ $(document).ready(function() {
 				<div class="container pl">
 				  <div class="row">
 				    <div class="col">
-				 <form method="post" action="/YummyMap/member/emailChangeProc.mmy"id="frm">
+				 <form method="post" action="/yummymap/member/emailChangeProc.mmy"id="frm">
       					<div class="col d-flex justify-content-center mt-2">
 							<input style="width: 240px; height: 38.67px;" type="text" id="memail" name="memail"  placeholder="변경할 이메일">
 						</div>

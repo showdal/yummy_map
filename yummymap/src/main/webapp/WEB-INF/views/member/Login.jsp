@@ -197,7 +197,6 @@ $(document).ready(function () {
 			});
 		}else if(src == 'pass'){
 			let id = $('#mid').val();
-			alert(id);
 			let mail = $('#memail').val();
 			if(!id || !mail){
 				alert('정보를 입력해 주세요!!');
