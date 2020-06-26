@@ -325,6 +325,8 @@ public class Admin {
 		
 		return mv;
 	}
+	
+	
 	//관리자 로그아웃 처리 함수
 	@RequestMapping("/logoutProc.mmy")
 	public ModelAndView logout(HttpSession session, ModelAndView mv) {
@@ -336,10 +338,5 @@ public class Admin {
 	}
     
 	
-	@RequestMapping("/shopadd.mmy")
-	public String shopadd() {
-		
-		return "admin/shopadd";
-	}
 	
 }

@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminService {
-//    static{
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        System.setProperty("current.date", dateFormat.format(new Date()));
-//    }
-    
+	
+	public AdminService() {
+    	String path = this.getClass().getResource("/").getPath();
+        System.setProperty("SavePath", path);
+	}
+	
+	
 	private  Logger logger = LoggerFactory.getLogger(AdminService.class);
 	public void PublicKeySrvc(HttpServletRequest req) {
-		String path = this.getClass().getResource("/com").getPath();
 		
-		System.out.println(path+" ##############################");
-		
+
 		
 		String ip = req.getHeader("X-FORWARDED-FOR");
 		if(ip == null) {

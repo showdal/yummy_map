@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 public class LoginCheckInterceptor implements HandlerInterceptor {
-	
+
 	//해당 함수는 전처리 함수
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
