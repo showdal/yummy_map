@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 쓴글 보기</title>
-<link rel="stylesheet" href="/YummyMap/css/w3.css">
-<link rel="stylesheet" href="/YummyMap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/yummymap/css/w3.css">
+<link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel="stylesheet" href="/YummyMap/css/member/text.css">
-<link rel="stylesheet" href="/YummyMap/css/main/nav.css">
-<script type="text/javascript" src="/YummyMap/js/jquery-3.5.0.min.js"></script>
+<link rel="stylesheet" href="/yummymap/css/member/text.css">
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
+<script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script type="text/javascript"src="/YummyMap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"src="/yummymap/js/bootstrap.bundle.min.js"></script>
 <style>
 </style>
 <script type="text/javascript">

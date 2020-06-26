@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YummyMap</title>
-    <link rel="stylesheet" href="/YummyMap/css/main/mainList.css" />
+    <link rel="stylesheet" href="/yummymap/css/main/mainList.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link rel="stylesheet" href="/YummyMap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/YummyMap/css/main/nav.css" />
-    <link rel="stylesheet" href="/YummyMap/css/member/pwchange.css">
+    <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/yummymap/css/main/nav.css" />
+    <link rel="stylesheet" href="/yummymap/css/member/pwchange.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -19,6 +19,9 @@
 <title>비밀번호 변경</title>
 <style>
 body{overflow-x:hidden}
+.mxw{
+	white:300px;
+}
 </style>
 <script type="text/javascript">
 function pwchk(pw) {
@@ -83,7 +86,7 @@ $(document).ready(function() {
         </div>
   <div class="main-body por text-right mt-5">
 		<div class="container" style="width: 400px;">
-				<form method="post" action="/YummyMap/member/pwEdit.mmy"id="frm">
+				<form method="post" action="/yummymap/member/pwEdit.mmy"id="frm">
 				<div class="col d-flex justify-content-center mt-2">
 					<input style="width: 240px;" type="password" id="mpw" name="mpw"placeholder="변경비밀번호">
 				</div>
