@@ -41,7 +41,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 			}
 		 } else if(realPath.equals("member")) {	
 			if(sid == null || sid.length() == 0) {
-				response.sendRedirect("/yummymap/member/loginView.mmy");
+				response.sendRedirect("/yummymap/member/login.mmy");
 				return false;
 			}
 		}
