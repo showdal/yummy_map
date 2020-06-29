@@ -101,7 +101,12 @@
             </ul>
         </div>
 
-	<div class="row nav-text ">
+	<div class="row nav-text  ">
+	    <div class="col-sm mt-4">
+			<a href="/yummymap/member/activity.mmy">
+				<h6 style="color: black" class="">활동 현황</h6>
+			</a>
+	    </div>
 	    <div class="col-sm mt-4">
 			<a href="/yummymap/member/member.mmy">
 				<h6 style="color: black" class="">정보 변경</h6>
@@ -138,6 +143,7 @@
 			</div>
 		</div>
     </div>
+  </div>
   </div>
 	<!-- nav 마지막 입니다-->
 

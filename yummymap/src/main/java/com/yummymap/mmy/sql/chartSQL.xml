@@ -37,4 +37,13 @@
 		GROUP BY
 		    rating_upso		
 		</select>
+		
+	<!-- 활동 차트 SQL -->
+	<select id="ActivityCnt" resultType="chartCntVo" parameterType="chartCntVo">
+		SELECT
+		    txtcnt, recnt
+		FROM
+		   (SELECT count(*) txtcnt FROM txt WHERE mid = #{mid}),
+		   (SELECT count(*) recnt FROM review WHERE mid = #{mid})
+	</select>
 </mapper>

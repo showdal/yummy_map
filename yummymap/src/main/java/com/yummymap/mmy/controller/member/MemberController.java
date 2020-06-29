@@ -17,6 +17,7 @@ import com.yummymap.mmy.Service.Member.MemberService;
 import com.yummymap.mmy.dao.*;
 import com.yummymap.mmy.util.*;
 import com.yummymap.mmy.vo.*;
+import com.yummymap.mmy.vo.admin.ChartCntVO;
 
 @RequestMapping("/member")
 @Controller
@@ -29,6 +30,8 @@ public class MemberController {
 	MailUtil YummyMap;
 	@Autowired
 	MemberService mSrvc;
+	@Autowired
+	ChartDAO cDAO;
 	
 	@RequestMapping("/login.mmy")
 	public String loginView() {
@@ -204,12 +207,12 @@ public class MemberController {
 	}
 	//활동 내역 컨트롤러
 	@RequestMapping("/activity.mmy")
-	public ModelAndView activity(ModelAndView mv, HttpSession session, TextVO tVO) {
+	public ModelAndView activity(ModelAndView mv, HttpSession session, ChartCntVO acvo) {
 		String view ="member/activity";
-		tVO.setMid((String) session.getAttribute("SID"));
-		int cnt = tDao.txtCnt(tVO);
+		acvo.setMid((String) session.getAttribute("SID"));
+		acvo = cDAO.activity(acvo);
 		
-		mv.addObject("CNT", cnt);
+		mv.addObject("CNT", acvo);
 		mv.setViewName(view);
 		return mv;
 	}
