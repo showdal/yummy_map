@@ -6,9 +6,10 @@ package com.yummymap.mmy.util;
  *
  */
 public enum ProjectUrl {
-	MAIN_LIST_VIEW ("/YummyMap/main.mmy"),
-	UPSO_DETAIL_VIEW("/YummyMap/main/getDetail.mmy"),
-	LOGIN_VIEW ("/YummyMap/member/loginView.mmy");
+	MAIN_VIEW ("/yummymap/index.mmy"),
+	MAIN_LIST_VIEW ("/yummymap/main.mmy"),
+	UPSO_DETAIL_VIEW("/yummymap/main/getDetail.mmy"),
+	LOGIN_VIEW ("/yummymap/member/loginView.mmy");
 	
 	private String url;
 	

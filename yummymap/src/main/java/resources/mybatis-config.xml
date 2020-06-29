@@ -19,6 +19,10 @@
 		<typeAlias alias="chartCntVo" type="com.yummymap.mmy.vo.admin.ChartCntVO" />
 		<typeAlias  alias="resCntVo" type="com.yummymap.mmy.vo.admin.ResCntVO" />
 		<typeAlias alias="ratingUpsoVo" type="com.yummymap.mmy.vo.RatingUpsoVO" />
+		<typeAlias type="com.yummymap.mmy.vo.ReviewVO" alias="reviewVo"/>
+		<typeAlias type="com.yummymap.mmy.vo.ImageFileVO" alias="imageFileVo"/>
+		<typeAlias type="com.yummymap.mmy.vo.UpsoVO" alias="upsoVo"/>	
+		<typeAlias type="com.yummymap.mmy.vo.SearchInfoVO" alias="searchInfoVo"/>
 	 </typeAliases>
 	 
 	 <!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
@@ -32,6 +36,7 @@
 	  	<mapper resource="com/yummymap/mmy/sql/chartSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/adminSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/textSQL.xml" />
+	  	<mapper resource="com/yummymap/mmy/sql/mainSQL.xml" />
 	  </mappers>
 	 
 </configuration>
