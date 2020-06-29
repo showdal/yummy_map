@@ -34,7 +34,7 @@
 		$('.pbtn').click(function() {
 			var page = $(this).text();
 			$('#nowPage').val(page);
-			$('#frm').attr('action', '/YummyMap/member/text.mmy');
+			$('#frm').attr('action', '/yummymap/member/text.mmy');
 			$('#frm').submit();
 		});
 		$('.pre').click(function(){
@@ -46,7 +46,6 @@
 		$('.next').click(function(){
 			let aa= $(this).attr('id');
 
-			
 			$('#nowPage').val(aa);
 			$('#frm').attr('action','/yummymap/member/text.mmy');
 			$('#frm').submit();
@@ -56,7 +55,7 @@
 	          var txtno = $(this).attr('id');
 	          $('#txtno').val(txtno);
 	          $('#nowPage').val('${PAGE.nowPage}');
-	          $('#frm').attr('action','/yummymap/board/boardDetail.mmy?txtno='+txtno);
+	          $('#frm').attr('action','/yummymap/txt/detail.mmy?txtno='+txtno);
 	          $('#frm').submit();
 	       });
 	      $(function(){
@@ -104,14 +103,14 @@
 
 	<div class="row nav-text ">
 	    <div class="col-sm mt-4">
-			<a href="/yummymap/member/text.mmy">
-				<h6 style="color: black" class="">내가 쓴글</h6>
+			<a href="/yummymap/member/member.mmy">
+				<h6 style="color: black" class="">정보 변경</h6>
 			</a>
 	    </div>
 	<div class="col-sm">
 		<div class="mt-4">
-			<a href="/yummymap/member/member.mmy">
-				<h6 style="color: black" class="">정보 변경</h6>
+			<a href="/yummymap/member/text.mmy">
+				<h6 style="color: black" class="">내가 쓴글</h6>
 			</a>
 		</div>
     </div>
@@ -161,10 +160,10 @@
 				<div class="row border-top py-1"></div>
 					<c:forEach var="data" items="${LIST}">
 						<div class="d-flex mt-3 justify-content-around text-center">
-							<div class="col-2 ckd" id="${data.txtno}">
+							<div class="col-2 ckd " id="${data.txtno}">
 								<input type="checkbox" class="mr-2" name="no" value="${data.txtno}">${data.txtno}
 							</div>
-							<div class="col-5 title-box"><a class="title">${data.title}</a></div>
+							<div class="col-5 title-box bolist"><a class="title">${data.title}</a></div>
 							<div class="col-2">${data.mid }</div>
 							<div class="col-2">${data.tdate}</div>
 							<div class="col-1">${data.count}</div>

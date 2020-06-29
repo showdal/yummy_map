@@ -67,7 +67,7 @@
 	<!-- dao bean 처리 -->
 	<beans:bean id="YummyMail" class="com.yummymap.mmy.util.MailUtil">
 		<beans:property name="host" value="smtp.naver.com" />
-		<beans:property name="pass" value="goin2890@@" />
+		<beans:property name="pass" value="goin1404@@" />
 		<beans:property name="user" value="goin4997@naver.com"/>
 	</beans:bean> 
 	

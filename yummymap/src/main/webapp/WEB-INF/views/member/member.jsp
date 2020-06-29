@@ -76,14 +76,14 @@ $(document).ready(function() {
         </div>
         	<div class="row nav-text ">
 	    <div class="col-sm mt-4">
-			<a href="/yummymap/member/text.mmy">
-				<h6 style="color: black" class="">내가 쓴글</h6>
+			<a href="/yummymap/member/member.mmy">
+				<h6 style="color: black" class="">정보 변경</h6>
 			</a>
 	    </div>
 	<div class="col-sm">
 		<div class="mt-4">
-			<a href="/yummymap/member/member.mmy">
-				<h6 style="color: black" class="">정보 변경</h6>
+			<a href="/yummymap/member/text.mmy">
+				<h6 style="color: black" class="">내가 쓴글</h6>
 			</a>
 		</div>
     </div>

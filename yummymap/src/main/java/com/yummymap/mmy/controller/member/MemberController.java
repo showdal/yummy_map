@@ -202,5 +202,15 @@ public class MemberController {
 		
 		return mv;
 	}
-	
+	//활동 내역 컨트롤러
+	@RequestMapping("/activity.mmy")
+	public ModelAndView activity(ModelAndView mv, HttpSession session, TextVO tVO) {
+		String view ="member/activity";
+		tVO.setMid((String) session.getAttribute("SID"));
+		int cnt = tDao.txtCnt(tVO);
+		
+		mv.addObject("CNT", cnt);
+		mv.setViewName(view);
+		return mv;
+	}
 }

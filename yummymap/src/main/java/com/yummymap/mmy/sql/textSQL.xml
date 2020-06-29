@@ -50,4 +50,13 @@
 				separator=	매번 반복할때 마다 처리할 내용
 				close=		반복이 끝나면 처리할 내용을
 	 -->
+	 <!-- 활동 차트 SQL -->
+	<select id="recnt" resultType="int" parameterType="TextVO">
+		SELECT
+		    count(*) cnt
+		FROM
+		    txt
+		WHERE
+		    mid = #{mid}
+	</select>
 </mapper>
