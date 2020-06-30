@@ -7,16 +7,18 @@
 	<select id="tList" resultType="tVO">
 	SELECT
 		rno, txtno, mid, title, category, mtxt, cdate, count,
-		rnum
+		rnum, savename
 	FROM
 		(SELECT
-			ROWNUM rno, txtno, mid, title, category, mtxt,
+			ROWNUM rno, t.txtno, mid, title, category, mtxt,
 			TO_CHAR(cdate,'yyyy-MM-dd  hh24:mi:ss') cdate, count,
-			rnum
+			rnum, savename
 		FROM
-			txt t, category c
+			txt t, category c, txtimg i
 		WHERE
-			isshow = 'Y'
+			i.txtno = t.txtno
+			AND
+			t.isshow = 'Y'
 			AND t.catno=c.catno
 		ORDER BY
 			txtno DESC
@@ -27,7 +29,7 @@
 <!-- txt write -->
 	<insert id="tWrite">
 		INSERT INTO txt(
-			txtno, title,  mid, catno, mtxt 
+			txtno, title, mid, catno, mtxt
 		) VALUES (
 			getTxtno.nextval, #{title}, #{mid}, #{catno}, #{mtxt}
 		)
@@ -35,13 +37,16 @@
 <!-- txt detail -->
 	<select id="tDetail" resultType="tVO" parameterType="int">
 		SELECT
-			txtno, title, mtxt, mid, cdate, count, catno, upno,
+			t.txtno, title, mtxt, m.mid, cdate, count, catno, upno, savename, 
 			(SELECT count(*) FROM recommend WHERE isrec='Y' AND txtno=#{txtno}) rnum
 		FROM
-			txt
+			txt t, txtimg, member m
 		WHERE
-			txtno = #{txtno}
-			AND isshow='Y'
+			m.mid = t.mid
+			AND t.txtno = txtimg.txtno
+			AND t.txtno = #{txtno}
+			AND t.isshow='Y'
+			
 	</select>
 <!-- txt delete -->
 	<update id="tDelete">
@@ -145,4 +150,20 @@
 			AND isrec = 'Y'
 	
 	</select>
+<!-- 	<select id="txtlist">
+		SELECT
+		    txtno
+		FROM
+		    txt
+	</select> -->
+	<insert id="file" parameterType="tVO">
+		<selectKey keyProperty="txtno" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(txtno),10000) FROM txt
+		</selectKey>
+		INSERT INTO txtimg(
+			txtimgno, oriname, savename, txtno
+		) VALUES (
+			getTxtimgno.nextval, #{oriname}, #{savename}, #{txtno}
+		)
+	</insert>
 </mapper>
