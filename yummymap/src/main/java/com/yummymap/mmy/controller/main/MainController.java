@@ -33,7 +33,6 @@ public class MainController {
 	}
 	@RequestMapping("/index.mmy")
 	public ModelAndView forwardMainListView(ModelAndView mv, SearchInfoVO searchInfoVo, HttpSession session) {
-		session.setAttribute("SID", "blue");
 		List<UpsoVO> weeklyUpsoList = mainService.getWeeklyUpso();
 		List<UpsoVO> myPickUpsoList = mainService.getMyUpsoList(searchInfoVo, session);
 		mv.setViewName("main/main");
