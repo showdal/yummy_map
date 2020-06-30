@@ -4,7 +4,6 @@ import com.yummymap.mmy.vo.txt.TxtVO;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class TxtDAO {
 	@Autowired 
@@ -14,9 +13,9 @@ public class TxtDAO {
 		return sqlSession.selectList("tSQL.tList");
 	}
 
-	public TxtVO write(TxtVO tVO) {
-		sqlSession.insert("tSQL.tWrite", tVO);
-		return tVO;
+	public int write(TxtVO tVO) {
+		
+		return sqlSession.insert("tSQL.tWrite", tVO);
 	}
 
 	public TxtVO detail(int txtno) {
@@ -31,7 +30,7 @@ public class TxtDAO {
 		sqlSession.update("tSQL.tEdit", tVO);
 		return tVO;
 	}
-//
+
 	public void count(int txtno) {
 		sqlSession.update("tSQL.tCount", txtno);
 	}
@@ -59,6 +58,12 @@ public class TxtDAO {
 	}
 	public Integer likeCnt(int txtno) {
 		return sqlSession.selectOne("tSQL.likeCnt", txtno);
+	}
+	public List txtlist() {
+		return sqlSession.selectList("tSQL.txtlist");
+	}
+	public int file(TxtVO tVO) {
+		return sqlSession.insert("tSQL.file",tVO);
 	}
 
 }
