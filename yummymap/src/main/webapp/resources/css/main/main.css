@@ -11,7 +11,7 @@ a:hover, a:link, a:visited{
     display: none;
 }
 .topNav{
-    background-image: url(/YummyMap/img/main/background.png);
+    background-image: url(/yummymap/resources/img/main/background.png);
     width: 100%;
     height: 250px;
     z-index :99999;
@@ -38,6 +38,9 @@ img{
 .topNavItem-icon{
     font-size: 18pt;
     color: white;
+}
+.topNavItem-icon i {
+	cursor: pointer;
 }
 ul{
     list-style: none;
@@ -72,6 +75,7 @@ ul{
 .topNavItem-iconHD i{
     color: rgba(0, 0, 0, 0.3) !important;
     font-size: 18pt;
+    cursor: pointer;
 }
 .topNavItemHD li{
     padding-left: 20px;

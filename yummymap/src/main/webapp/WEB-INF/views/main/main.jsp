@@ -21,7 +21,7 @@
                 <a href="">YUMMY MAP</a>
             </div>
             <ul class="topNavItemHD d-flex justify-content-end pr-4 pt-1">
-                <li><div class="topNavItem-icon" onclick="showModal()"><i class="far fa-heart"></i></div></li>
+                <li><div class="topNavItem-iconHD" onclick="showModal()"><i class="far fa-heart"></i></div></li>
                 <li><a class="topNavItem-iconHD" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
                 <li><a class="topNavItem-iconHD" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
@@ -178,7 +178,7 @@ function submitKeyword_click(data){
 		keyword = document.getElementById('Asearch').value;
 	else if(data == 'b')
 		keyword = document.getElementById('Bsearch').value;
-	location.href = "/YummyMap/main/getList.mmy?keyword="+keyword;
+	location.href = "/yummymap/main/getList.mmy?keyword="+keyword;
 }
 
 
