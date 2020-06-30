@@ -17,10 +17,10 @@ import com.yummymap.mmy.Service.Member.MemberService;
 import com.yummymap.mmy.dao.*;
 import com.yummymap.mmy.util.*;
 import com.yummymap.mmy.vo.*;
+import com.yummymap.mmy.vo.admin.ChartCntVO;
 
 @RequestMapping("/member")
 @Controller
-//로그인 컨트롤러
 public class MemberController {
 	@Autowired
 	MemberDAO mDao;
@@ -30,6 +30,8 @@ public class MemberController {
 	MailUtil YummyMap;
 	@Autowired
 	MemberService mSrvc;
+	@Autowired
+	ChartDAO cDAO;
 	
 	@RequestMapping("/login.mmy")
 	public String loginView() {
@@ -44,9 +46,9 @@ public class MemberController {
 		RedirectView rv = null;
 		if(cnt == 1) {
 			 session.setAttribute("SID", mVO.getMid());
-			 rv = new RedirectView("/YummyMap/main.mmy");
+			 rv = new RedirectView("/yummymap/main.mmy");
 		}else {
-			 rv = new RedirectView("/YummyMap/member/login.mmy");
+			 rv = new RedirectView("/yummymap/member/login.mmy");
 		}
 		mv.setView(rv);
 		return mv;
@@ -54,11 +56,11 @@ public class MemberController {
 	//로그아웃 컨트롤러
 	@RequestMapping("/logoutProc.mmy")
 	public ModelAndView logout(HttpSession session, ModelAndView mv) {
-	String view = "/YummyMap/member/login.mmy";
+	String view = "/yummymap/member/login.mmy";
 	RedirectView rv = null;
 	session.removeAttribute("SID");
 	if(session.getAttribute("SID") != null) {
-		view = "/YummyMap/main.mmy";
+		view = "/yummymap/main.mmy";
 	}
 	rv = new RedirectView(view);
 	mv.setView(rv);
@@ -99,7 +101,7 @@ public class MemberController {
 			System.out.println("삭제 실패");
 		} else {
 			session.removeAttribute("SID");
-			 view = "/YummyMap/main.mmy";
+			 view = "/yummymap/main.mmy";
 		}
 		RedirectView rv = new RedirectView(view);
 		mv.setView(rv);
@@ -188,7 +190,7 @@ public class MemberController {
 	//선택 게시글 삭제
 	@RequestMapping("/boardDel.mmy")
 	public ModelAndView boardDel(int[] txtno , ModelAndView mv) {
-		String view = "/YummyMap/member/text.mmy";
+		String view = "/yummymap/member/text.mmy";
 		
 		RedirectView rv = new RedirectView(view);
 		
@@ -203,5 +205,15 @@ public class MemberController {
 		
 		return mv;
 	}
-	
+	//활동 내역 컨트롤러
+	@RequestMapping("/activity.mmy")
+	public ModelAndView activity(ModelAndView mv, HttpSession session, ChartCntVO acvo) {
+		String view ="member/activity";
+		acvo.setMid((String) session.getAttribute("SID"));
+		acvo = cDAO.activity(acvo);
+		
+		mv.addObject("CNT", acvo);
+		mv.setViewName(view);
+		return mv;
+	}
 }

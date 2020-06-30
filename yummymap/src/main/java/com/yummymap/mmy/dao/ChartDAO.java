@@ -20,5 +20,7 @@ public class ChartDAO {
 	public ChartCntVO maindata() {
 		return sqlSession.selectOne("chartSQL.mainCnt");
 	}
-	
+	public ChartCntVO activity(ChartCntVO cVO) {
+		return sqlSession.selectOne("chartSQL.ActivityCnt",cVO);
+	}
 }

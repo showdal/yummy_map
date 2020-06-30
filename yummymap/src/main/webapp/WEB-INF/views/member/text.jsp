@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>내가 쓴글 보기</title>
-<link rel="stylesheet" href="/YummyMap/css/w3.css">
-<link rel="stylesheet" href="/YummyMap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/yummymap/css/w3.css">
+<link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel="stylesheet" href="/YummyMap/css/member/text.css">
-<link rel="stylesheet" href="/YummyMap/css/main/nav.css">
-<script type="text/javascript" src="/YummyMap/js/jquery-3.5.0.min.js"></script>
+<link rel="stylesheet" href="/yummymap/css/member/text.css">
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
+<script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script type="text/javascript"src="/YummyMap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"src="/yummymap/js/bootstrap.bundle.min.js"></script>
 <style>
 </style>
 <script type="text/javascript">
@@ -24,31 +24,30 @@
 		  if(!userid) {
 			  $('#login').show();
 			  $('#logout').hide();
-			  $('#mypage').attr('href', '/YummyMap/join/join.mmy');
+			  $('#mypage').attr('href', '/yummymap/join/join.mmy');
 		  } else {
 			  $('#login').hide();
 			  $('#logout').show();
-			  $('#mypage').attr('href', '/YummyMap/member/member.mmy');
+			  $('#mypage').attr('href', '/yummymap/member/member.mmy');
 		  }
 		  
 		$('.pbtn').click(function() {
 			var page = $(this).text();
 			$('#nowPage').val(page);
-			$('#frm').attr('action', '/YummyMap/member/text.mmy');
+			$('#frm').attr('action', '/yummymap/member/text.mmy');
 			$('#frm').submit();
 		});
 		$('.pre').click(function(){
 			let aa = $(this).attr('id');
 			$('#nowPage').val(aa);
-			$('#frm').attr('action','/YummyMap/member/text.mmy');
+			$('#frm').attr('action','/yummymap/member/text.mmy');
 			$('#frm').submit();
 		});
 		$('.next').click(function(){
 			let aa= $(this).attr('id');
 
-			
 			$('#nowPage').val(aa);
-			$('#frm').attr('action','/YummyMap/member/text.mmy');
+			$('#frm').attr('action','/yummymap/member/text.mmy');
 			$('#frm').submit();
 		});
 	      $('.bolist').click(function(){
@@ -56,7 +55,7 @@
 	          var txtno = $(this).attr('id');
 	          $('#txtno').val(txtno);
 	          $('#nowPage').val('${PAGE.nowPage}');
-	          $('#frm').attr('action','/YummyMap/board/boardDetail.mmy?txtno='+txtno);
+	          $('#frm').attr('action','/yummymap/txt/detail.mmy?txtno='+txtno);
 	          $('#frm').submit();
 	       });
 	      $(function(){
@@ -71,7 +70,7 @@
 		    		return;
 		    		}
 				$('#txtno').val(txtnos); 
-				$('#frm').attr('action','/YummyMap/member/boardDel.mmy');
+				$('#frm').attr('action','/yummymap/member/boardDel.mmy');
 				$('#frm').submit();
 		    });
 	     });
@@ -79,7 +78,7 @@
 </script>
 </head>
 <body>
-	<form method="post" id="frm" action="/YummyMap/member/text.mmy">
+	<form method="post" id="frm" action="/yummymap/member/text.mmy">
 		<input type="hidden" name="nowPage" id="nowPage">
 		<input type="hidden" name="txtno" id="txtno" value="1">
 		<input type="hidden" name="mid" id="mid">
@@ -94,24 +93,29 @@
                 <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
                 <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
 
-	<div class="row nav-text ">
+	<div class="row nav-text  ">
 	    <div class="col-sm mt-4">
-			<a href="/YummyMap/member/text.mmy">
-				<h6 style="color: black" class="">내가 쓴글</h6>
+			<a href="/yummymap/member/activity.mmy">
+				<h6 style="color: black" class="">활동 현황</h6>
+			</a>
+	    </div>
+	    <div class="col-sm mt-4">
+			<a href="/yummymap/member/member.mmy">
+				<h6 style="color: black" class="">정보 변경</h6>
 			</a>
 	    </div>
 	<div class="col-sm">
 		<div class="mt-4">
-			<a href="/YummyMap/member/member.mmy">
-				<h6 style="color: black" class="">정보 변경</h6>
+			<a href="/yummymap/member/text.mmy">
+				<h6 style="color: black" class="">내가 쓴글</h6>
 			</a>
 		</div>
     </div>
@@ -140,6 +144,7 @@
 		</div>
     </div>
   </div>
+  </div>
 	<!-- nav 마지막 입니다-->
 
 	<!-- body 시작 입니다-->
@@ -161,10 +166,10 @@
 				<div class="row border-top py-1"></div>
 					<c:forEach var="data" items="${LIST}">
 						<div class="d-flex mt-3 justify-content-around text-center">
-							<div class="col-2 ckd" id="${data.txtno}">
+							<div class="col-2 ckd " id="${data.txtno}">
 								<input type="checkbox" class="mr-2" name="no" value="${data.txtno}">${data.txtno}
 							</div>
-							<div class="col-5 title-box"><a class="title">${data.title}</a></div>
+							<div class="col-5 title-box bolist"><a class="title">${data.title}</a></div>
 							<div class="col-2">${data.mid }</div>
 							<div class="col-2">${data.tdate}</div>
 							<div class="col-1">${data.count}</div>

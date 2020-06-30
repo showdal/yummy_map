@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YummyMap</title>
-    <link rel="stylesheet" href="/YummyMap/css/main/mainList.css" />
+    <link rel="stylesheet" href="/yummymap/css/main/mainList.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-    <link rel="stylesheet" href="/YummyMap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/YummyMap/css/member/pwchange.css">
-     <link rel="stylesheet" href="/YummyMap/css/main/nav.css" />
+    <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/yummymap/css/member/pwchange.css">
+     <link rel="stylesheet" href="/yummymap/css/main/nav.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -27,6 +27,8 @@ body{overflow-x:hidden}
 .p12{
 position: relative;
     left: 91px;}
+.por{position: relative;
+    right: 4px;}
 </style>
 <script type="text/javascript">
 
@@ -45,7 +47,7 @@ $(document).ready(function() {
 		
 		var mail = $('#memail').val();
 		$.ajax({
-			url : '/YummyMap/member/mailformProc.mmy',
+			url : '/yummymap/member/mailformProc.mmy',
 			type : 'post',
 			dataType: 'json',
 			data: {
@@ -91,10 +93,10 @@ $(document).ready(function() {
                 <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
                 <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/YummyMap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
@@ -103,7 +105,7 @@ $(document).ready(function() {
 				<div class="container pl">
 				  <div class="row">
 				    <div class="col">
-				 <form method="post" action="/YummyMap/member/emailChangeProc.mmy"id="frm">
+				 <form method="post" action="/yummymap/member/emailChangeProc.mmy"id="frm">
       					<div class="col d-flex justify-content-center mt-2">
 							<input style="width: 240px; height: 38.67px;" type="text" id="memail" name="memail"  placeholder="변경할 이메일">
 						</div>
@@ -115,7 +117,7 @@ $(document).ready(function() {
 					</div>
 					<div style="display: none;" id="set_injeung">
 					<div class=" d-flex justify-content-center mt-2">
-						<input style="width: 240px;" type="text" id="mailOk" name="mailOk" placeholder="인증번호">
+						<input class="por" style="width: 240px;" type="text" id="mailOk" name="mailOk" placeholder="인증번호">
 						<span class="pl-2" ><button type="button" class="btn btn-secondary" id="injeung_CK" name="injeung_CK">인증번호확인</button></span>
 					</div>
 						<small id="msg" class="text-danger d-flex justify-content-center" >이메일 인증을 진행해주세요</small>

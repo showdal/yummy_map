@@ -13,7 +13,7 @@ public class TextDAO {
 	SqlSessionTemplate sqlSession;
 	//게시판 글수 카운트
 	public int txtCnt(TextVO tVO) {
-		return sqlSession.selectOne("textSQL.txtCnt", tVO);
+		return sqlSession.selectOne("textSQL.txtCnt",tVO);
 	}
 	//리스트 불러와주는 DAO
 	public List getList(HashMap<String, Object> map) {
@@ -23,4 +23,6 @@ public class TextDAO {
 	public int textDel(ArrayList list) {
 		return sqlSession.update("textSQL.textDel", list); 
 	}
+	//활동 내역 차트 DAO
+
 }
