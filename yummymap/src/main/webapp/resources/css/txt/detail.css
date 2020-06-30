@@ -16,4 +16,5 @@
 .re-text-area{width: 710px; resize: none; font-size: 14.5px}
 .reply-btn{height: 30px; padding-left: 10px;}
 .myd-none{display: none;}
-.rrrno{height: 30px; padding-left: 10px;}
+.likebtn, .dislikebtn, .nolikebtn {height: 30px; width: 30px;}
+.txtimg {padding-left: 100px;  padding-top: 50px; padding-bottom: 20px; height: 350px;}
