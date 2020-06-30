@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>404 Error Page</title>
+<title>500 Error Page</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body class="text-center align-self-center">
-		<img src="/yummymap/img/404Page.png" class="mt-5 pt-5 w-80" style="max-width: 100%;"/>
+		<img src="/yummymap/img/500error.png" class="w-80" style="max-width: 100%;  margin-top: 15%;"/>
 </body>
 </html>
