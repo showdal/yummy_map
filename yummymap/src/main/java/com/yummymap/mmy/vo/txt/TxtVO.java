@@ -4,12 +4,15 @@ import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class TxtVO {
-	private int rno, mno, txtno, count, rnum, catno, upno, step, reno, recomno;
-	private String title, mid, mname, mtxt, cdate, category, isrec, edit, editdate;
+	private int rno, mno, txtno, count, rnum, catno, upno, step, reno, recomno, txtimg;
+	private String title, mid, mname, mtxt, cdate, category, isrec, edit, editdate, oriname, savename, dir;
 	private Date jDate;
 	private Time jTime;
-//
+	private MultipartFile file;
+	
 	public int getRno() {
 		return this.rno;
 	}
@@ -188,12 +191,56 @@ public class TxtVO {
 		this.recomno = recomno;
 	}
 
+	public int getTxtimg() {
+		return txtimg;
+	}
+
+	public void setTxtimg(int txtimg) {
+		this.txtimg = txtimg;
+	}
+
+	public String getOriname() {
+		return oriname;
+	}
+
+	public void setOriname(String oriname) {
+		this.oriname = oriname;
+	}
+
+	public String getSavename() {
+		return savename;
+	}
+
+	public void setSavename(String savename) {
+		this.savename = savename;
+	}
+
+	public String getDir() {
+		return dir;
+	}
+
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "TxtVO [rno=" + rno + ", mno=" + mno + ", txtno=" + txtno + ", count=" + count + ", rnum=" + rnum
 				+ ", catno=" + catno + ", upno=" + upno + ", step=" + step + ", reno=" + reno + ", recomno=" + recomno
-				+ ", title=" + title + ", mid=" + mid + ", mname=" + mname + ", mtxt=" + mtxt + ", cdate=" + cdate
-				+ ", category=" + category + ", isrec=" + isrec + ", edit=" + edit + ", editdate=" + editdate
-				+ ", jDate=" + jDate + ", jTime=" + jTime + "]";
+				+ ", txtimg=" + txtimg + ", title=" + title + ", mid=" + mid + ", mname=" + mname + ", mtxt=" + mtxt
+				+ ", cdate=" + cdate + ", category=" + category + ", isrec=" + isrec + ", edit=" + edit + ", editdate="
+				+ editdate + ", oriname=" + oriname + ", savename=" + savename + ", dir=" + dir + ", jDate=" + jDate
+				+ ", jTime=" + jTime + ", file=" + file + "]";
 	}
+
+	
+
 }
