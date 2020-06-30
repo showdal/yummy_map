@@ -57,6 +57,19 @@
 		    txtcnt, recnt
 		FROM
 		   (SELECT count(*) txtcnt FROM txt WHERE mid = #{mid}),
-		   (SELECT count(*) recnt FROM review WHERE mid = #{mid})
+		   (SELECT count(*) recnt FROM upso_review WHERE mid = #{mid})
+	</select>
+	
+	<select id="cateActivityCnt" resultType="TextVO" parameterType="TextVO">
+		SELECT 
+			*
+		FROM
+			(SELECT 
+				count(*) cnt , category 
+			FROM 
+				txt , category 
+		WHERE 
+			txt.catno = category.catno
+            AND MID = #{mid} GROUP BY category.category)
 	</select>
 </mapper>

@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 
 
 public class TextVO {
-	private int txtno, count, rnum;
-	private String mid, title, cdate;
+	private int txtno, count, rnum, cnt;
+	private String mid, title, cdate, category;
 	private Date tdate;
 	private Time ttime;
 	
@@ -64,5 +64,19 @@ public class TextVO {
 	public void setTtime(Time ttime) {
 		this.ttime = ttime;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
 	
 }

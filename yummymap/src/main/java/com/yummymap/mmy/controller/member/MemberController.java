@@ -7,6 +7,7 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -207,11 +208,17 @@ public class MemberController {
 	}
 	//활동 내역 컨트롤러
 	@RequestMapping("/activity.mmy")
-	public ModelAndView activity(ModelAndView mv, HttpSession session, ChartCntVO acvo) {
+	public ModelAndView activity(ModelAndView mv, HttpSession session, ChartCntVO acvo, TextVO tVO) {
 		String view ="member/activity";
 		acvo.setMid((String) session.getAttribute("SID"));
 		acvo = cDAO.activity(acvo);
 		
+	
+		 tVO.setMid((String) session.getAttribute("SID")); 
+		 ArrayList<TextVO> list = (ArrayList<TextVO>) cDAO.cataActivityCnt(tVO); 
+		 System.out.println(list +"&&&&&&&&&&&&"); 
+		
+		mv.addObject("LIST", list); 
 		mv.addObject("CNT", acvo);
 		mv.setViewName(view);
 		return mv;
