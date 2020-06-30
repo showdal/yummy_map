@@ -7,12 +7,25 @@
 
 		 <!-- 음식점 카테고리 차트 쿼리 -->
 	 	<select id="category" resultType="resCntVo">
-			SELECT 
-			        *
+			SELECT
+			    count(*) cnt , category
 			FROM
-			    (SELECT count(*) cnt , category FROM res , category WHERE res.catno = category.catno GROUP BY category.category)
+			(
+			    SELECT
+			         SUBSTR(cate, INSTR(cate, '>')+1)category
+			    FROM
+			        (
+			            SELECT
+			                REPLACE(NVL(substr(category_name,0,instr(category_name,'>',1 ,2)-1),category_name),' ' , '') cate
+			            FROM
+			                upso
+			            ORDER BY LENGTH(cate) DESC
+			        ) caregory
+			)
+			GROUP BY
+			    category
 			ORDER BY
-    			cnt desc
+			    cnt desc
 	 	</select>
 	 	
 	 	<!-- 관리자 메인페이지 차트 쿼리 -->
