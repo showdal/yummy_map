@@ -60,6 +60,10 @@ public class MainService {
 	
 	private void setPageUtil(PageUtil pageUtil, SearchInfoVO searchInfoVo) {
 		int totalCount = searchInfoVo.getUpsoCount();
+		String category_name = searchInfoVo.getCategory_name();
+		if(category_name != null) {
+			totalCount = mainDao.countUpso_category(searchInfoVo);
+		}
 		pageUtil.setTotalCount(totalCount);
 		pageUtil.setPageRow(10);
 		pageUtil.setPageGroup(5);

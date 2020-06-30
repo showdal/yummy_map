@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yummymap.mmy.Service.api.KaKaoMapRestApiService;
+import com.yummymap.mmy.Service.api.KakaoMapService;
+import com.yummymap.mmy.Service.api.KakaoMapService.KakaoMapCategoryCode;
 import com.yummymap.mmy.dao.MainDAO;
 import com.yummymap.mmy.util.PageUtil;
 import com.yummymap.mmy.vo.*;
-
 @Service
 public class ParsingUpsoService implements UpsoService {
 
 	private MainDAO mainDao;
 	private UpsoService simpleUpsoService;
-	private KaKaoMapRestApiService kakaoMapService;
+	private KakaoMapService kakaoMapService;
 	@Autowired
 	private KeywordService keywordService; 
 	
 	
-	public ParsingUpsoService(MainDAO mainDao, SimpleUpsoService simpleUpsoService, KaKaoMapRestApiService kakaoMapService) {
+	public ParsingUpsoService(MainDAO mainDao, SimpleUpsoService simpleUpsoService, KakaoMapService kakaoMapService) {
 		this.mainDao = mainDao;
 		this.simpleUpsoService = simpleUpsoService;
 		this.kakaoMapService = kakaoMapService;
@@ -45,7 +45,7 @@ public class ParsingUpsoService implements UpsoService {
 			return simpleUpsoService.insertUpso(upsoVo, searchInfoVo);
 		}
 		int totalCount = 0;
-		List<UpsoVO> upsoList = kakaoMapService.getUpsoList(searchInfoVo);
+		List<UpsoVO> upsoList = kakaoMapService.getUpsoList(searchInfoVo, KakaoMapCategoryCode.UPSO);
 		searchInfoVo.setUpsoCount(upsoList.size());
 		for(int i=0; i < upsoList.size(); i++) {
 			UpsoVO upso = upsoList.get(i);
