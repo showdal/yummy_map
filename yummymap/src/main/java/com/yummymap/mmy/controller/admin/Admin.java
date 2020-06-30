@@ -12,6 +12,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,13 +42,12 @@ public class Admin {
 	ChartServiceImpl chartServiceImpl;
 	@Autowired
 	RsaServiceImpl rsaServiceImpl;
-
 	
+
 	//관리자 로그인 뷰 전담 함수
 	@RequestMapping("/login.mmy")
 	public String loginView(HttpServletRequest request) {
 		adminSrc.PublicKeySrvc(request);
-
 		return "admin/adminLogin";
 	}
 
@@ -57,9 +58,7 @@ public class Admin {
 	public ModelAndView loginck(AdminVO avo , ModelAndView mv , HttpSession session , String RSAModulus) {
 		
 		
-//		PrivateKey privateKey = (PrivateKey) session.getAttribute(rsaServiceImpl.getRSA_WEB_KEY());
 		PrivateKey privateKey = rsaServiceImpl.getMap().get(RSAModulus);
-//		Object privateKeyObj = (Object) rsaServiceImpl.getRSA_WEB_KEY();
 		
         // 복호화
         try {
@@ -71,8 +70,6 @@ public class Admin {
         
         rsaServiceImpl.getMap().remove(RSAModulus);
         
-        System.out.println(" id " + avo.getMid());
-        System.out.println(" pw " + avo.getMpw());
         
         session.removeAttribute(rsaServiceImpl.getRSA_WEB_KEY());
 
@@ -166,7 +163,6 @@ public class Admin {
 	public ModelAndView memberEditProc(AdminVO avo , int nowPage , ModelAndView mv , String RSAModulus) {
 		String view = "";
 		
-		System.out.println("RSAModulus " + RSAModulus);
 		PrivateKey privateKey = rsaServiceImpl.getMap().get(RSAModulus);
 		
 		try {
@@ -333,42 +329,9 @@ public class Admin {
 	//관리자 로그보기 페이지 요청
 	@RequestMapping("/logView.mmy")
 	public ModelAndView logView(ModelAndView mv, String logName) {
-		System.out.println(logName + " logName ###########################################");
-		String path = this.getClass().getResource("/").getPath() + "/log/";
 		
-		File file = new File(path);
+		adminSrc.logView(mv, logName);
 		
-		String[] file_name = file.list();
-		
-		for(String name : file_name) {
-			System.out.println(name + " name");
-		}
-		
-		StringBuffer buffer = new StringBuffer();
-		FileInputStream input = null;
-		int i = 0;
-		try {
-			if(logName == null || logName.length() == 0) {
-				 input= new FileInputStream(path + "join.log");
-			}else {
-				input= new FileInputStream(path + logName);
-			}
-			InputStreamReader inputStreamReader = new InputStreamReader(input,"UTF-8");  
-			
-			while((i = inputStreamReader.read()) != -1) {
-				buffer.append((char) i);
-			};
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		String log = buffer.toString();
-		
-		log = log.replaceAll("\r\n", "<br>");
-		mv.addObject("OPT" , file_name);
-		mv.addObject("LOG" , log);
-		mv.addObject("LOGNAME", logName);
-		mv.setViewName("admin/logView");
 		return mv;
 	}
 	

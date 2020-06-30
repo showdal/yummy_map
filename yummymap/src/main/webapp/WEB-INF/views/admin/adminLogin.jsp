@@ -31,7 +31,7 @@
 	<div class="container  mt80" style="width: 900px;">
 		<nav class="d-flex justify-content-between navbar navbar-light ">
 			<div>
-				<a class="navbar-brand tcolor logo mt-5" href="./main.mmy">
+				<a class="navbar-brand tcolor logo mt-5" href="./login.mmy">
 					YUMMY MAP
 				</a>
 			</div>

@@ -53,6 +53,7 @@
 			<exclude-mapping  path="/member/idCheck.mmy"/>
 			<exclude-mapping  path="/member/rmMail.mmy"/>
 			<exclude-mapping  path="/member/**Process.mmy"/>
+			<exclude-mapping  path="/error/*.mmy"/>
 			<exclude-mapping  path="/*.mmy"/>
 			<exclude-mapping  path="/main/*.mmy"/>
 			<beans:ref bean="LoginCkInterceptor"/> 

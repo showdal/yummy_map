@@ -72,4 +72,12 @@
 		<param-name>webAppRootKey</param-name>
 		<param-value>myapp.root</param-value>
 	</context-param>
+	
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errors/error404.mmy</location>
+	</error-page>
+	
+	
 </web-app>

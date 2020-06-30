@@ -35,7 +35,7 @@
 <div class="topNav border-bottom">
         <div class="d-flex">
             <div class="topNavLogo pl-4 pt-2">
-                <a href="">YUMMY MAP</a>
+                <a href="./main.mmy">YUMMY MAP</a>
                 <h6 class="ml-5 mt-3" style="color: black; font-weight: bold;">ADMIN PAGE</h6>
             </div>
             <div class="d-flex align-items-end flex-column w-100 col">
