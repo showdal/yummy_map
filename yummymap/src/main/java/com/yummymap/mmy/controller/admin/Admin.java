@@ -90,7 +90,7 @@ public class Admin {
 	public ModelAndView mainView(ModelAndView mv , HttpSession session) {
 
 
-		String view = "admin/main";
+		String view = "admin/main"; 
 		
 		ArrayList<ResCntVO> list = (ArrayList<ResCntVO>) chartServiceImpl.resChart();
 		

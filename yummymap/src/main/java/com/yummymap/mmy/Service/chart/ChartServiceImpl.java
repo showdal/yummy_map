@@ -27,6 +27,24 @@ public class ChartServiceImpl implements ChartService {
 	@Override
 	public ArrayList<ResCntVO> resChart() {
 		ArrayList<ResCntVO> list = (ArrayList<ResCntVO>) chartDao.category();
+		
+		for(int i=0; i<=list.size(); i++) {
+			if(list.get(i).getCategory().equals("샤브샤브")) {
+				for(int j=0; j<list.size(); j++) {
+					if(list.get(j).getCategory().equals("한식")) {
+						list.get(j).setCnt(list.get(j).getCnt()+list.get(i).getCnt());
+					}
+				}
+				list.remove(i);
+			}else if(list.get(i).getCategory().equals("치킨")) {
+				for(int j=0; j<list.size(); j++) {
+					if(list.get(j).getCategory().equals("술집")) {
+						list.get(j).setCnt(list.get(j).getCnt()+list.get(i).getCnt());
+					}
+				}
+				list.remove(i);
+			}
+		}
 		return list;
 	}
 
