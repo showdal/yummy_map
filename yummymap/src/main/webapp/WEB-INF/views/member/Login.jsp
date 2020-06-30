@@ -6,7 +6,10 @@
   <meta charset="utf-8">
 <link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/yummymap/css/main/nav.css">
-<link rel="stylesheet" href="/yummymap/css/member/login.css">
+<link rel="stylesheet" href="/yummymap/css/member/register.css">
+<link rel="stylesheet" href="/yummymap/css/nav.css">
+<link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/yummymap/css/member/login.css"> -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
 <script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>

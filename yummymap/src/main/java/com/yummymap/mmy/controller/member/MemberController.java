@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -216,4 +217,37 @@ public class MemberController {
 		mv.setViewName(view);
 		return mv;
 	}
+	
+	// 회원가입 폼
+	@RequestMapping("/join.mmy")
+	public ModelAndView join(ModelAndView mv) {
+		String view = "member/join";
+		mv.setViewName(view);
+		return mv;
+	}
+	
+	// 회원가입 처리
+	@RequestMapping("/joinProc.mmy")
+	public ModelAndView joinProc (ModelAndView mv, MemberVO mVO, HttpSession session) {
+		int cnt = mDao.join(mVO);
+		RedirectView rv = null;
+		if(cnt == 1) {
+			session.setAttribute("SID", mVO.getMid());
+			rv = new RedirectView("/yummymap/main.mmy");
+		} else {
+			rv = new RedirectView("/yummymap/loign.mmy?r=e"); // 파라미터 확인해야함
+		}
+		mv.setView(rv);
+		return mv;
+	}
+	
+	// 아이디 중복확인
+	@RequestMapping(value="/idCheck.mmy", method = RequestMethod.POST)
+	@ResponseBody
+	public int idCheck(MemberVO mVO) throws Exception {
+		int result = mDao.idCheck(mVO);
+		System.out.println("result : " + result);
+		return result;
+	}
+
 }

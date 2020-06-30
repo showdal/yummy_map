@@ -1,270 +1,138 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Test</title>
-<link rel="stylesheet" href="/cls/css/w3.css" />
-<link rel="stylesheet" href="/cls/css/join.css" />
-<script type="text/javascript" src="/cls/js/jquery-3.5.0.min.js"></script>
+  <meta charset="utf-8">
+<link rel="stylesheet" href="/yummymap/css/register.css">
+<link rel="stylesheet" href="/yummymap/css/nav.css">
+<link rel="stylesheet" href="/yummymap/css/bootstrap.min.css">
+
+<script src="/yummymap/js/jquery-3.5.0.min.js"></script>
+<script src="/yummymap/js/member/register.js"></script>
+
+</head>
 <style>
 
 </style>
-<script type="text/javascript">
-	$(document).ready(function(){
-		/*
-			비동기 통신
-				==> 웹서비스에서 원칙은 
-					클라이트가 요청을 하면 
-					서버는 클라이언트가 요청한 문서를 응답(전송)해준다.
-					그리고 그 직후
-					서버는 클라이언트와의 연결을 끊는다.
-					따라서 이런 통신방식을
-					단절형 통신이라 이야기한다.
-					
-					그리고
-					서버가 전달된 문서는 
-					원칙은 클라이언트가 전송받은 문서와 동일해야 된다.
-					이런 경우를 동기형이라 이야기 한다.
-					
-					반대로
-					서버가 전달해준 문서와
-					클라이언트가 받은 문서를 일부분만 교체한 경우
-					비동기라 이야기한다.
-					
-					결론적으로
-					비동기처리란
-					서버가 보내준 문서의 일부분만 서버와 통신을 해서 새로 받아서 교체해서
-					이부분만 교체하는 처리를 
-					비동기 처리라 한다.
-					영어로 Ajax 라 부른다.
-					
-					그런데
-					이 비동기 처리는 jQuery에서 함수로 정의가 되어있고
-						형식 ]
-							
-							$.ajax({
-								url: '주소',			==> 요청주소
-								type: 'get | post',		==> 데이터 전송방식
-								dataType: 'text | html | xml | json',	==> 데이터 전송 타입
-								data: {						==> 전송될 데이터(파라미터들)
-									넘겨줄 데이터 나열...
-									'변수이름': '데이터',
-									'변수이름': '데이터',
-									.....
-								},
-								success: function(data){	==> 통신에 성공할 경우 실행할 함수
-									성공했을 때 처리내용..
-								},
-								error: function(){			==> 통신에 실패할 경우 실행할 함수
-									실패시 처리내용
-								}
-							});
-		*/
-		
-		$('#idck').click(function(){
-			// 할일
-			// 1. 입력태그에 입력된 아이디를 가져오고
-			var sid = $('#id').val();
-			if(sid){
-				$.ajax({
-					url: '/clsProj/member/id.ck',
-					type: 'post',
-					dataType: 'json',
-					data: {
-						'id': sid
-					},
-					success: function(data){
-						var result = data.cnt;
-						if(result == 0){
-							// 아이디를 사용가능한 경우
-							$('#idmsg').text('*** 사용 가능한 아이디 입니다. ***');
-							$('#idmsg').css('color', 'blue');
-							$('#idmsg').css('display', '');
-							
-						} else {
-							// 아이디가 사용불가능한 경우
-							$('#idmsg').text('### 사용할 수 없는 아이디 입니다. ###');
-							$('#idmsg').css('color', 'red');
-							$('#idmsg').css('display', '');
-							$('#id').val('');
-							$('#id').focus();
-						}
-					},
-					error: function(){
-						alert('### 통신 실패 ###');
-					}
-				});
-			} else {
-				$('#id').focus();
-				return;
-			}
-		});
-		
-		$('#jbtn').click(function(){
-			// 데이터 무결성 검사하고
-			
-			$('#frm').submit();
-		});
-	});
-</script>
-</head>
 <body>
-	<div class="w3-col l3 m3">
-		<p></p>
-	</div>
-	<div class="w3-col l6 m6 s12">
-		<form class="w3-col" method="post" action="/clsProj/member/joinProc.cls" name="frm" id="frm" encType="multipart/form-data">
-			<div class="w3-col w3-center w3-blue w3-margin-top">
-				<h2>Increpas Join</h2>
-			</div>
-			<div class="w3-col w3-padding-32 w3-margin-top">
-				<div class="w3-col">
-					<label class="w3-col l3 m3 w3-right-align w3-padding" for="name">회 원 이 름 : </label>
-					<div class="w3-col l9 m12 w3-padding">
-						<input class="w3-col" type="text" id="name" name="name">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="id">회원 아이디 : </label>
-					<div class="w3-col m9 w3-padding">
-						<div class="w3-col m9 pright">
-							<input class="w3-col" type="text" id="id" name="id">
-						</div>
-						<div class="w3-col m3 w3-red w3-hover-orange w3-button w3-small w3-card btn1" id="idck">ID Check</div>
-						<p class="w3-col w3-center" id="idmsg" style="display: none;"></p>
-						<div class="w3-col w3-center" id="idCont" style="display: none;">
-							<h4 class="w3-col m6">I D : </h4><h4 class="w3-col m6" id="getId"></h4>
-							<h4 class="w3-col m6">NAME : </h4><h4 class="w3-col m6" id="getName"></h4>
-							<h4 class="w3-col m6">TEL : </h4><h4 class="w3-col m6" id="getTel"></h4>
-							<h4 class="w3-col m6">MAIL : </h4><h4 class="w3-col m6" id="getMail"></h4>
-							<!-- 
-									문제 ]
-										아이티체크 버튼을 클릭했을 경우
-										입력한 아이디가 존해하면 해당 아이디의 정보를 조회해서
-										idCont 태그에 추가하고 보여주세요.
-								
-							 -->
-						</div>
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="pw">비 밀 번 호 : </label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col" type="password" id="pw" name="pw">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="repw">비밀번호확인 : </label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col" type="password" id="repw" name="reipw">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="file">프로필 사진 : </label>
-					<div class="w3-col m9 w3-padding w3-center" id="imgfr">
-						<input class="w3-col" type="file" id="file" name="file">
-						<img class="imgwin w3-border w3-margin-top w3-margin-bottom dnone" id="img1" src="../img/noimage.jpg" alt="Image">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="pw">회원 이메일 : </label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col" type="text" id="mail" name="mail">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="tel">전 화 번 호 : </label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col" type="text" id="tel" name="tel">
-					</div>
-				</div>
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="gen">성 별 : </label>
-					<div class="w3-col m9 w3-padding w3-center">
-						<div class="w3-half">
-							<input type="radio" id="mgen" name="gen" value="M">
-							<label for="mgen"> 남 자</label>
-						</div>
-						<div class="w3-half">
-							<input type="radio" id="wgen" name="gen" value="F">
-							<label for="wgen"> 여 자</label>
-						</div>
-					</div>
-				</div>
-				<!-- ----------------------------------------------------------------------- -->
-				<div class="w3-col dnone" id="avtbox">
-					<label class="w3-col m3 w3-right-align w3-padding" for="avt">아바타 선택 : </label>
-					<div class="w3-col m9">
-						<div class="w3-row w3-padding w3-center dnone" id="mavt">
-							<div class="avtfr">
-								<input type="radio" name="avt" value="11">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar1.png">
-									</div>
-								</div>
-							</div>
-							<div class="avtfr">
-								<input type="radio" name="avt" value="12">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar2.png">
-									</div>
-								</div>
-							</div>
-							<div class="avtfr">
-								<input type="radio" name="avt" value="13">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar3.png">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="w3-row w3-padding w3-center dnone" id="favt">
-							<div class="avtfr">
-								<input type="radio" name="avt" value="14">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar4.png">
-									</div>
-								</div>
-							</div>
-							<div class="avtfr">
-								<input type="radio" name="avt" value="15">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar5.png">
-									</div>
-								</div>
-							</div>
-							<div class="avtfr">
-								<input type="radio" name="avt" value="16">
-								<div class="w3-col">
-									<div class="w3-col w3-center pd5 imgbox w3-border">
-										<img src="../img/img_avatar6.png">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- ----------------------------------------------------------------------- -->
-				<div class="w3-col">
-					<label class="w3-col m3 w3-right-align w3-padding" for="birth">생
-						년 월 일 : </label>
-					<div class="w3-col m9 w3-padding">
-						<input class="w3-col" type="date" id="birth" name="birth">
-					</div>
-				</div>
-			</div>
-			<div class="w3-col w3-margin-top">
-				<div class="w3-half w3-button w3-red w3-hover-amber" id="hbtn">홈으로...</div>
-				<div class="w3-half w3-button w3-blue w3-hover-aqua" id="jbtn">회원가입</div>
-			</div>
-		</form>
-	</div>
+<!-- nav 영역입니다-->
+<div class="bg-white border-bottom nav-body">
+  <div class=" mt-2 nav-btn">
+      <div class="member_nav text-right mt-3">
+          <div class="ctQZg">
+              <div class="_47KiJ">
+                  <div class="XrOey"><a class="_0ZPOP kIKUG _4700r " href="#"><svg aria-label="활동 피드"
+                              class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24">
+                              <path
+                                  d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
+                              </path>
+                          </svg></a>
+                      <div class="_0Sl_t">
+                          <div class="poA5q" style="margin-left: -423px;"></div>
+                      </div>
+                  </div>
+                  <div class="XrOey"><a href="/yummymap/join/join.mmy"><svg aria-label="프로필" class="_8-yf5 " fill="#262626" height="24"
+                              viewBox="0 0 48 48" width="24">
+                              <path
+                                  d="M24 26.7c7.4 0 13.4-6 13.4-13.4S31.4 0 24 0 10.6 6 10.6 13.4s6 13.3 13.4 13.3zM24 3c5.7 0 10.4 4.6 10.4 10.4S29.7 23.7 24 23.7s-10.4-4.6-10.4-10.4S18.3 3 24 3zm9.1 27.1H14.9c-7.4 0-13.4 6-13.4 13.4v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c0-5.7 4.6-10.4 10.4-10.4h18.3c5.7 0 10.4 4.6 10.4 10.4v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c-.1-7.4-6.1-13.4-13.5-13.4z">
+                              </path>
+                          </svg></a></div>
+              </div>
+              <!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
+              <a href="/yummymap/join/login.mmy" class="badge badge-light nav-item" id="login">LOGIN</a>
+          </div>
+      </div>
+  </div>
+  <a class="navbar-brand tcolor logo" href="/yummymap/main.mmy" >
+      YUMMY MAP
+  </a>
+  <div class="b-subtitle text-left"><p class="pt-3">회원가입</p></div>
+  <div class=" nav-item-1 d-flex justify-content-end">
+      <a class="navbar-brand nav-item-size" href="#" id="">
+          <i class="fas fa-gamepad"></i>
+      </a>
+      <a class="navbar-brand nav-item-size" href="#">
+          <i class="far fa-clipboard"></i>
+      </a>
+  </div>
+</div>
+<!-- nav 마지막 입니다-->
+<!-- body 시작 입니다-->
+  <div class="main-body mb-5">
+    <div class="m-box mt-4">
+      <form id="frm" action="/yummymap/join/joinProc.mmy" method="POST">
+      	<input type="hidden" id="emailCk" name="emailCk"> 
+        <div class="form-group">
+          <label for="id" class="idlabel mr-2 d-inline-block">아이디</label>
+          <button type="button" id="idcheck" class="btn btn-secondary btn-sm d-inline-block mb-1">아이디 체크</button>
+          <input type="text" class="form-control ckinput" id="id" name="id">
+          <small id="idmsg" class="text-secondary d-block">첫글자 영문자, 영문자 혹은 숫자 조합 5~13자리 입력</small>
+          <small id="idmsg1" class="dnone d-block"></small>
+          <small id="idmsg2" class="dnone d-block"></small>
+        </div>
+        <div class="form-group">
+          <label for="pw">비밀번호</label>
+          <input type="password" class="form-control ckinput" id="pw" name="pw">
+          <small id="pwmsg" class="text-secondary d-block">첫글자 영문자, 영문+숫자+특수문자 조합 8~15자리 입력</small>
+          <small id="pwmsg1" class="text-danger">비밀번호 패턴을 확인해주세요</small>
+        </div>
+        <div class="form-group">
+          <label for="repw">비밀번호 재입력</label>
+          <input type="password" class="form-control ckinput" id="repw">
+          <small id="repwmsg" class="dnone"></small>
+        </div>
+        <div class="form-group">
+          <label for="repw">이름</label>
+          <input type="text" class="form-control ckinput" id="name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="telmid">휴대전화</label>
+          <div class="d-flex">
+            <select class="form-control" name="teltop">
+              <option value="010">010</option>
+              <option value="011">011</option>
+              <option value="017">017</option>
+              <option value="019">019</option>
+            </select>
+            <p>-</p>
+            <input type="text" class="form-control ckinput" id="telmid" name="telmid">
+            <p>-</p>
+            <input type="text" class="form-control ckinput" id="telend" name="telend">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email1" class="idlabel mr-2 d-inline-block">이메일</label>
+          <button type="button" class="btn btn-secondary btn-sm d-inline-block mb-1" id="sendmail">이메일 인증</button>
+          <div class="d-flex">
+            <input type="text" class="form-control ckinput" id="email1" name="email1">
+            <p>@</p>
+            <select class="form-control" id="email2" name="email2">
+              <option value="@naver.com">naver.com</option>
+              <option value="@gmail.com">gmail.com</option>
+              <option value="@hanmir.com">hanmir.com</option>
+              <option value="@nate.com">nate.com</option>
+              <option value="@korea.com">korea.com</option>
+              <option value="" >직접입력</option>
+            </select>
+          </div>
+          <div class="mt-2 d-none" id="mailckBox">
+          <input class="p-1" type="text" id="malick" name="mailck" placeholder="인증번호를 입력하세요">
+           <span id="mailckBox"><button type="button" class="btn btn-secondary btn-sm d-inline-block mb-1" id="eokbtn">이메일 인증 확인</button></span>
+          </div>
+          <small id="mailmsg" class="text-danger" >이메일 인증을 진행해주세요</small>
+        </div>
+      </form>
+      <div class="btn-box">
+        <div class="mt-5">
+          <button type="button" class="btn btn-primary joinbtn" id="joinbtn">회원 가입 완료</button>
+        </div>
+        <div class="mt-2 pt-2">
+          <a  href="/yummymap/main.mmy" class="btn btn-secondary homebtn ">홈화면 가기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- body 마지막 입니다-->
 </body>
-<script type="text/javascript" src="../js/join.js"></script>
 </html>

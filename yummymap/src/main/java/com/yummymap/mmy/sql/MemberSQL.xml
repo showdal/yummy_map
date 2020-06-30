@@ -72,4 +72,27 @@
 			WHERE
 				mid = #{mid}
 		</update>
+		<!-- 회원가입 처리 SQL -->
+		<insert id="join" parameterType="MemberVO">
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(mno)+1, 1000)
+			FROM
+				member
+		</selectKey>
+		INSERT INTO
+			member(mno, mname, mid, mpw, mtel, memail, birth, gen, grade, joindate)
+		VALUES(
+			#{mno}, #{mname}, #{mid}, #{mpw}, #{mtel}, #{memail}, #{birth}, #{gen}, #{issue}, #{grade}, {sdate}
+		)
+		</insert>
+		<!-- 아이디 체크 SQL -->
+		<select id="idCheck" resultType="int" parameterType="MemberVO">
+			SELECT
+				count(*) cnt
+			FROM
+				member
+			WHERE
+				mid = #{mid}
+		</select>
 </mapper>
