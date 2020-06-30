@@ -27,4 +27,33 @@ public class FileUtil {
 		}
 		return oldName;
 	}
+	
+	public static String getSavename(HttpSession session, MultipartFile file, String folder) {
+		String savename = null;
+		String filePath = session.getServletContext().getRealPath("resources")+"/"+folder;
+
+		String oriname = file.getOriginalFilename();
+		System.out.println("Util.oriname : " + oriname);
+		
+		if(oriname != null) {
+			savename = getUUID(oriname);
+			System.out.println("Util.savename : " + savename);
+		}
+		try {
+			File refile = new File(filePath, savename);
+			byte[] Byte = file.getBytes();
+			FileCopyUtils.copy(Byte, refile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return savename;
+	}
+	
+	
+	public static String getUUID(String oriname) {
+		UUID uuid = UUID.randomUUID();
+		String savename = uuid.toString() + "_" + oriname;
+		return savename;
+	}
+	
 }
