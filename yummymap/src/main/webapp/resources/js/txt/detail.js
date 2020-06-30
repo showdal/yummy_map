@@ -14,7 +14,7 @@
 
 'use strict';
 $(document).ready(function(){
-		  //로그인 여부를 확인합니다.
+		//로그인 여부를 확인합니다.
 	
 	  let userid = '${sid}';
 	  if(!userid) {
@@ -60,14 +60,39 @@ $(document).ready(function(){
 	$('#reply-btn').click(function() {
 //		var txtno = $('.rrrno').attr('value');
 		var txtno = $('#upno').val();
-//		txtno =+ txtno+1;
-//		alert(txtno);
 		replyWrite(txtno);
 	});
+	
+	
+//	$('#dislikebtn').click(() => $('#dislikebtn').hide());
+//	$('#dislikebtn').click(() => $('#likebtn').show());
+//	
+//	$('#likebtn').click(() => $('#likebtn').hide());
+			
+	/*		
+			function(){
+		
+		
+		if($(this).hasClass("")){
+
+		
+		} else {
+		
+			$('.likebtn').show();
+		$('.dislikebtn').hide();
+		alert("좋아요 취소!");
+	}
+	});
+	$('.likebtn').click(function(){
+		$('.likebtn').show();
+		$('.dislikebtn').hide();
+		alert("좋아요!");
+	});
+	
+*/
+	
 });		
 			
-//	    $('#re-frm').attr('action','/yummymap/txt/rWrite.mmy');
-//	   	$('#re-frm').submit();
 
 /*	
 	location.reload();
@@ -112,7 +137,7 @@ function replyWrite(txtno) {
 	var mtxt = $('#rtxt').val();
 	var mid = $('#mid').val();
 	var upno = $('#upno').val();
-	var txtno = $('#upno').val();
+//	var txtno = $('#upno').val();
 //	var txtno = $('.rrrno').attr('value');
 //	txtno = parsInt(txtno);
 //	txtno = Integer.parseInt(txtno);
@@ -120,7 +145,7 @@ function replyWrite(txtno) {
 //	alert(mid);
 //	alert(upno);
 //	alert(txtno);
-	var param="mtxt="+mtxt+"&txtno="+txtno+"&mid="+mid+"&upno="+upno;
+	var param="mtxt="+mtxt+"&mid="+mid+"&upno="+upno;
   
  $.ajax({
 	url: '/yummymap/txt/rWrite.mmy',
@@ -128,8 +153,7 @@ function replyWrite(txtno) {
 	dataType: 'json',
 	data: param,
 	success: function(data){
-//		reload();
-//		if (data=="success"){
+//		if (data == 'success'){
 			replyList();
 			$('#rtxt').val('');
 			$('#reply-btn').hide();
@@ -154,7 +178,6 @@ function replyList(){
 			'txtno' : txtno
 		},
 		success: function(result){
-//			alert("통신성공 얄루");
 			var html = "";
 			var len = result.length;
 //			console.log(result);
@@ -201,10 +224,8 @@ function like(){
 	var txtno = $('#upno').val();
 	var rnum = $('#rnum').attr('value');
 	var mid = $('#mid').val();
-	rnum = parseInt(rnum);
-//	alert(txtno);
-//	alert(rnum);
-//	alert(mid);
+	alert(rnum);
+
 	var param="txtno="+txtno+"&rnum="+rnum+"&mid="+mid;
 	$.ajax({
 		url: "/yummymap/txt/like.mmy",
@@ -212,15 +233,14 @@ function like(){
 		dataType: 'json',
 		data: param,
 		success: function(data){
-//			let str = data.result;
-//			$('#rnum').text('');
+			let str = data.result;
 			$('#rnum').text(data.rnum);
-/*			alert(data.rnum);
-			alert(rnum);
-			if(rnum < data.rnum){
-				alert("좋아요!");
-			} else {
+			alert(data.rnum);
+			
+/*			if(data.rnum != rnum){
 				alert("좋아요 취소!");
+			} else {
+				alert("좋아요!");
 			}*/
 		},
 		error: function(request, status, error){
@@ -229,7 +249,27 @@ function like(){
 	});
 }
 
+function getLike(){
+	var txtno = $('#upno').val();
+	var rnum = $('#rnum').attr('value');
+//	alert(rnum);
+//	rnum = parseInt(rnum);
+	var param="txtno="+txtno+"&rnum="+rnum;
+	$.ajax({
+		url: "/yummymap/txt/likeCnt.mmy",
+		type: 'post',
+		dataType: 'json',
+		data: param,
+		success: function(data){
+			$('#rnum').text(rnum);
+		},
+		error: function(request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
 
 $(function() {
 	replyList();
+	getLike();
 });
