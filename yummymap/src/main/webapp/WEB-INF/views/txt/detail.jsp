@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link rel="stylesheet" href="/yummymap/css/txt/detail.css">
-<link rel="stylesheet" href="/yummymap/css/nav.css">
+<link rel="stylesheet" href="/yummymap/css/main/nav.css">
 <script type="text/javascript" src="/yummymap/js/jquery-3.5.0.min.js"></script>
 <script type="text/javascript" src="/yummymap/js/txt/detail.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -45,70 +45,36 @@
 </script>
 </head>
 <body>
-		<!-- nav 영역입니다-->
-	<div class="bg-white border-bottom fixed-top nav-body">
-		<div class=" mt-2 nav-btn">
-			<div class="member_nav text-right mt-3">
-				<div class="ctQZg">
-					<div class="_47KiJ">
-						<div class="XrOey">
-							<a class="_0ZPOP kIKUG _4700r " id="myListIcon" href="#"><svg
-									aria-label="활동 피드" class="_8-yf5 " fill="#262626" height="24"
-									viewBox="0 0 48 48" width="24">
-                                <path
-										d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z">
-                                </path>
-                            </svg></a>
-							<div class="_0Sl_t">
-								<div class="poA5q" style="margin-left: -423px;"></div>
-							</div>
-						</div>
-						<div class="XrOey">
-							<a href="#" id="mypage"><svg aria-label="프로필" class="_8-yf5 "
-									fill="#262626" height="24" viewBox="0 0 48 48" width="24">
-                                <path
-										d="M24 26.7c7.4 0 13.4-6 13.4-13.4S31.4 0 24 0 10.6 6 10.6 13.4s6 13.3 13.4 13.3zM24 3c5.7 0 10.4 4.6 10.4 10.4S29.7 23.7 24 23.7s-10.4-4.6-10.4-10.4S18.3 3 24 3zm9.1 27.1H14.9c-7.4 0-13.4 6-13.4 13.4v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c0-5.7 4.6-10.4 10.4-10.4h18.3c5.7 0 10.4 4.6 10.4 10.4v3c0 .8.7 1.5 1.5 1.5s1.5-.7 1.5-1.5v-3c-.1-7.4-6.1-13.4-13.5-13.4z">
-                                </path>
-                            </svg></a>
-						</div>
-					</div>
-					<!-- <a href="#" class="badge badge-light nav-item" id="join">Join</a>-->
-					<a href="/YummyMap/join/login.mmy"
-						class="badge badge-light nav-item" id="login">LOGIN</a> <a
-						href="/YummyMap/join/logoutProc.mmy"
-						class="badge badge-light nav-item" id="logout">LOGOUT</a>
-				</div>
-			</div>
-		</div>
-		<a class="navbar-brand tcolor logo" href="/YummyMap/main.mmy" id="">
-			YUMMY MAP </a>
-		<div class="b-subtitle text-left">
-			<p class="pt-3">커뮤니티</p>
-		</div>
-		<div class=" nav-item-1 d-flex justify-content-end">
-			<a class="navbar-brand nav-item-size" href="/YummyMap/game/game.mmy"
-				id="game"> <i class="fas fa-gamepad"></i>
-			</a> <a class="navbar-brand nav-item-size"
-				href="/yummymap/txt/list.mmy"> <i
-				class="far fa-clipboard"></i>
-			</a>
-		</div>
-	</div>
-	<!-- nav 마지막 입니다-->
-
+  <div class="topNav border-bottom pl-4 pt-1 shadow-sm" id="topNav">
+        <div class="d-flex m-0">
+            <div class="topNavLogo">
+                <a href="">YUMMY MAP</a>
+            </div>
+            <ul class="topNavItem d-flex justify-content-end pr-4 pt-1">
+                <li><a class="topNavItem-icon" href=""><i class="far fa-heart"></i></a></li>
+                <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
+                <c:if test="${SID == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                </c:if>
+                <c:if test="${SID != null}">
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+            </ul>
+        </div>
+    </div>
+    <div class="container" style="padding-top: 100px;">
+    
 	<!-- body 시작 입니다-->
 	<form class="d-none" method="post" action="" id="frm">
-		<input type="hidden" name="txtno" id="txtno" value="${DATA.txtno}"> 
-		<%-- <input type="hidden" name="reno" id="reno" value="${DATA.reno}">  --%>
-		<%-- <input type="hidden" name="upno" id="upno" value="${DATA.upno}"> --%> 
+		<input type="hidden" name="txtno" id="txtno" value="${DATA.txtno}">
 		<input type="hidden" name="title" id="title" value="${DATA.title}"> 
 		<input type="hidden" name="mtxt" id="mtxt" value="${DATA.mtxt}">
 		<input type="hidden" id="mid" name="mid" value="${DATA.mid}">
 		<input type="hidden" id="catno" name="catno" value="${DATA.catno}">
 		<input	type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
+		<input type="hidden" name="isrec" id="isrec">
 	</form>
 	<form class="rec" method="post" action="" id="frm2">
-		<input type="hidden" name="isrec" id="isrec">
 		<input type="hidden" name="mid" id="mid">
 		<input type="hidden" name="txtno" id="txtno">
 	</form>
@@ -127,39 +93,66 @@
 				<div class="pt-4 d-flex">
 					<form id="like" method="post" action="">
 						<div class="list-item-like">
-							<span class="heart"><i  class="far fa-heart like-size mt-1" aria-hidden="true" onclick="return like()"></i></span>
+						<c:choose>
+							<c:when test="${SID eq show}">
+								<a href='javascript: like();'>
+								<img src="../img/txtimg/rice.png" class="dislikebtn" id="dislikebtn" aria-hidden="true" ></a>
+							</c:when>
+							<c:otherwise>
+								<a href='javascript: like();'>
+								<img src="../img/txtimg/norice.png" class="likebtn" id="likebtn" aria-hidden="true" ></a>
+							</c:otherwise>
+						<%-- 	<c:otherwise>
+								<a href='javascript: login();'>
+							 	</a>
+							</c:otherwise> --%>
+							</c:choose>
+							111
+								${tVO.isrec}
+								<img src="../img/txtimg/norice.png" class="nolikebtn" aria-hidden="true" >
+							
+							
+				<%-- 		<span class="heart" >
+							<i class="f" aria-hidden="true" onclick="return like()">
+							<c:if test="${sid == null}">
+							<img src="/yummymap/resources/img/txtimg/rice.png" style="width:30px; height:30px;" class="likebtn" aria-hidden="true" >
+							</c:if>
+							<c:if test="${sid != null && DATA.isrec == 'Y'}">
+							<img src="/yummymap/resources/img/txtimg/rice.png" style="width:30px; height:30px;" class="likebtn">
+							</c:if>
+							<c:if test="${sid != null && DATA.isrec == 'N'}">
+							<img src="/yummymap/resources/img/txtimg/norice.png" style="width:30px; height:30px;" class="likebtn">
+							</c:if>
+							</i></span>
+							 --%>
+							
+							
 							<span class="pl-3 pt-1 like-rnum" id="rnum" value="${DATA.rnum}"></span>
 						</div>
 							<input type="hidden" id="txtno" name="txtno" value="${DATA.txtno}">	
 							<input type="hidden" id="mid" name="mid" value="${DATA.mid}">	
 					</form>
 				</div>
-				
-				
-				
 				    <%-- <c:if test="${sid == null}">
 					<div class="list-item-like like-size">
 						<span class="heart"><i  class="far fa-heart " aria-hidden="true"></i> </span>
 					</div>
 	                </c:if> 
-	                <<c:if test="${sid != null && DATA.isrec == 'N'}">
-	                <<c:if test="${DATA.isrec == 'N'}">
+	                <c:if test="${sid != null && DATA.isrec == 'N'}">
 					<div class="list-item-like like-size">
 						<span class="heart"><i id="dislike" class="far fa-heart " aria-hidden="true"></i> </span>
 					</div>
 	               </c:if>
-	               <c:if test="${DATA.isrec == 'Y'}">
 	                <c:if test="${sid != null && DATA.isrec == 'Y'}">
 					<div class="list-item-like like-size">
 						<span class="heart"><i id="like" class="fas fa-heart " aria-hidden="true"></i> </span>
 					</div>
 	                </c:if>
 					<div class="pl-3 pt-1" id="rnum">${DATA.rnum}</div> --%>
-					
-					
 			</div>
 			<div class="b-w border-bottom ml-5 mt-4"></div>
-			<div class="txt-body pt-4" id="mtxt" >${DATA.mtxt}</div>
+			<img src="../img/txtimg/${DATA.savename}" class="txtimg">
+			<div class="txt-body pt-4" id="mtxt" > ${DATA.mtxt}</div>
 		</div>
 
 		<!--게시글 영역 마지막 입니다-->
@@ -211,6 +204,7 @@
 			</c:forEach>
 			<!--댓글 내용 마지막 영역 입니다--> --%>
 		</div>
+	</div>
 	</div>
 		<!-- body 마지막 입니다-->
 </body>
