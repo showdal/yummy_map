@@ -74,6 +74,7 @@ public class MainService {
 	public List<String> getCategoryList(SearchInfoVO searchInfoVo) {
 		String keyword = searchInfoVo.getKeyword();
 		List<String> categoryList = mainDao.getCategoryList(keyword);
+		sortCategoryList(categoryList);
 		int countCategory = categoryList.size();
 		if(countCategory > 1) {
 			searchInfoVo.setCategory_filtering("Y");
@@ -81,6 +82,23 @@ public class MainService {
 			searchInfoVo.setCategory_filtering("N");
 		}
 		return categoryList;
+	}
+	
+	private void sortCategoryList(List<String> categoryList) {
+		if(categoryList.size() == 0)
+			return;
+		if(categoryList.get(0).equals("한식"))
+			return;
+		for(int i=0; i<categoryList.size(); i++) {
+			String category_name = categoryList.get(i);
+			String tmp = "";
+			if(category_name.equals("한식")) {
+				tmp = categoryList.get(0);
+				categoryList.add(0, category_name);
+				categoryList.add(i, tmp);
+				return;
+			}
+		}
 	}
 	
 	public UpsoVO getUpsoDetail(UpsoVO upsoVo, HttpSession session) {
@@ -199,6 +217,11 @@ public class MainService {
 		if(user_id == null)
 			user_id = "";
 		return user_id;
+	}
+
+	public List<UpsoVO> getupsoListAroundUser(SearchInfoVO searchInfoVo) {
+		List<UpsoVO> upsoList = mainDao.selectSubMyPickUpsoList(searchInfoVo);
+		return upsoList;
 	}
 
 

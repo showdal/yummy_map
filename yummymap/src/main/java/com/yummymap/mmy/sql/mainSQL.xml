@@ -160,39 +160,6 @@
 		    AND upso.upso_id = sub.upso_id
 		    AND category_name LIKE '%${category_name}%'	
 	</select>
-
-	<select id="upSoList_geolocation" resultType="upsoVo" parameterType="searchInfoVo">
-		SELECT 
-			upso_id id, place_name, category_name, phone, road_address_name, longitude x, latitude y, place_url,
-			NVL(cont_sum, 0) cont_sum,  NVL(star_avg, 0) star_avg,
-			SQRT( POWER(( 37.4917910 - LATITUDE) * 110979.309, 2)
-			      + POWER((127.4875970 - LONGITUDE) *  88907.949, 2)
-			      ) z
-	  	FROM upso
-	    	 , (SELECT     #{y} v_x    -- 기준좌표-위도(카카오기준 y)
-	             ,    #{x} v_y    -- 기준좌표-경도(카카오기준 x ) 
-	             , 110979.309     r_x    -- 위도-거리 환산계수
-	             ,  88907.949     r_y    -- 경도-거리 환산계수
-	             ,    1000.000     v_z    -- 검색반경
-	          FROM dual
-	        ),
-	         ( SELECT  res_id, 
-	                   COUNT(rev_no) AS cont_sum,
-	                   AVG(rating_upso) AS star_avg
-	           FROM upso_review
-	           WHERE isShow='Y' 
-	           GROUP BY  res_id ) sub
-	 	WHERE 
-			SQRT( POWER((v_x - LATITUDE) * r_x, 2)
-			        + POWER((v_y - LONGITUDE) * r_y, 2)
-			        ) &lt;= v_z
-			AND   INSTR(query_keyword, #{keyword}) > 0 
-			AND LATITUDE BETWEEN v_x - v_z / r_x AND v_x + v_z / r_x
-			AND LONGITUDE BETWEEN v_y - v_z / r_y AND v_y + v_z / r_y
-			AND  isShow = 'Y'
-			AND upso_id = res_id(+)
-	 	ORDER BY z
-	</select>
 	
 	<select id="showUpso" resultType="int" parameterType="int">
 		SELECT
@@ -257,29 +224,32 @@
 	
 	<select id="category_list_keyword" resultType="String" parameterType="String">
 		SELECT
-		    category
+		  DISTINCT  REPLACE( SUBSTR( category, 1, DECODE( INSTR(category, '>', 1) -1, -1, LENGTH(category),  INSTR(category, '>', 1) -1) ), ' ', '') category
 		FROM
 		(
 		    SELECT
-		              REPLACE( REPLACE(SUBSTR(category_name, INSTR(category_name, '>',1)+1, INSTR(category_name, '>',1, 1)), '>',''),' ','' ) category
+		        category
 		    FROM
-		            upso,
-		            (
-		                SELECT
-		                    upso_id 
-		                FROM
-		                    keyword
-		                WHERE
-		                    keyword = #{keyword}
-		            ) sub
-		    WHERE
-		        upso.isShow = 'Y'
-		        AND upso.upso_id = sub.upso_id
+		    (
+		        SELECT
+		                    DISTINCT SUBSTR(category_name, INSTR(category_name, '>',1)+1) category
+		        FROM
+		                upso,
+		                (
+		                    SELECT
+		                        upso_id 
+		                    FROM
+		                        keyword
+		                    WHERE
+		                        keyword = #{keyword}
+		                ) sub
+		        WHERE
+		            upso.isShow = 'Y'
+		            AND upso.upso_id = sub.upso_id
+		    )
 		)
-		GROUP BY
-		    category
 		ORDER BY
-    		category DESC
+		    LENGTH(category)	
 	</select>
 	
 	<select id="pickCount" parameterType="Map" resultType="int">

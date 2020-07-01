@@ -79,38 +79,43 @@
         </div>
     </div>
     <div class="itemBody container mb-5">
-        <div class="itemBody-title">이번주 핫 맛집!</div>
+        <div class="itemBody-title">내 주변 맛집 바로가기!</div>
+        <div class="d-flex mt-3">
+        <c:forEach var="locationUpso" items="${upsoListAroundUser}">
+        <c:if test="${empty locationUpso.img_save_name}">
+            <div class="item-card border mr-3" onclick="getUpsoDetail('${locationUpso.id}')" style="background-image: url(/yummymap/resources/upsoImg/noImage1.jpg) ">
+            	<div class="backImg-card"></div> 
+                <div class="item-card-title">${locationUpso.place_name}</div>
+            </div>
+        </c:if>
+        <c:if test="${!empty locationUpso.img_save_name}">
+            <div class="item-card border mr-3" onclick="getUpsoDetail('${locationUpso.id}')" style="background-image: url(/yummymap/resources/upsoImg/${locationUpso.img_save_name})">
+                <div class="backImg-card"></div>
+                <div class="item-card-title">${locationUpso.place_name}</div>
+            </div>
+        </c:if>
+        </c:forEach>
+        </div>
+        
+        <div class="itemBody-title mt-5">이번주 핫 맛집!</div>
         <div class="d-flex mt-3">
         <c:forEach var="weeklyUpso" items="${weeklyUpsoList}">
         <c:if test="${empty weeklyUpso.img_save_name}">
             <div class="item-card border mr-3" onclick="getUpsoDetail('${weeklyUpso.id}')" style="background-image: url(/yummymap/resources/upsoImg/noImage1.jpg) ">
-                <div class="d-flex justify-content-center">
-                    <div class="item-card-title">${weeklyUpso.place_name}</div>
-                </div>
+                <div class="backImg-card"></div>
+                <div class="item-card-title">${weeklyUpso.place_name}</div>
             </div>
         </c:if>
         <c:if test="${!empty weeklyUpso.img_save_name}">
             <div class="item-card border mr-3" onclick="getUpsoDetail('${weeklyUpso.id}')" style="background-image: url(/yummymap/resources/upsoImg/${weeklyUpso.img_save_name})">
-                <div class="d-flex justify-content-center">
-                    <div class="item-card-title">${weeklyUpso.place_name}</div>
-                </div>
+                <div class="backImg-card"></div>
+                <div class="item-card-title">${weeklyUpso.place_name}</div>
             </div>
         </c:if>
         </c:forEach>
         </div>
 
-        <div class="itemBody-title">야미맵 필수 맛집!</div>
-        <div class="d-flex mt-3">
-            <div class="item-card border mr-3">
-    
-            </div>
-            <div class="item-card border mr-3">
-    
-            </div>
-            <div class="item-card border mr-1">
-    
-            </div>
-        </div>
+
 
     </div>
     

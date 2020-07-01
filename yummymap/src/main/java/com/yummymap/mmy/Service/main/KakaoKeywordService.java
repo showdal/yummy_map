@@ -50,13 +50,22 @@ public class KakaoKeywordService implements KeywordService {
 				// 클라이언트로부터 받은 검색어에 행정구역 요소가 포함된 경우이다.
 				setLocationAndKeyword(clientData, query_keyword, query_location);
 			}
+			checkCategory(clientData);
 			return clientData;
 		} else {
 			serverData.setFirst(false);
 			setSubKeywordInfo(clientData, serverData);
+			checkCategory(serverData);
 			return serverData;
 		}
-		
+	}
+	
+	private void checkCategory(SearchInfoVO searchInfoVo) {
+		String category = searchInfoVo.getCategory_name();
+		if(category == null)
+			return;
+		if(category.equals("모두"))
+			searchInfoVo.setCategory_name(null);
 	}
 	
 	@Override
