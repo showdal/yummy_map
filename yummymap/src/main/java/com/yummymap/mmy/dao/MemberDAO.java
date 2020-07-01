@@ -42,4 +42,21 @@ public class MemberDAO {
 	public int tempass(MemberVO mVO ,String mid, String mpw) {
 		return sqlSession.update("memberSql.pwchange", mVO);
 	}
+	
+	//접속자 카운트 데이터 확인
+	public int clientCntInfo() {
+		return sqlSession.selectOne("memberSql.clicntCntInfo");
+	}
+	
+	//접속자 카운트 증가 함수
+	public int addClientCnt() {
+		return sqlSession.update("memberSql.addClientCnt");
+	}
+	
+	//접속자 카운트 데이터 생성 함수
+	public int creatClientCnt(int cnt) {
+		return sqlSession.insert("memberSql.createClientCnt", cnt);
+	}
+	
+	
 }

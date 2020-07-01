@@ -15,4 +15,6 @@ public interface ChartService {
 	
 	public ArrayList<ResCntVO> resChart();
 	
+	public ArrayList<ChartCntVO> clientCnt();
+	
 }

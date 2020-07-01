@@ -29,4 +29,9 @@ public class ChartDAO {
 	public List cataActivityCnt(TextVO tVO) {
 		return sqlSession.selectList("chartSQL.cateActivityCnt", tVO);
 	}
+	
+	//일일 접속자 수 가져오는 함수
+	public List getClientCnt() {
+		return sqlSession.selectList("chartSQL.getClientCnt");
+	}
 }

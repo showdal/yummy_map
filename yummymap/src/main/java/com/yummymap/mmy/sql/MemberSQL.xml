@@ -72,4 +72,32 @@
 			WHERE
 				mid = #{mid}
 		</update>
+		<!-- 접속 카운트 날짜 조회 SQL -->
+		<select id="clicntCntInfo" resultType="int">
+			SELECT
+			    count(*) cnt
+			FROM
+			    clientcnt
+			WHERE
+			    cdate = to_char(sysdate,'yyyy/MM/dd')
+		</select>
+		
+		<!-- 접속 카운트 증가 SQL -->
+		<update id="addClientCnt">
+			UPDATE
+			    clientcnt
+			SET
+			    cnt = (SELECT cnt FROM clientcnt WHERE cdate = to_char(sysdate,'yyyy/MM/dd')) + 1
+			WHERE
+			    cdate = to_char(sysdate,'yyyy/MM/dd')
+		</update>
+		<!-- 접속 카운트 증가 SQL -->
+		<insert id="createClientCnt" parameterType="int">
+			INSERT INTO
+			    clientcnt
+			VALUES
+			(
+			    #{cnt}, to_char(sysdate,'yyyy/MM/dd')
+			)
+		</insert>
 </mapper>
