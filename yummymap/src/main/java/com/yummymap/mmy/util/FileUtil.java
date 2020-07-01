@@ -4,6 +4,12 @@ package com.yummymap.mmy.util;
  * @author	김종형
  */
 import java.io.File;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
 	public static String rename(String path, String oldName) {
