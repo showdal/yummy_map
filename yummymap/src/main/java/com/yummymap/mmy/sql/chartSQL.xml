@@ -72,4 +72,15 @@
 			txt.catno = category.catno
             AND MID = #{mid} GROUP BY category.category)
 	</select>
+	
+	<select id="getClientCnt" resultType="chartCntVo">
+		SELECT
+		    to_char(cdate , 'MM/dd') days , cnt
+		FROM
+		    clientcnt
+		WHERE
+		    cdate BETWEEN sysdate-7 and sysdate
+		ORDER BY
+		    cdate asc
+	</select>
 </mapper>

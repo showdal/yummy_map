@@ -44,11 +44,29 @@ public class MemberController {
 	@RequestMapping("/loginProc.mmy")
 	public ModelAndView loginck(MemberVO mVO, ModelAndView mv, HttpSession session) {
 		int cnt = mDao.loginck(mVO);
-		System.out.println("cnt : " + cnt);
+		
+
+		
+		
 		RedirectView rv = null;
 		if(cnt == 1) {
 			 session.setAttribute("SID", mVO.getMid());
 			 rv = new RedirectView("/yummymap/main.mmy");
+			int cnt2 = mDao.clientCntInfo();
+			
+			System.out.println("cnt2 : " + cnt2 +"###################################");
+			
+			if(cnt2 == 0) {
+				int cnt3 = mDao.creatClientCnt(1);
+				if(cnt3 == 1) {
+					System.out.println("데이터 정상 추가 #############################");
+				}
+			}else {
+				int cnt4 = mDao.addClientCnt();
+				if(cnt4 == 1) {
+					System.out.println("데이터 정상 증가 #############################");
+				}
+			}
 		}else {
 			 rv = new RedirectView("/yummymap/member/login.mmy");
 		}

@@ -112,6 +112,7 @@ public class MainDAO {
 	 * 리뷰정보를 DB에 저장합니다.
 	 */
 	public int insertReview(ReviewVO reviewVo) {
+		System.out.println("reviewVo ::"+reviewVo);
 		return sqlSession.insert("mainSql.insertReview", reviewVo);
 	}
 	/*

@@ -1,19 +1,14 @@
 package com.yummymap.mmy.controller.admin;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.security.PrivateKey;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,7 +82,7 @@ public class Admin {
 	
 	//관리자 메인 페이지 
 	@RequestMapping("/main.mmy")
-	public ModelAndView mainView(ModelAndView mv , HttpSession session) {
+	public ModelAndView mainView(ModelAndView mv) {
 
 
 		String view = "admin/main"; 
@@ -95,9 +90,15 @@ public class Admin {
 		ArrayList<ResCntVO> list = (ArrayList<ResCntVO>) chartServiceImpl.resChart();
 		
 		ChartCntVO acvo = chartServiceImpl.infoChart();
+		ArrayList<ChartCntVO> clientList = chartServiceImpl.clientCnt();
 		
+		Date date = new Date();
+		SimpleDateFormat form = new SimpleDateFormat("MM");
+		String mon = form.format(date);
+		mv.addObject("MON", mon);
 		mv.addObject("LIST", list);
 		mv.addObject("CNT", acvo);
+		mv.addObject("CLIENTLIST", clientList);
 		mv.setViewName(view);		
 		return mv;
 	}

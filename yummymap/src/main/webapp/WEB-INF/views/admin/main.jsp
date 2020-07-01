@@ -77,10 +77,12 @@
 		<div class="col sub ml-1" style="margin: auto;"> 
 				<h3 class="mt-4 text-center ml-4">Yummy Map 현황표</h3>
 				<div class="mt-5">
-					<div id="piechart_3d" class=" text-center Regular shadow"  style="display: inline-block; height: 496px;"></div>
+					<div id="piechart_3d" class=" text-center Regular shadow"  style="display: inline-block; height: 400px;"></div>
 					<div id="top_x_div" class=" box ml-2 Regular shadow p-5" style="display: inline-block;"></div>
 				</div>
-
+				<div class="d-flex justify-content-center mt-5 mb-4">
+					<div id="curve_chart" class="Regular shadow p-3"></div>
+				</div>
 		</div>
 	</div>
 </body>
@@ -103,8 +105,8 @@
 	           color: '333333',
 	           fontName: 'Arial',
 	           fontSize: 24         },
-	    width: 600,
-	    height:400,
+	    width: 560,
+	    height:300,
 	    legend: { position: 'none' },
 	    bars: 'horizontal', // Required for Material Bar Charts.
 	    bar: { groupWidth: "90%" }
@@ -127,12 +129,42 @@
 
       var options = {
         is3D: true,
-        width: 700,
+        width: 660,
         height : 400
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
       chart.draw(data, options);
     };
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawChart2() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Day');
+        data.addColumn('number', '접속자 수');
+
+        data.addRows([
+        <c:forEach items="${CLIENTLIST}" var="list">
+        	['${list.days}', ${list.cnt}],
+        </c:forEach>
+
+          
+        ]);
+
+        var options = {
+          chart: {
+            title: '${MON}월 접속자 수',
+          },
+          width: 1300,
+          height: 400
+        };
+
+      var chart = new google.charts.Line(document.getElementById('curve_chart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+//       var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+//       chart.draw(data, options);
+    }
 	</script>
 </html>	

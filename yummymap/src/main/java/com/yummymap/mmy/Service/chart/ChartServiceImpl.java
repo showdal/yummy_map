@@ -48,6 +48,14 @@ public class ChartServiceImpl implements ChartService {
 		return list;
 	}
 
+	@Override
+	public ArrayList<ChartCntVO> clientCnt() {
+		
+		ArrayList<ChartCntVO> clientCntList = (ArrayList<ChartCntVO>) chartDao.getClientCnt();
+		
+		return clientCntList;
+	}
+
 	
 	
 }

@@ -1,10 +1,28 @@
 package com.yummymap.mmy.vo.admin;
 
+import java.text.SimpleDateFormat;
+
 public class ChartCntVO {
-	private int txtcnt  , isuemem , memcnt, recnt;
-	private String mid;
+	private int txtcnt  , isuemem , memcnt, recnt , cnt;
+	private String mid, days;
 	
 	
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getDays() {
+		return days;
+	}
+
+	public void setDays(String days) {
+		this.days = days;
+	}
+
 	public String getMid() {
 		return mid;
 	}
@@ -44,6 +62,5 @@ public class ChartCntVO {
 	public void setRecnt(int recnt) {
 		this.recnt = recnt;
 	}
-	
 	
 }
