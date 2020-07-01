@@ -74,6 +74,14 @@
 				$('#frm').submit();
 		    });
 	     });
+			$('#mlink').click(function(){
+				$("#staticBackdrop").modal();
+			});
+			$('#dbtn').click(function(){
+				$('#mid').val(mid);
+				$('#frm').attr('action' , '/yummymap/member/memberDel.mmy');
+				$('#frm').submit();
+			});
 	});
 </script>
 </head>
