@@ -53,18 +53,9 @@ public class MainService {
 		if(searchInfoVo.isFirst()) {
 			upsoService.insertUpso(null, searchInfoVo);
 		}
-		checkCategory(searchInfoVo);
 		setPageUtil(pageUtil, searchInfoVo);
 		List<UpsoVO> upsoList = upsoService.getUpsoList(searchInfoVo, pageUtil);
 		return upsoList;
-	}
-	
-	private void checkCategory(SearchInfoVO searchInfoVo) {
-		String category = searchInfoVo.getCategory_name();
-		if(category == null)
-			return;
-		if(category.equals("모두"))
-			searchInfoVo.setCategory_name(null);
 	}
 	
 	private void setPageUtil(PageUtil pageUtil, SearchInfoVO searchInfoVo) {
