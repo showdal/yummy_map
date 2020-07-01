@@ -85,14 +85,7 @@ public class MainDAO {
 	public int countUpso_category(SearchInfoVO searchInfoVo) {
 		return sqlSession.selectOne("mainSql.countUpso_category", searchInfoVo);
 	}
-	/*
-	 * 사용자의 위치를 기반으로 업소 리스트를 출력합니다.
-	 * param : SearchInfoVO
-	 * 위치 기반 출력을 원할시 SearchInfoVO에 유저의 x, y 값이 필수로 담겨있어야 합니다.
-	 */
-	public List<UpsoVO> getUpSoList_geolocation(SearchInfoVO searchInfoVo){
-		return sqlSession.selectList("mainSql.upSoList_geolocation",searchInfoVo);
-	}
+
 	/*
 	 * 업소의 리뷰 평점 정보를 조회합니다.
 	 * param : upso_id (업소 id)

@@ -228,6 +228,11 @@ public class MainService {
 		return user_id;
 	}
 
+	public List<UpsoVO> getupsoListAroundUser(SearchInfoVO searchInfoVo) {
+		List<UpsoVO> upsoList = mainDao.selectSubMyPickUpsoList(searchInfoVo);
+		return upsoList;
+	}
+
 
 
 

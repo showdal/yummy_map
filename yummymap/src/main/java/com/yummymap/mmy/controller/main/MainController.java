@@ -34,9 +34,11 @@ public class MainController {
 	@RequestMapping("/index.mmy")
 	public ModelAndView forwardMainListView(ModelAndView mv, SearchInfoVO searchInfoVo, HttpSession session) {
 		List<UpsoVO> weeklyUpsoList = mainService.getWeeklyUpso();
+		List<UpsoVO> upsoListAroundUser = mainService.getupsoListAroundUser(searchInfoVo);
 		List<UpsoVO> myPickUpsoList = mainService.getMyUpsoList(searchInfoVo, session);
 		mv.setViewName("main/main");
 		mv.addObject("weeklyUpsoList", weeklyUpsoList);
+		mv.addObject("upsoListAroundUser", upsoListAroundUser);
 		mv.addObject("myPickUpsoList", myPickUpsoList);
 		mv.addObject("searchInfoVo", searchInfoVo);
 		return mv ;
@@ -58,9 +60,7 @@ public class MainController {
 	 */
 	@RequestMapping("/main/getList.mmy")
 	public ModelAndView searchList(ModelAndView mv, SearchInfoVO searchInfoVo, PageUtil pageUtil) {
-		// 키워드 분석메소드 호출
 		List<UpsoVO> upsoList = mainService.doSearchAndGetList(searchInfoVo, pageUtil);
-		// DB에서 조회된 업소들의 카테고리 리스트 가져오기
 		List<String> categoryList = mainService.getCategoryList(searchInfoVo);
 		
 		mv.setViewName("main/mainSearchList");
