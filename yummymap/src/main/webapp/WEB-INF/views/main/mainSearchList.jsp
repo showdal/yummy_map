@@ -49,6 +49,7 @@
 	     	</div>
 		</div>
     	<div class="border-bottom mt-2 mb-2 p-2 d-flex justify-content-around category-box">
+    		<div class="filter-item p-2 mr-2" onclick="groupByCategory('모두')">모두</div>
     		<c:forEach var="category" items="${categoryList}">
     		<div class="filter-item p-2 mr-2" onclick="groupByCategory('${category}')">${category}</div>
     		</c:forEach>

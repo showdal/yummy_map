@@ -257,29 +257,32 @@
 	
 	<select id="category_list_keyword" resultType="String" parameterType="String">
 		SELECT
-		    category
+		  DISTINCT  REPLACE( SUBSTR( category, 1, DECODE( INSTR(category, '>', 1) -1, -1, LENGTH(category),  INSTR(category, '>', 1) -1) ), ' ', '') category
 		FROM
 		(
 		    SELECT
-		              REPLACE( REPLACE(SUBSTR(category_name, INSTR(category_name, '>',1)+1, INSTR(category_name, '>',1, 1)), '>',''),' ','' ) category
+		        category
 		    FROM
-		            upso,
-		            (
-		                SELECT
-		                    upso_id 
-		                FROM
-		                    keyword
-		                WHERE
-		                    keyword = #{keyword}
-		            ) sub
-		    WHERE
-		        upso.isShow = 'Y'
-		        AND upso.upso_id = sub.upso_id
+		    (
+		        SELECT
+		                    DISTINCT SUBSTR(category_name, INSTR(category_name, '>',1)+1) category
+		        FROM
+		                upso,
+		                (
+		                    SELECT
+		                        upso_id 
+		                    FROM
+		                        keyword
+		                    WHERE
+		                        keyword = #{keyword}
+		                ) sub
+		        WHERE
+		            upso.isShow = 'Y'
+		            AND upso.upso_id = sub.upso_id
+		    )
 		)
-		GROUP BY
-		    category
 		ORDER BY
-    		category DESC
+		    LENGTH(category)	
 	</select>
 	
 	<select id="pickCount" parameterType="Map" resultType="int">
