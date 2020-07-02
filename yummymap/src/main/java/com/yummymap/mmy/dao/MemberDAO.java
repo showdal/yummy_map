@@ -42,7 +42,7 @@ public class MemberDAO {
 	public int tempass(MemberVO mVO ,String mid, String mpw) {
 		return sqlSession.update("memberSql.pwchange", mVO);
 	}
-<<<<<<< HEAD
+
 	//회원가입 처리
 	public int join(MemberVO mVO) {
 		return sqlSession.insert("memberSql.join", mVO);
@@ -51,7 +51,6 @@ public class MemberDAO {
 	public int idCheck(MemberVO mVO) {
 		return sqlSession.selectOne("memberSql.idCheck", mVO);
 	}
-=======
 	
 	//접속자 카운트 데이터 확인
 	public int clientCntInfo() {
@@ -67,7 +66,5 @@ public class MemberDAO {
 	public int creatClientCnt(int cnt) {
 		return sqlSession.insert("memberSql.createClientCnt", cnt);
 	}
-	
-	
->>>>>>> branch 'branch' of https://github.com/showdal/yummy_map.git
+
 }
