@@ -79,7 +79,9 @@
         </div>
     </div>
     <div class="itemBody container mb-5">
+    	<c:if test="${upsoListAroundUser.size() != 0}">
         <div class="itemBody-title">내 주변 맛집 바로가기!</div>
+    	</c:if>
         <div class="d-flex mt-3">
         <c:forEach var="locationUpso" items="${upsoListAroundUser}">
         <c:if test="${empty locationUpso.img_save_name}">
@@ -96,8 +98,9 @@
         </c:if>
         </c:forEach>
         </div>
-        
+        <c:if test="${weeklyUpsoList.size() != 0}">
         <div class="itemBody-title mt-5">이번주 핫 맛집!</div>
+        </c:if>
         <div class="d-flex mt-3">
         <c:forEach var="weeklyUpso" items="${weeklyUpsoList}">
         <c:if test="${empty weeklyUpso.img_save_name}">

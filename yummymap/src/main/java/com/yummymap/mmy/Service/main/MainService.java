@@ -12,30 +12,30 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.yummymap.mmy.Service.main.keyword.KeywordService;
+import com.yummymap.mmy.Service.main.review.ReviewService;
+import com.yummymap.mmy.Service.main.upso.ParsingUpsoService;
+import com.yummymap.mmy.Service.main.upso.UpsoService;
 import com.yummymap.mmy.dao.MainDAO;
 import com.yummymap.mmy.util.PageUtil;
-import com.yummymap.mmy.vo.ImageFileVO;
-import com.yummymap.mmy.vo.RatingUpsoVO;
-import com.yummymap.mmy.vo.ReviewVO;
-import com.yummymap.mmy.vo.SearchInfoVO;
-import com.yummymap.mmy.vo.UpsoVO;
+import com.yummymap.mmy.vo.*;
 
 @Service
 public class MainService {
 
 	private UpsoService upsoService;
-	private MainDAO mainDao;
-	@Autowired
-	private FileService fileService;
-	@Autowired
+	private ReviewService reviewService;
 	private KeywordService keywordService; 
+	private MainDAO mainDao;
 	
 	
-	public MainService(ParsingUpsoService upsoService, MainDAO mainDao) {
+	public MainService(ParsingUpsoService upsoService, ReviewService reviewService , KeywordService keywordService, MainDAO mainDao) {
 		this.upsoService = upsoService;
+		this.reviewService = reviewService;
+		this.keywordService = keywordService;
 		this.mainDao = mainDao;
 	}
 	
@@ -70,14 +70,17 @@ public class MainService {
 		pageUtil.totalfun();
 	}
 	
-	
+	/*
+	 * 화면에 카테고리 정렬 기능 노출이 필요하다면,
+	 * 조회된 업소들의 카테고리 리스트를 가져옵니다. 
+	 */
 	public List<String> getCategoryList(SearchInfoVO searchInfoVo) {
 		String keyword = searchInfoVo.getKeyword();
 		List<String> categoryList = mainDao.getCategoryList(keyword);
-		sortCategoryList(categoryList);
 		int countCategory = categoryList.size();
 		if(countCategory > 1) {
 			searchInfoVo.setCategory_filtering("Y");
+			sortCategoryList(categoryList);
 		} else {
 			searchInfoVo.setCategory_filtering("N");
 		}
@@ -91,31 +94,25 @@ public class MainService {
 			return;
 		for(int i=0; i<categoryList.size(); i++) {
 			String category_name = categoryList.get(i);
-			String tmp = "";
 			if(category_name.equals("한식")) {
-				tmp = categoryList.get(0);
+				categoryList.remove(i);
 				categoryList.add(0, category_name);
-				categoryList.add(i, tmp);
 				return;
 			}
 		}
 	}
-	
+	/*
+	 * 업소의 디테일 정보를 요정합니다.
+	 */
 	public UpsoVO getUpsoDetail(UpsoVO upsoVo, HttpSession session) {
 		String user_id = getUserIdInSession(session);
 		upsoVo = upsoService.getUpsoDetailInfo(upsoVo.getId(), user_id);
 		return upsoVo;
 	}
 
-	
-	public int upsoCount_group_category(SearchInfoVO searchInfoVo) {
-		int result = 0;
-		result = mainDao.countUpso_category(searchInfoVo);
-		return result;
-	}
-	
 	/*
-	 * 업소의 리뷰 분석 정보를 가져오는 메소드입니다.
+	 * 업소에 작성된 리뷰데이터를 기준으로, 
+	 * 분석 정보를 가져오는 메소드입니다.
 	 */
 	public RatingUpsoVO getRatingInfo(int upso_id) {
 		if(upso_id == 0) {
@@ -126,17 +123,17 @@ public class MainService {
 	}
 	
 	/*
-	 * 업소에 등록된 리뷰 정보 리스트를 가져옵니다.
+	 * 업소에 등록된 리뷰 리스트를 가져옵니다.
 	 */
 	public List<ReviewVO> getReviewList(int upso_id){
 		if(upso_id == 0) {
 			return new ArrayList<ReviewVO>();
 		}
-		List<ReviewVO> reviewList = upsoService.getReviewList(upso_id);
+		List<ReviewVO> reviewList = reviewService.getAllList(upso_id);
 		for(int i=0; i < reviewList.size(); i++) {
 			ReviewVO reviewVo = reviewList.get(i);
 			int rev_no = reviewVo.getRev_no();
-			List<ImageFileVO> imageList = upsoService.getReviewImgList(rev_no);
+			List<ImageFileVO> imageList = reviewService.getImageList(rev_no);
 			reviewVo.setImgList(imageList);
 		}
 		return reviewList;
@@ -146,31 +143,24 @@ public class MainService {
 	 * 업소 리뷰를 저장해주는 메소드입니다.
 	 * return : 성공 - true, 실패 - false
 	 */
-	public boolean insertReview(ReviewVO reviewVo, HttpSession session) {
-		int insertCount = 0;
+	@Transactional
+	public void insertReviewProcess(ReviewVO reviewVo, HttpSession session) {
 		String userId = getUserIdInSession(session);
 		if(userId.equals(""))
-			return false;
+			return;
 		reviewVo.setMid(userId);
-		boolean result = upsoService.insertReview(reviewVo);
-		if(result) {
-			List<ImageFileVO> imageFileVoList = fileService.uploadProcess(session, reviewVo.getReviewImgFile());
-			int rev_no = reviewVo.getRev_no();
-			int res_no = reviewVo.getRes_id();
-			for(int i=0; i < imageFileVoList.size(); i++) {
-				ImageFileVO imageFileVo  = imageFileVoList.get(i);
-				imageFileVo.setRev_no(rev_no);
-				imageFileVo.setRes_no(res_no);
-				result = fileService.insertReviewImgFile(imageFileVo);
-				if(result)
-					insertCount++;
-			}
-			if(imageFileVoList.size() == insertCount)
-				result = true;
-			else
-				result = false;
-		}
-		return result;
+		int count = reviewService.insertContents(reviewVo);
+		if(count == 0)
+			return;
+		reviewService.insertImageFile(reviewVo, session);
+	}
+
+	@Transactional
+	public void deleteReviewProcess(ReviewVO reviewVo, HttpSession session) {
+		String user_id = getUserIdInSession(session);
+		reviewVo.setMid(user_id);
+		reviewService.deleteContents(reviewVo);
+		reviewService.deleteReviewImage(reviewVo);
 	}
 	
 	/*
@@ -182,7 +172,7 @@ public class MainService {
 	}
 	
 	/*
-	 * 나가 픽한 업소 리스트를 가져옵니다.
+	 * 내가 픽한 업소 리스트를 가져옵니다.
 	 */
 	public List<UpsoVO> getMyUpsoList(SearchInfoVO searchInfoVo, HttpSession session) {
 		String userId = getUserIdInSession(session);
@@ -193,6 +183,17 @@ public class MainService {
 		return myUpsoList;
 	}
 
+	/*
+	 * 클라이언트 위치기반 추천 업소 리스트를 가져옵니다.
+	 */
+	public List<UpsoVO> getupsoListAroundUser(SearchInfoVO searchInfoVo) {
+		List<UpsoVO> upsoList = mainDao.selectSubMyPickUpsoList(searchInfoVo);
+		return upsoList;
+	}
+	
+	/*
+	 * 클라이언트가 업소를 픽기능을 요청시 처리하는 메소드입니다.
+	 */
 	public boolean upsoPickProcess(HttpSession session, int upso_id) {
 		String user_id = getUserIdInSession(session);
 		boolean is_pick = pickOrUnPick(user_id, upso_id);
@@ -211,6 +212,7 @@ public class MainService {
 		boolean result = (pickCount == 0) ? false : true;
 		return result;
 	}
+	
 
 	private String getUserIdInSession(HttpSession session) {
 		String user_id = (String) session.getAttribute("SID");
@@ -219,10 +221,7 @@ public class MainService {
 		return user_id;
 	}
 
-	public List<UpsoVO> getupsoListAroundUser(SearchInfoVO searchInfoVo) {
-		List<UpsoVO> upsoList = mainDao.selectSubMyPickUpsoList(searchInfoVo);
-		return upsoList;
-	}
+
 
 
 

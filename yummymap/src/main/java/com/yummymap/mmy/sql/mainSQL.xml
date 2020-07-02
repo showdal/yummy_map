@@ -362,6 +362,15 @@
 		    AND rownum BETWEEN 1 AND 3	
 	</select>
 	
+	<select id="checkReviewWriter" parameterType="int" resultType="String">
+		SELECT
+			mid
+		FROM
+			upso_review
+		WHERE
+			rev_no = #{rev_no}
+	</select>
+	
 	
 	
 	
@@ -428,6 +437,23 @@
 		WHERE
 			resno = #{upso_id}
 			AND mid = #{user_id}
+	</update>
+	<update id="deleteReview" parameterType="Map">
+		UPDATE
+			upso_review
+		SET
+			isshow = 'N'
+		WHERE
+			rev_no = #{rev_no}
+			AND mid = #{user_id}
+	</update>
+	<update id="deleteReviewImage" parameterType="int">
+		UPDATE
+			review_img
+		SET
+			is_show = 'N'
+		WHERE
+			rev_no = #{rev_no}
 	</update>
 
 

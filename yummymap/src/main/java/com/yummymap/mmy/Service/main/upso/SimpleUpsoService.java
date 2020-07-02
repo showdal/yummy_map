@@ -1,4 +1,4 @@
-package com.yummymap.mmy.Service.main;
+package com.yummymap.mmy.Service.main.upso;
 
 import java.util.List;
 
@@ -84,40 +84,11 @@ public class SimpleUpsoService implements UpsoService{
 		ratingUpsoVo.setStar5_per(per5);
 		return ratingUpsoVo;
 	}
-	
-	@Override
-	public List<ReviewVO> getReviewList(int upso_id){
-		List<ReviewVO> reviewList = mainDao.getReviewList(upso_id);
-		return reviewList;
-	}
-	
-	@Override
-	public List<ImageFileVO> getReviewImgList(int rev_no) {
-		 List<ImageFileVO> reviewImgList = mainDao.getReviewImgList(rev_no);
-		 return reviewImgList;
-	}
-	
-	@Override
-	public boolean insertReview(ReviewVO reviewVo) {
-		boolean isSuccess = false;
-		int result = mainDao.insertReview(reviewVo);
-		if(result == 1) {
-			isSuccess = true;
-		} else {
-			isSuccess = false;
-		}
-		return isSuccess;
-	}
 
 	@Override
 	public List<UpsoVO> showWeeklyUpso() {
 		List<UpsoVO> weeklyUpsoList = mainDao.selectWeeklyUpso();
 		return weeklyUpsoList;
-	}
-
-	public int insertKeyword(SearchInfoVO searchInfoVo) {
-		int resultCnt = mainDao.insertKeyword(searchInfoVo);
-		return resultCnt;
 	}
 
 	@Override

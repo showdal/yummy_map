@@ -173,6 +173,9 @@ public class MainDAO {
 		Map<String, Object> paramMap = getPickProcessParamMap(upso_id, user_id);
 		return sqlSession.update("mainSql.removePick", paramMap);
 	}
+	public String getReviewWriter(int rev_no) {
+		return sqlSession.selectOne("mainSql.checkReviewWriter", rev_no);
+	}
 	
 	private Map<String, Object> getPickProcessParamMap(int upso_id, String user_id) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -180,5 +183,17 @@ public class MainDAO {
 		paramMap.put("user_id", user_id);
 		return paramMap;
 	}
+
+	public int deleteReview(int rev_no, String user_id) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("rev_no", rev_no);
+		paramMap.put("user_id", user_id);
+		return sqlSession.update("mainSql.deleteReview", paramMap);
+	}
+
+	public int deleteReviewImage(int rev_no) {
+		return sqlSession.update("mainSql.deleteReviewImage", rev_no);
+	}
+
 
 }

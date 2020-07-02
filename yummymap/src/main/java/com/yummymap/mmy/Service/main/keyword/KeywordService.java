@@ -1,4 +1,4 @@
-package com.yummymap.mmy.Service.main;
+package com.yummymap.mmy.Service.main.keyword;
 
 import com.yummymap.mmy.vo.SearchInfoVO;
 

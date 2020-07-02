@@ -18,14 +18,6 @@ import com.yummymap.mmy.vo.ImageFileVO;
 @Service
 public class FileService {
 	
-	private MainDAO mainDao;
-	
-	private final Logger logger = LoggerFactory.getLogger(FileService.class);
-	
-	public FileService(MainDAO mainDao) {
-		this.mainDao = mainDao;
-	}
-	
 	public List<ImageFileVO> uploadProcess(HttpSession session, MultipartFile[] files) {
 		List<ImageFileVO> imageFileVoList = new ArrayList<ImageFileVO>();
 		String path = session.getServletContext().getRealPath("resources");
@@ -37,6 +29,7 @@ public class FileService {
 				continue;
 			}
 			String save_name = FileUtil.rename(path, original_name);
+			save_name = save_name.replaceAll(" ", "");
 			try {
 				File saveFile = new File(path, save_name);
 				files[i].transferTo(saveFile);
@@ -50,32 +43,4 @@ public class FileService {
 		return imageFileVoList;
 	}
 	
-	public boolean insertReviewImgFile(ImageFileVO imageFileVo) {
-		boolean result = false;
-		if(imageFileVo == null)
-			return false;
-		try {
-			int rev_no = imageFileVo.getRev_no();
-		} catch (Exception e) {
-			String exceptionMessage = e.getMessage();
-			logger.info("imageFile Insert 작업도중 예외 발생 {}", exceptionMessage);
-			return false;
-		}
-		int upso_id = imageFileVo.getRes_no();
-		String is_main = isFirstImg(upso_id);
-		imageFileVo.setIs_main(is_main);
-		int insertCount = mainDao.insertReviewImg(imageFileVo);
-		if(insertCount == 0)
-			result = false;
-		else
-			result = true;
-		
-		return result;
-	}
-	
-	public String isFirstImg(int upso_id) {
-		int count = mainDao.getCountImgGroupByUpso(upso_id);
-		String result = (count == 0) ? "Y" : "N";
-		return result;
-	}
 }

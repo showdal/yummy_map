@@ -25,10 +25,13 @@
                 <li><div class="topNavItem-icon" onclick="showModal()"><i class="far fa-heart"></i></div></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/login.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
-                <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <c:if test="${SID != null and Token == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+                <c:if test="${SID != null and Token != null}">
+                <li><a class="topNavItem-icon" href="" id="kakaoLogout"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
@@ -189,7 +192,7 @@
 	        	<div class="d-flex">
 		        	<c:forEach var="imgVo" items="${reviewVo.imgList}">
 	        		<div class="reviewImg pr-2">
-	        			<a href="/yummymap/resources/reviewImg/${imgVo.save_name}"><img src="/yummymap/resources/upsoImg/${imgVo.save_name}"></a>
+	        			<a href="/yummymap/resources/upsoImg/${imgVo.save_name}"><img src="/yummymap/resources/upsoImg/${imgVo.save_name}"></a>
 	        		</div>
 		        	</c:forEach>
 	        	</div>
@@ -199,6 +202,9 @@
                 <i class="fas fa-star"></i>
 	            </c:forEach>
 	                <div class="pl-1">${reviewVo.cr_date}</div>
+	                <c:if test="${SID == reviewVo.mid}">
+	                <button type="button" class="btn btn-secondary btn-sm rbtn ml-3" onclick="deleteReview('${reviewVo.rev_no}')">삭제</button>
+	                </c:if>
 	            </div>
 	            <div class="review-txt pt-4 pb-4">${reviewVo.rev_txt}</div>
 	        </div>
@@ -353,6 +359,10 @@ function showModal() {
    
 }
 
+function deleteReview(data) {
+	let res_id = '${upsoVo.id}';
+	location.href = '/yummymap/main/reviewDelete.mmy?rev_no='+data+'&res_id='+res_id;
+}
 /*
 // 카카오map
 var mapContainer = document.getElementById('upso-mapBox'), // 지도를 표시할 div 

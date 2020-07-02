@@ -1,4 +1,4 @@
-package com.yummymap.mmy.Service.main;
+package com.yummymap.mmy.Service.main.upso;
 
 import java.util.List;
 
@@ -16,12 +16,6 @@ public interface UpsoService {
 	public List<UpsoVO> getUpsoList(SearchInfoVO searchInfoVo, PageUtil pageUtil);
 	
 	public RatingUpsoVO getRatingInfo(int upso_id);
-	
-	public List<ReviewVO> getReviewList(int upso_id);
-	
-	public List<ImageFileVO> getReviewImgList(int rev_no);
-	
-	public boolean insertReview(ReviewVO reviewVo);
 	
 	public List<UpsoVO> showWeeklyUpso();
 	

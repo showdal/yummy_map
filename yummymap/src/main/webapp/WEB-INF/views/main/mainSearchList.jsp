@@ -24,10 +24,13 @@
                 <li><div class="topNavItem-icon" onclick="showModal()"><i class="far fa-heart"></i></div></li>
                 <li><a class="topNavItem-icon" href=""><i class="fas fa-user"></i></a></li>
                 <c:if test="${SID == null}">
-                <li><a class="topNavItem-icon" href="/yummymap/member/loginView.mmy"><i class="fas fa-toggle-off"></i></a></li>
+                <li><a class="topNavItem-icon" href="/yummymap/member/login.mmy"><i class="fas fa-toggle-off"></i></a></li>
                 </c:if>
-                <c:if test="${SID != null}">
-                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProcess.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                <c:if test="${SID != null and Token == null}">
+                <li><a class="topNavItem-icon" href="/yummymap/member/logoutProc.mmy"><i class="fas fa-toggle-on"></i></a></li>
+                </c:if>
+                <c:if test="${SID != null and Token != null}">
+                <li><a class="topNavItem-icon" href="" id="kakaoLogout"><i class="fas fa-toggle-on"></i></a></li>
                 </c:if>
             </ul>
         </div>
@@ -41,7 +44,7 @@
     </div>
     <div class="itemBody container mb-5">
    	    <c:if test="${searchInfoVo.category_filtering == 'Y'}">
-	    <div class="title mt-4">${searchInfoVo.query_location} 인기 맛집 순위</div>
+	    <div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
 				<div class="mr-2 border-right pr-2 pl-2" onclick="listSort('star_avg')">평점</div>
@@ -56,7 +59,7 @@
     	</div>
     	</c:if>
    	    <c:if test="${searchInfoVo.category_filtering == 'N'}">
-    	<div class="title mt-4">${searchInfoVo.query_location} ${searchInfoVo.query_keyword} 인기 맛집 순위</div>
+    	<div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
 				<div class="mr-2 border-right pr-2 pl-2" onclick="listSort('star_avg')">평점</div>

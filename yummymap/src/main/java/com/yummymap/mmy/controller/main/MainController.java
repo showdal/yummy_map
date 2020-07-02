@@ -27,12 +27,19 @@ public class MainController {
 		this.mainService = mainService;
 	}
 	@RequestMapping("/main.mmy")
-	public ModelAndView mainTempView(ModelAndView mv) {
+	public ModelAndView mainInitView(ModelAndView mv) {
 		mv.setViewName("main/mainRedirect");
 		return mv ; 
 	}
+	@RequestMapping("/main/mainRedirect.mmy")
+	public ModelAndView redirectMainView(ModelAndView mv, RedirectView rv, SearchInfoVO searchInfoVo) {
+		String param = "?x="+searchInfoVo.getX()+"&y="+searchInfoVo.getY();
+		rv.setUrl(ProjectUrl.MAIN_VIEW.getUrl()+param);
+		mv.setView(rv);
+		return mv ;
+	}	
 	@RequestMapping("/index.mmy")
-	public ModelAndView forwardMainListView(ModelAndView mv, SearchInfoVO searchInfoVo, HttpSession session) {
+	public ModelAndView forwardMainView(ModelAndView mv, SearchInfoVO searchInfoVo, HttpSession session) {
 		List<UpsoVO> weeklyUpsoList = mainService.getWeeklyUpso();
 		List<UpsoVO> upsoListAroundUser = mainService.getupsoListAroundUser(searchInfoVo);
 		List<UpsoVO> myPickUpsoList = mainService.getMyUpsoList(searchInfoVo, session);
@@ -41,14 +48,6 @@ public class MainController {
 		mv.addObject("upsoListAroundUser", upsoListAroundUser);
 		mv.addObject("myPickUpsoList", myPickUpsoList);
 		mv.addObject("searchInfoVo", searchInfoVo);
-		return mv ;
-	}
-	
-	@RequestMapping("/main/mainRedirect.mmy")
-	public ModelAndView redirectMainListView(ModelAndView mv, RedirectView rv, SearchInfoVO searchInfoVo) {
-		String param = "?x="+searchInfoVo.getX()+"&y="+searchInfoVo.getY();
-		rv.setUrl(ProjectUrl.MAIN_VIEW.getUrl()+param);
-		mv.setView(rv);
 		return mv ;
 	}
 	
@@ -95,11 +94,22 @@ public class MainController {
 	 */
 	@RequestMapping( method = RequestMethod.POST, value = "/main/reviewProcess.mmy")
 	public ModelAndView reviewProcess(ReviewVO reviewVo, ModelAndView mv,  HttpSession session, RedirectView redirect) {
-		boolean result = mainService.insertReview(reviewVo, session);
+		mainService.insertReviewProcess(reviewVo, session);
+		
 		String param = "?id="+reviewVo.getRes_id();
 		redirect.setUrl(ProjectUrl.UPSO_DETAIL_VIEW.getUrl()+param);
-		
 		mv.setView(redirect);
+		return mv;
+	}
+	/*
+	 * 리뷰삭제 요청이 들어오는 컨트롤러입니다.
+	 */
+	@RequestMapping("/main/reviewDelete.mmy")
+	public ModelAndView reviewDelete(ModelAndView mv, RedirectView redirect, HttpSession session, ReviewVO reviewVo) {
+		String param = "?id="+reviewVo.getRes_id();
+		redirect.setUrl(ProjectUrl.UPSO_DETAIL_VIEW.getUrl()+param);
+		mv.setView(redirect);
+		mainService.deleteReviewProcess(reviewVo, session);
 		return mv;
 	}
 	

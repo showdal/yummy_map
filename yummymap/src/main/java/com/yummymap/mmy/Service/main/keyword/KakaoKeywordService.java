@@ -1,4 +1,4 @@
-package com.yummymap.mmy.Service.main;
+package com.yummymap.mmy.Service.main.keyword;
 
 import org.springframework.stereotype.Service;
 

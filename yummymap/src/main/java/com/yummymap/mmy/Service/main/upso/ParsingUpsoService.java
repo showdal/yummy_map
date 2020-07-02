@@ -1,4 +1,4 @@
-package com.yummymap.mmy.Service.main;
+package com.yummymap.mmy.Service.main.upso;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yummymap.mmy.Service.api.KakaoMapService;
 import com.yummymap.mmy.Service.api.KakaoMapService.KakaoMapCategoryCode;
+import com.yummymap.mmy.Service.main.keyword.KeywordService;
 import com.yummymap.mmy.dao.MainDAO;
 import com.yummymap.mmy.util.PageUtil;
 import com.yummymap.mmy.vo.*;
@@ -69,18 +70,6 @@ public class ParsingUpsoService implements UpsoService {
 	@Override
 	public RatingUpsoVO getRatingInfo(int upso_id) {
 		return simpleUpsoService.getRatingInfo(upso_id);
-	}
-	@Override
-	public List<ReviewVO> getReviewList(int upso_id) {
-		return simpleUpsoService.getReviewList(upso_id);
-	}
-	@Override
-	public List<ImageFileVO> getReviewImgList(int rev_no) {
-		return simpleUpsoService.getReviewImgList(rev_no);
-	}
-	@Override
-	public boolean insertReview(ReviewVO reviewVo) {
-		return simpleUpsoService.insertReview(reviewVo);
 	}
 
 	@Override
