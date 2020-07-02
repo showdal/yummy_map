@@ -25,11 +25,11 @@ public class FileService {
 		for(int i=0; i<files.length - 1; i++) {
 			ImageFileVO imageFileVo = new ImageFileVO();
 			String original_name = files[i].getOriginalFilename();
+			original_name = original_name.replaceAll(" ", "");
 			if(original_name == null || original_name.length() == 0) {
 				continue;
 			}
 			String save_name = FileUtil.rename(path, original_name);
-			save_name = save_name.replaceAll(" ", "");
 			try {
 				File saveFile = new File(path, save_name);
 				files[i].transferTo(saveFile);

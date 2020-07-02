@@ -146,7 +146,7 @@
 		        
 		        </div>
 			</div>
-			<div id="upso-mapBox"></div>
+			<div class="upso-mapBox" id="map" ></div>
 		</div>
 
 
@@ -258,7 +258,6 @@
     </div>
   </div>      
 </body>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8654c7466588faa58bc40d0b9bef6ce"></script> -->
 <script type="text/javascript">
 function submitKeyword(){
 	if(event.keyCode == 13) {
@@ -273,6 +272,11 @@ function setRating(){
 	document.getElementById('rating_upso').value = rating;
 }
 function submitReview() {
+	let user_id = '${SID}';
+	if(!user_id) {
+		alert('로그인 후 이용해주세요.');		
+		return;
+	}
 	let rev_txt = document.getElementById('rev_txt').value;
 	let rating_upso = document.getElementById('rating_upso').value;
 	let res_id = document.getElementById('res_id').value;
@@ -363,26 +367,53 @@ function deleteReview(data) {
 	let res_id = '${upsoVo.id}';
 	location.href = '/yummymap/main/reviewDelete.mmy?rev_no='+data+'&res_id='+res_id;
 }
-/*
-// 카카오map
-var mapContainer = document.getElementById('upso-mapBox'), // 지도를 표시할 div 
-mapOption = { 
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-};
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-//마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
 
-//마커를 생성합니다
-var marker = new kakao.maps.Marker({
-position: markerPosition
-});
+</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8654c7466588faa58bc40d0b9bef6ce&libraries=services"></script>
+<script>
+//마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-//마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
-*/
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places(); 
+
+// 키워드로 장소를 검색합니다
+ps.keywordSearch('${upsoVo.place_name}', placesSearchCB); 
+
+// 키워드 검색 완료 시 호출되는 콜백함수 입니다
+function placesSearchCB (data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        var bounds = new kakao.maps.LatLngBounds();
+        displayMarker(data[0]);    
+        bounds.extend(new kakao.maps.LatLng(${upsoVo.y}, ${upsoVo.x}));
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+    } 
+}
+
+// 지도에 마커를 표시하는 함수입니다
+function displayMarker(place) {
+    
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(place.y, place.x) 
+    });
+
+}
 </script>
 </html>
