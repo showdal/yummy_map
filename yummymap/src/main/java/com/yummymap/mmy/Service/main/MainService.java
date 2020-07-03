@@ -41,7 +41,8 @@ public class MainService {
 	
 	/*
 	 * 분석된 키워드의 결과를 토대로 업소 리스트를 조회합니다.
-	 * 조회 결과는 페이징처리되며, 페이징처리 조건은 PageUtil을 통하여 설정 할 수 있습니다.
+	 * 검색어와 분석정보는 SearchInfoVO를 통해 관리합니다.
+	 * 페이징처리 조건은 PageUtil을 통하여 설정 할 수 있습니다.
 	 */
 	public List<UpsoVO> doSearchAndGetList(SearchInfoVO searchInfoVo, PageUtil pageUtil) {
 		searchInfoVo = keywordService.analyzeKeyword(searchInfoVo);
@@ -53,8 +54,10 @@ public class MainService {
 		if(searchInfoVo.isFirst()) {
 			upsoService.insertUpso(null, searchInfoVo);
 		}
+		
 		setPageUtil(pageUtil, searchInfoVo);
 		List<UpsoVO> upsoList = upsoService.getUpsoList(searchInfoVo, pageUtil);
+		
 		return upsoList;
 	}
 	
@@ -111,13 +114,9 @@ public class MainService {
 	}
 
 	/*
-	 * 업소에 작성된 리뷰데이터를 기준으로, 
-	 * 분석 정보를 가져오는 메소드입니다.
+	 * 업소의 리뷰 & 평점 분석정보를 가져옵니다.
 	 */
 	public RatingUpsoVO getRatingInfo(int upso_id) {
-		if(upso_id == 0) {
-			return new RatingUpsoVO();
-		}
 		RatingUpsoVO ratingVo = upsoService.getRatingInfo(upso_id);
 		return ratingVo;
 	}
@@ -126,9 +125,6 @@ public class MainService {
 	 * 업소에 등록된 리뷰 리스트를 가져옵니다.
 	 */
 	public List<ReviewVO> getReviewList(int upso_id){
-		if(upso_id == 0) {
-			return new ArrayList<ReviewVO>();
-		}
 		List<ReviewVO> reviewList = reviewService.getAllList(upso_id);
 		for(int i=0; i < reviewList.size(); i++) {
 			ReviewVO reviewVo = reviewList.get(i);
@@ -172,7 +168,7 @@ public class MainService {
 	}
 	
 	/*
-	 * 내가 픽한 업소 리스트를 가져옵니다.
+	 * 내가 찜한 업소 리스트를 가져옵니다.
 	 */
 	public List<UpsoVO> getMyUpsoList(SearchInfoVO searchInfoVo, HttpSession session) {
 		String userId = getUserIdInSession(session);

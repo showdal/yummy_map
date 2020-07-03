@@ -77,6 +77,11 @@ public class ParsingUpsoService implements UpsoService {
 		return simpleUpsoService.showWeeklyUpso();
 	}
 
+	/*
+	 * 내가 찜한 맛집 리스트를 가져옵니다.
+	 * SimpleUpsoService에 구현된 myUpso를 통해 조회 후 조회결과가 0이라면
+	 * 클라이언트 위치기반의 업소리스트를 새롭게 가져와 대체합니다.
+	 */
 	@Override
 	public List<UpsoVO> showMyUpso(SearchInfoVO searchInfoVo) {
 		List<UpsoVO> myUpsoList = simpleUpsoService.showMyUpso(searchInfoVo);
