@@ -13,6 +13,9 @@ img{
 .dnone{
     display: none;
 }
+.q-location{
+	font-size: 10pt;
+}
 
 /*itemBody*/
 .itemBody{

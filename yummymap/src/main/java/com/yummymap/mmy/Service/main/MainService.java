@@ -38,19 +38,16 @@ public class MainService {
 		this.keywordService = keywordService;
 		this.mainDao = mainDao;
 	}
-	
+	public SearchInfoVO analyzeKeyword(SearchInfoVO searchInfoVo) {
+		searchInfoVo = keywordService.analyzeKeyword(searchInfoVo);
+		return searchInfoVo;
+	}
 	/*
 	 * 분석된 키워드의 결과를 토대로 업소 리스트를 조회합니다.
 	 * 검색어와 분석정보는 SearchInfoVO를 통해 관리합니다.
 	 * 페이징처리 조건은 PageUtil을 통하여 설정 할 수 있습니다.
 	 */
-	public List<UpsoVO> doSearchAndGetList(SearchInfoVO searchInfoVo, PageUtil pageUtil) {
-		searchInfoVo = keywordService.analyzeKeyword(searchInfoVo);
-		/*
-		 *  만약 해당키워드로의 검색요청이 최초일 경우 api파싱과 db저장을 진행한다.
-		 *  insertUpso() 매개변수로 UpsoVO, SearchInfoVO 를 입력한다.
-		 *  매개변수 중 UpsoVO가 null일 경우 자동적으로 파싱 작업이 이루어진다. 
-		 */
+	public List<UpsoVO> getUpsoList(SearchInfoVO searchInfoVo, PageUtil pageUtil) {
 		if(searchInfoVo.isFirst()) {
 			upsoService.insertUpso(null, searchInfoVo);
 		}

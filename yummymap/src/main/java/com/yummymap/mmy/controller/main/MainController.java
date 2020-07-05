@@ -59,10 +59,13 @@ public class MainController {
 	 */
 	@RequestMapping("/main/getList.mmy")
 	public ModelAndView searchList(ModelAndView mv, SearchInfoVO searchInfoVo, PageUtil pageUtil) {
-		List<UpsoVO> upsoList = mainService.doSearchAndGetList(searchInfoVo, pageUtil);
+		searchInfoVo = mainService.analyzeKeyword(searchInfoVo);
+		List<UpsoVO> upsoList = mainService.getUpsoList(searchInfoVo, pageUtil);
 		List<String> categoryList = mainService.getCategoryList(searchInfoVo);
 		
-		mv.setViewName("main/mainSearchList");
+		System.out.println("searchInfoVo ::"+searchInfoVo);
+		
+		mv.setViewName("main/mainSearchList");	
 		mv.addObject("upSoVoList",upsoList);
 		mv.addObject("categoryList",categoryList);
 		mv.addObject("searchInfoVo",searchInfoVo);

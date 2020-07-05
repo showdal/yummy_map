@@ -45,6 +45,9 @@
     <div class="itemBody container mb-5">
    	    <c:if test="${searchInfoVo.category_filtering == 'Y'}">
 	    <div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
+	    <div class="d-flex mt-3">
+		    <div class="border-bottom q-location">${searchInfoVo.query_location}</div>
+	    </div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
 				<div class="mr-2 border-right pr-2 pl-2" onclick="listSort('star_avg')">평점</div>
@@ -60,6 +63,7 @@
     	</c:if>
    	    <c:if test="${searchInfoVo.category_filtering == 'N'}">
     	<div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
+    	<div class="mt-4">${searchInfoVo.query_location}</div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
 				<div class="mr-2 border-right pr-2 pl-2" onclick="listSort('star_avg')">평점</div>
