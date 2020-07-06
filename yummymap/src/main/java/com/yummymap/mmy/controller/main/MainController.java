@@ -26,6 +26,7 @@ public class MainController {
 	public MainController(MainService mainService) {
 		this.mainService = mainService;
 	}
+	
 	@RequestMapping("/main.mmy")
 	public ModelAndView mainInitView(ModelAndView mv) {
 		mv.setViewName("main/mainRedirect");
@@ -43,6 +44,7 @@ public class MainController {
 		List<UpsoVO> weeklyUpsoList = mainService.getWeeklyUpso();
 		List<UpsoVO> upsoListAroundUser = mainService.getupsoListAroundUser(searchInfoVo);
 		List<UpsoVO> myPickUpsoList = mainService.getMyUpsoList(searchInfoVo, session);
+		
 		mv.setViewName("main/main");
 		mv.addObject("weeklyUpsoList", weeklyUpsoList);
 		mv.addObject("upsoListAroundUser", upsoListAroundUser);
@@ -63,10 +65,8 @@ public class MainController {
 		List<UpsoVO> upsoList = mainService.getUpsoList(searchInfoVo, pageUtil);
 		List<String> categoryList = mainService.getCategoryList(searchInfoVo);
 		
-		System.out.println("searchInfoVo ::"+searchInfoVo);
-		
 		mv.setViewName("main/mainSearchList");	
-		mv.addObject("upSoVoList",upsoList);
+		mv.addObject("upsoList",upsoList);
 		mv.addObject("categoryList",categoryList);
 		mv.addObject("searchInfoVo",searchInfoVo);
 		mv.addObject("pageUtil",pageUtil);

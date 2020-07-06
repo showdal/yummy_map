@@ -7,7 +7,6 @@ package com.yummymap.mmy.Service.main;
  *  		www.mmy.YummyMap.dao.MainDAO
  *  		www.mmy.YummyMap.Service.main.UpSoServiceImpl
  */
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -38,10 +37,12 @@ public class MainService {
 		this.keywordService = keywordService;
 		this.mainDao = mainDao;
 	}
+	
 	public SearchInfoVO analyzeKeyword(SearchInfoVO searchInfoVo) {
 		searchInfoVo = keywordService.analyzeKeyword(searchInfoVo);
 		return searchInfoVo;
 	}
+	
 	/*
 	 * 분석된 키워드의 결과를 토대로 업소 리스트를 조회합니다.
 	 * 검색어와 분석정보는 SearchInfoVO를 통해 관리합니다.

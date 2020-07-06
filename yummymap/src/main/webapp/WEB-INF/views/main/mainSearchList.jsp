@@ -45,8 +45,8 @@
     <div class="itemBody container mb-5">
    	    <c:if test="${searchInfoVo.category_filtering == 'Y'}">
 	    <div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
-	    <div class="d-flex mt-3">
-		    <div class="border-bottom q-location">${searchInfoVo.query_location}</div>
+	    <div class="d-flex mt-1">
+		    <div class="border-bottom q-location">검색 장소 : ${searchInfoVo.query_location}</div>
 	    </div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
@@ -63,7 +63,9 @@
     	</c:if>
    	    <c:if test="${searchInfoVo.category_filtering == 'N'}">
     	<div class="title mt-4">${searchInfoVo.keyword} 검색 결과</div>
-    	<div class="mt-4">${searchInfoVo.query_location}</div>
+ 		<div class="d-flex mt-1">
+		    <div class="border-bottom q-location">검색 장소 : ${searchInfoVo.query_location}</div>
+	    </div>
 	     <div class="d-flex justify-content-end">
 	     	<div class="border d-flex p-1 sortBox">
 				<div class="mr-2 border-right pr-2 pl-2" onclick="listSort('star_avg')">평점</div>
@@ -73,8 +75,8 @@
    	    </c:if>  	
    	    <c:if test="${searchInfoVo.category_name != null}">
     	<div class="sub-title mt-5">${searchInfoVo.category_name} 카테고리</div>   	    
-   	    </c:if>    	
-    	<c:forEach var="upsoVo" items="${upSoVoList}" varStatus="status">
+   	    </c:if>
+    	<c:forEach var="upsoVo" items="${upsoList}" varStatus="status">
     	<c:if test="${status.count % 2 != 0}">
  	    <div class="item d-inline-block mr-4 ml-3 mt-4" >
  	    	<div class="p-2">
