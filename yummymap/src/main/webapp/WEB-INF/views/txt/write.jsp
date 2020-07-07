@@ -44,7 +44,7 @@
 	<div class="main-body">
 		<div class="txt-line mb-4">
 			<form action="/yummymap/txt/writeProc.mmy" method="POST" id="frm">
-				<input type="hidden" id="mid" name="mid" value="show">
+				<input type="hidden" id="mid" name="mid" >
 				<div class="form-group d-flex">
 
 					<select name="catno" id="catno">
