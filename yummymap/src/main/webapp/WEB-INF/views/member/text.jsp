@@ -50,11 +50,11 @@
 			$('#frm').attr('action','/yummymap/member/text.mmy');
 			$('#frm').submit();
 		});
-	      $('.bolist').click(function(){
+	      $('.title').click(function(){
 	          //글번호 알아낸다
-	          var txtno = $(this).attr('id');
+	          var txtno = $(this).parent().prevAll('.ckd').attr('id');
+	          alert(txtno);
 	          $('#txtno').val(txtno);
-	          $('#nowPage').val('${PAGE.nowPage}');
 	          $('#frm').attr('action','/yummymap/txt/detail.mmy?txtno='+txtno);
 	          $('#frm').submit();
 	       });
@@ -86,8 +86,8 @@
 </script>
 </head>
 <body>
-	<form method="post" id="frm" action="/yummymap/member/text.mmy">
-		<input type="hidden" name="nowPage" id="nowPage">
+	<form method="post" id="frm">
+		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="txtno" id="txtno" value="1">
 		<input type="hidden" name="mid" id="mid">
 	</form>
@@ -177,7 +177,7 @@
 							<div class="col-2 ckd " id="${data.txtno}">
 								<input type="checkbox" class="mr-2" name="no" value="${data.txtno}">${data.txtno}
 							</div>
-							<div class="col-5 title-box bolist"><a class="title">${data.title}</a></div>
+							<div class="col-5 title-box "><a class="title">${data.title}</a></div>
 							<div class="col-2">${data.mid }</div>
 							<div class="col-2">${data.tdate}</div>
 							<div class="col-1">${data.count}</div>

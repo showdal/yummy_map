@@ -56,8 +56,8 @@
 		SELECT
 		    txtcnt, recnt
 		FROM
-		   (SELECT count(*) txtcnt FROM txt WHERE mid = #{mid}),
-		   (SELECT count(*) recnt FROM upso_review WHERE mid = #{mid})
+		   (SELECT count(*) txtcnt FROM txt WHERE mid = #{mid} AND isShow = 'Y'),
+		   (SELECT count(*) recnt FROM upso_review WHERE mid = #{mid} AND isShow = 'Y')
 	</select>
 	
 	<select id="cateActivityCnt" resultType="TextVO" parameterType="TextVO">
@@ -70,7 +70,7 @@
 				txt , category 
 		WHERE 
 			txt.catno = category.catno
-            AND MID = #{mid} GROUP BY category.category)
+            AND MID = #{mid} AND isShow = 'Y'  GROUP BY category.category)
 	</select>
 	
 	<select id="getClientCnt" resultType="chartCntVo">
