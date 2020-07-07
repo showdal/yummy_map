@@ -23,6 +23,7 @@
 		<typeAlias type="com.yummymap.mmy.vo.ImageFileVO" alias="imageFileVo"/>
 		<typeAlias type="com.yummymap.mmy.vo.UpsoVO" alias="upsoVo"/>	
 		<typeAlias type="com.yummymap.mmy.vo.SearchInfoVO" alias="searchInfoVo"/>
+		<typeAlias type="com.yummymap.mmy.vo.JoinMailVO" alias="jVO"/>
 	 </typeAliases>
 	 
 	 <!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
@@ -37,6 +38,7 @@
 	  	<mapper resource="com/yummymap/mmy/sql/adminSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/textSQL.xml" />
 	  	<mapper resource="com/yummymap/mmy/sql/mainSQL.xml" />
+	  	<mapper resource="com/yummymap/mmy/sql/JoinMailSQL.xml" />
 	  </mappers>
 	 
 </configuration>

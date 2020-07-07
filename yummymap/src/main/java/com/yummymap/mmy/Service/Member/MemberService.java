@@ -1,16 +1,19 @@
 package com.yummymap.mmy.Service.Member;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Random;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yummymap.mmy.dao.MemberDAO;
+import com.yummymap.mmy.dao.*;
 import com.yummymap.mmy.util.MailUtil;
-import com.yummymap.mmy.vo.MemberVO;
+import com.yummymap.mmy.vo.*;
 
 @Service
 public class MemberService {
@@ -18,6 +21,8 @@ public class MemberService {
 	MemberDAO mDao;
 	@Autowired
 	MailUtil YummyMap;
+	@Autowired
+	JoinMailDAO jDAO;
 	
 	// 임시 비밀번호 발급 처리 함수
 	public String  setPassword(int length) {
@@ -99,5 +104,56 @@ public class MemberService {
 		}
 			
 		return map;
+		}
+	
+	// 인증메일 보내기 함수
+	
+		public void mailCk(JoinMailVO jVO) {
+			String from = jVO.getMail();
+			System.out.println("from : " + from);
+			// 인증번호 생성
+			Random ran = new Random();
+			StringBuffer buff = new StringBuffer();
+			for(int i = 0; i < 6; i++) {
+				buff.append(ran.nextInt(10));
+			}
+			// 이메일 보내기
+			String inck = buff.toString();
+			String title = "YummyMap 이메일 인증 메일입니다.";
+			StringBuffer mtxt = new StringBuffer();
+			mtxt.append("<h2>반갑습니다. <b>YummyMap</b> 입니다.</h2> ");
+			mtxt.append("<br> ");
+			mtxt.append("<h3>요청 주신 인증 번호는 <b style=\"color: blue;\">"+inck+"</b> 입니다.</h3> ");
+			mtxt.append("<br> ");
+			mtxt.append("<h3>인증 번호 입력 란에 입력해주시고 인증 확인후 진행 부탁드립니다</h3> ");
+			mtxt.append("<h3>감사합니다.</h3> ");
+			YummyMap.getSend(from, title, mtxt.toString());
+				
+				String inmail = inck;
+				int num = Integer.parseInt(inck);
+				jVO.setCftnum(num);
+				int cnt = jDAO.mailCnt(jVO);
+				if(cnt != 0) {
+					jDAO.mailUp(jVO);
+				} else if(cnt == 0) {
+					jDAO.newMail(jVO);
+				}
+				
+
+		}
+		
+		// 인증확인 함수
+		
+		public @ResponseBody HashMap<String, String> mailNum(JoinMailVO jVO, HttpServletRequest req) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			int num = jVO.getCftnum();
+			String mailobefore = req.getParameter("cftnum");
+			int mailoafter = Integer.parseInt(mailobefore);
+			if(num == mailoafter) {
+				map.put("result", "ok");
+			} else {
+				map.put("result", "no");
+			}
+			return map;
 		}
 }

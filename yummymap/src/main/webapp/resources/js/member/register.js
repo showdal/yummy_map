@@ -2,7 +2,7 @@ $(document).ready(function () {
 	
 let mailOk;
 let mailcode=false;
-
+let memail;
 // 완료버튼 클릭시 이벤트를 진행합니다.
   $('#joinbtn').click(function(){
     let result = checkfrm();
@@ -10,7 +10,7 @@ let mailcode=false;
       alert('모든 입력을 완료해주세요');
       return;
     }
-    if(!(idchk($('#id').val()))) {
+    if(!(idchk($('#mid').val()))) {
     	alert('아이디 입력이 잘못되었습니다.');
     	return;
     }
@@ -18,20 +18,20 @@ let mailcode=false;
     	alert('아이디 체크를 진행해주세요.');
     	return;
     }
-    if(!(pwchk($('#pw').val()))) {
+    if(!(pwchk($('#mpw').val()))) {
     	alert('비밀번호 입력이 잘못되었습니다.');
     	return;
     }
-    if(!(namechk($('#name').val()))){
+    if(!(namechk($('#mname').val()))){
     	alert('이름 입력이 잘못되었습니다.')
     	return;
     }
-    let tel = $('#telmid').val() + $('#telend').val();
+    let tel = $('#mtel').val() + $('#telend').val();
     if(!(telchk(tel))) {
     	alert('휴대전화 입력이 잘못되었습니다.');
     	return;
     }
-    if($('#repw').val() != $('#pw').val()) {
+    if($('#repw').val() != $('#mpw').val()) {
     	alert('비밀번호가 일치하지 않습니다.');
     	return;
     }
@@ -39,7 +39,7 @@ let mailcode=false;
     	alert('이메일 인증을 진행 하세요');
     	return;
     }
-    
+    alert('문제없음');
     $('#frm').submit();
   });
 // input태그의 모든 값이 들어있는지 체크해주는 함수입니다.
@@ -73,9 +73,9 @@ let mailcode=false;
      	return ok;
   }
    
-   $('#id').keyup(function(){
+   $('#mid').keyup(function(){
 	   $('#idmsg1').show();
-	   if(idchk($('#id').val())) {
+	   if(idchk($('#mid').val())) {
 		   $('#idmsg1').text('아이디 입력양식이 일치합니다');
 		   $('#idmsg1').attr('class', 'text-primary' );
 	   } else {
@@ -83,9 +83,9 @@ let mailcode=false;
 		   $('#idmsg1').attr('class', 'text-danger' );
 	   }
    });
-   $('#pw').keyup(function(){
+   $('#mpw').keyup(function(){
 	   $('#pwmsg1').show();
-	   if(pwchk($('#pw').val())) {
+	   if(pwchk($('#mpw').val())) {
 		   $('#pwmsg1').text('비밀번호 입력양식이 일치합니다');
 		   $('#pwmsg1').attr('class', 'text-primary' );
 	   } else {
@@ -95,7 +95,7 @@ let mailcode=false;
    });
    $('#repw').keyup(function(){
 	   $('#repwmsg').show(); 	 
-	   if($('#repw').val() == $('#pw').val()) {
+	   if($('#repw').val() == $('#mpw').val()) {
 		   $('#repwmsg').text('비밀번호가 일치합니다');
 		   $('#repwmsg').attr('class', 'text-primary' );
 	   } else {
@@ -108,7 +108,7 @@ let mailcode=false;
   let ckIdResult = false;
   //아이디체크 이벤트를 비동기로 진행합니다.
   $('#idcheck').click(function() {
-	  let bid = $('#id').val();
+	  let bid = $('#mid').val();
 	  if(!bid)
 		  return;
 	  
@@ -134,27 +134,24 @@ let mailcode=false;
 			}
 		});
   });
-  //이메일 인증 처리 
+  //이메일인증 발송처리 
 
   $('#sendmail').click(function(){
-	  let mailId = $('#email1').val();
-	  let domain = $('#email2').val();
-	  if(!mailId || !domain){
+	  let memail = $('#memail').val();
+	  if(!memail){
 		  alert('메일을 입력해 주세요');
 		  return;
 	  }
-	  let mail = mailId + domain;
 	  $.ajax({
 		 url : '/yummymap/member/mailCk.mmy',
 		 type: 'post',
 		 dataType: 'json',
 		 data: {
-			 'email' : mail
+			 'mail' : memail
 		 },
 		 success : function(data){
-			 
-			 mailOk = data.emailCk;
-
+			 mail = data.data;
+			 alert('메일이 전송되었습니다. 메일을 확인하여 인증번호 입력을 완료해주세요.');
 		 },error : function(){
 			alert("통신 오류") 
 		 }
@@ -164,15 +161,26 @@ let mailcode=false;
   //이메일 인증 코드값 확인 처리
   $('#eokbtn').click(function(){
 	 let mailo = $('#malick').val();
-	 if(mailo == mailOk){
-		 $('#mailmsg').removeClass('text-danger');
-		 $('#mailmsg').css('color','blue');
-		 $('#mailmsg').html('메일 인증이 완료 되었습니다');
-		 $('#mailckBox').addClass('d-none');
-		 mailcode = true;
-	 }else{
-		 $('#mailmsg').html('인증 번호가 틀립니다 다시 인증해주세요');
-	 }
-  });
-
+		$.ajax({
+			url: '/yummymap/member/mailNum.mmy',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				'cftnum' : mailo
+			},
+			success: function(data){
+				 if(data.result == 'ok'){
+					 $('#mailmsg').removeClass('text-danger');
+					 $('#mailmsg').css('color','blue');
+					 $('#mailmsg').html('메일 인증이 완료 되었습니다');
+					 $('#mailckBox').addClass('d-none');
+					 mailcode = true;
+				 } else  if(data.result == 'no'){
+					 $('#mailmsg').html('인증 번호가 틀립니다 다시 인증해주세요');
+				 }
+			}, error: function(){
+						alert('통신 에러');
+						}
+		})
+  })
 });

@@ -66,8 +66,8 @@
        <input type="radio" name="memSrc" id="idSrc" value="id" checked="checked" > 아이디 찾기
        <input class="ml-2" type="radio" name="memSrc" id="passSrc" value="pass" > 비밀번호 찾기
       <form class="mt-3" action="/yummymap/member/idfind.mmy" method="post" id="frm2" >
-        <div> 사용자 이름 : <input type="txet" id="mname" name="mname"></div>
-        <div class="mt-3"> 사용자 메일 : <input type="txet"  id="memail" name="memail"></div>
+        <div> 사용자 이름 : <input type="text" id="mname" name="mname"></div>
+        <div class="mt-3"> 사용자 메일 : <input type="text"  id="memail" name="memail"></div>
        </form>
         </div>
         <small class="d-none text-danger text-center" id="srchint">*입력하신 계정 정보가 없습니다</small>
@@ -120,12 +120,12 @@ $(document).ready(function () {
 		let sd = $(this).val();
 		$('#srchint').addClass('d-none');
 		if(sd == 'pass'){
-			$('#frm2').html('<div> 사용자 아이디 : <input type="txet" id="mid" name="mid"></div>'+
-			        		'<div class="mt-3"> 사용자 이메일 : <input type="txet"  id="memail" name="memail"></div>');		
+			$('#frm2').html('<div> 사용자 아이디 : <input type="text" id="mid" name="mid"></div>'+
+			        		'<div class="mt-3"> 사용자 이메일 : <input type="text"  id="memail" name="memail"></div>');		
 			$('#sendbtn').text('발송');
 		}else if(sd == 'id'){
-			$('#frm2').html('<div> 사용자 이름 : <input type="txet" id="name" name="name"></div>'+
-    						'<div class="mt-3"> 사용자 메일 : <input type="txet"  id="mail" name="mail"></div>');	
+			$('#frm2').html('<div> 사용자 이름 : <input type="text" id="name" name="name"></div>'+
+    						'<div class="mt-3"> 사용자 메일 : <input type="text"  id="mail" name="mail"></div>');	
 			$('#sendbtn').text('찾기');
 		
 		}

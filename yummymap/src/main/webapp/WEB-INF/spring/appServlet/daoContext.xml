@@ -20,5 +20,6 @@
 	<bean id="chartDAO" class="com.yummymap.mmy.dao.ChartDAO" />
 	<!-- 내가쓴글 관련 데이터 베이스 -->
 	<bean id="tDao" class="com.yummymap.mmy.dao.TextDAO" /> 
-	
+	<!-- 메일인증 관련 데이터 베이스 -->
+	<bean id="jDao" class="com.yummymap.mmy.dao.JoinMailDAO" /> 
 </beans>

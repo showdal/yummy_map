@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
@@ -254,7 +254,9 @@ public class MemberController {
 	// 회원가입 처리
 	@RequestMapping("/joinProc.mmy")
 	public ModelAndView joinProc (ModelAndView mv, MemberVO mVO, HttpSession session) {
+		System.out.println("컨트롤러 진입 완료");
 		int cnt = mDao.join(mVO);
+		System.out.println("cnt : " + cnt);
 		RedirectView rv = null;
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getMid());
@@ -271,8 +273,26 @@ public class MemberController {
 	@ResponseBody
 	public int idCheck(MemberVO mVO) throws Exception {
 		int result = mDao.idCheck(mVO);
-		System.out.println("result : " + result);
 		return result;
+	}
+	
+	// 회원가입 메일인증 처리
+	@RequestMapping("/mailCk.mmy")
+	@ResponseBody
+	public HashMap<String, String> mailProc(JoinMailVO jVO) {
+		mSrvc.mailCk(jVO);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("data","ok");
+		return map;
+	}
+	
+	// 인증확인 컨트롤러
+	@RequestMapping("mailNum.mmy")
+	@ResponseBody
+	public HashMap<String, String> mailNum(JoinMailVO jVO, HttpServletRequest req) {
+		return mSrvc.mailNum(jVO, req);
 	}
 
 }

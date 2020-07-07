@@ -15,7 +15,7 @@
 <style>
 
 </style>
-<body>
+<body style="width: 40%; float:none; margin:0 auto;">
 <!-- nav 영역입니다-->
 <div class="bg-white border-bottom nav-body">
   <div class=" mt-2 nav-btn">
@@ -61,19 +61,18 @@
 <!-- body 시작 입니다-->
   <div class="main-body mb-5">
     <div class="m-box mt-4">
-      <form id="frm" action="/yummymap/join/joinProc.mmy" method="POST">
-      	<input type="hidden" id="emailCk" name="emailCk"> 
+      <form id="frm" action="/yummymap/member/joinProc.mmy" method="POST">
         <div class="form-group">
           <label for="id" class="idlabel mr-2 d-inline-block">아이디</label>
           <button type="button" id="idcheck" class="btn btn-secondary btn-sm d-inline-block mb-1">아이디 체크</button>
-          <input type="text" class="form-control ckinput" id="id" name="id">
+          <input type="text" class="form-control ckinput" id="mid" name="mid">
           <small id="idmsg" class="text-secondary d-block">첫글자 영문자, 영문자 혹은 숫자 조합 5~13자리 입력</small>
           <small id="idmsg1" class="dnone d-block"></small>
           <small id="idmsg2" class="dnone d-block"></small>
         </div>
         <div class="form-group">
           <label for="pw">비밀번호</label>
-          <input type="password" class="form-control ckinput" id="pw" name="pw">
+          <input type="password" class="form-control ckinput" id="mpw" name="mpw">
           <small id="pwmsg" class="text-secondary d-block">첫글자 영문자, 영문+숫자+특수문자 조합 8~15자리 입력</small>
           <small id="pwmsg1" class="text-danger">비밀번호 패턴을 확인해주세요</small>
         </div>
@@ -84,10 +83,10 @@
         </div>
         <div class="form-group">
           <label for="repw">이름</label>
-          <input type="text" class="form-control ckinput" id="name" name="name">
+          <input type="text" class="form-control ckinput" id="mname" name="mname">
         </div>
         <div class="form-group">
-          <label for="telmid">휴대전화</label>
+          <label for="mtel">휴대전화</label>
           <div class="d-flex">
             <select class="form-control" name="teltop">
               <option value="010">010</option>
@@ -96,25 +95,17 @@
               <option value="019">019</option>
             </select>
             <p>-</p>
-            <input type="text" class="form-control ckinput" id="telmid" name="telmid">
+            <input type="text" class="form-control ckinput" id="mtel" name="mtel">
             <p>-</p>
             <input type="text" class="form-control ckinput" id="telend" name="telend">
           </div>
         </div>
         <div class="form-group">
-          <label for="email1" class="idlabel mr-2 d-inline-block">이메일</label>
+          <label for="memail" class="idlabel mr-2 d-inline-block">이메일</label>
           <button type="button" class="btn btn-secondary btn-sm d-inline-block mb-1" id="sendmail">이메일 인증</button>
           <div class="d-flex">
-            <input type="text" class="form-control ckinput" id="email1" name="email1">
-            <p>@</p>
-            <select class="form-control" id="email2" name="email2">
-              <option value="@naver.com">naver.com</option>
-              <option value="@gmail.com">gmail.com</option>
-              <option value="@hanmir.com">hanmir.com</option>
-              <option value="@nate.com">nate.com</option>
-              <option value="@korea.com">korea.com</option>
-              <option value="" >직접입력</option>
-            </select>
+            <input type="text" class="form-control ckinput" id="memail" name="memail">
+
           </div>
           <div class="mt-2 d-none" id="mailckBox">
 	          <input class="p-1" type="text" id="malick" name="mailck" placeholder="인증번호를 입력하세요">

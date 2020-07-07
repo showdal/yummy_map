@@ -81,9 +81,9 @@
 				member
 		</selectKey>
 		INSERT INTO
-			member(mno, mname, mid, mpw, mtel, memail, birth, gen, grade, joindate)
+			member(mno, mname, mid, mpw, mtel, memail)
 		VALUES(
-			#{mno}, #{mname}, #{mid}, #{mpw}, #{mtel}, #{memail}, #{birth}, #{gen}, #{issue}, #{grade}, {sdate}
+			#{mno}, #{mname}, #{mid}, #{mpw}, #{mtel}, #{memail}
 		)
 		</insert>
 		<!-- 아이디 체크 SQL -->
